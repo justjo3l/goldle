@@ -14,6 +14,7 @@ export default function Home() {
   const [goldle, setGoldle] = useState(new Goldle());
   const [guesses, setGuesses] = useState(0);
   const [guessStates, setGuessStates] = useState([]);
+  const [activeRow, setActiveRow] = useState(null);
 
   const updateGuessState = (newGuessState) => {
     setGuessStates([...guessStates, newGuessState.guessState]);
@@ -42,19 +43,18 @@ export default function Home() {
   useEffect(() => {
     if (state !== 'inactive') {
       const rowNode = document.getElementById('r-' + guesses.toString());
-      const row = ReactDOM.createRoot(rowNode);
-      rowNode.style.gridTemplateColumns = '100%';
-      const currentGuessState = guessStates[guesses - 1];
+      if (rowNode && state !== 'inactive') {
+        rowNode.style.gridTemplateColumns = '100%';
+        const currentGuessState = guessStates[guesses - 1];
 
-      console.log(getStyles(currentGuessState.degree));
-      row.render(<div className={styles.row}>
-      <div className={`${getStyles(currentGuessState.name)}`}>{currentGuessState.name.value}</div>
-      <div className={`${getStyles(currentGuessState.degree)}`}>{currentGuessState.degree.value}</div>
-      <div className={`${getStyles(currentGuessState.country)}`}>{currentGuessState.country.value}</div>
-      <div className={`${getStyles(currentGuessState.floor)} ${styles.floor}`}>{currentGuessState.floor.value}</div>
-      </div>);
+        activeRow.render(<div className={styles.row}>
+        <div className={`${getStyles(currentGuessState.name)}`}>{currentGuessState.name.value}</div>
+        <div className={`${getStyles(currentGuessState.degree)}`}>{currentGuessState.degree.value}</div>
+        <div className={`${getStyles(currentGuessState.country)}`}>{currentGuessState.country.value}</div>
+        <div className={`${getStyles(currentGuessState.floor)} ${styles.floor}`}>{currentGuessState.floor.value}</div>
+        </div>);
+      }
     }
-    console.log(guessStates);
   }, [guessStates])
 
   useEffect(() => {
@@ -62,6 +62,7 @@ export default function Home() {
       const rowNode = document.getElementById('r-' + (guesses + 1).toString());
       if (rowNode && state === 'started') {
         const row = ReactDOM.createRoot(rowNode);
+        setActiveRow(row);
         rowNode.style.gridTemplateColumns = '100%';
         const element = <GuessBar goldle={goldle} onGuess={updateGuessState}/>;
         row.render(element);
@@ -76,7 +77,11 @@ export default function Home() {
         <title>Goldle</title>
       </Head>
       <main className={styles.main}>
-        <h1 className={styles.title}>GOLDLE</h1>
+        <div className={styles.titleBar}>
+          <h1 className={styles.title}>GOLDLE</h1>
+          {state === 'started' && <h3 className={styles.guesses}>{guesses + 1}/6</h3>}
+          {(state === 'won' || state === 'lost') && <h3 className={styles.guesses}>{guesses}/6</h3>}
+        </div>
         {state === 'inactive' &&
         <button className={styles.startButton} onClick={handleStartClick}>START</button>
         }
