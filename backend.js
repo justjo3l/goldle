@@ -1,29 +1,14 @@
-import fs from 'fs';
-import Papa from 'papaparse';
 import { getCountryCode, getCountryData } from 'countries-list';
+
+import { goldleGators, goldleFacultyMap } from './assets.js';
 
 const gameStates = ['inactive', 'started', 'won', 'lost'];
 const degreeStates = ['different faculty', 'same faculty', 'correct', 'none'];
 const floorStates = ['incorrect', 'neighbour', 'correct', 'none'];
 const countryStates = ['different continent', 'same continent', 'correct', 'none'];
 
-function parseGators(gatorFile) {
-    let gators = [];
-    Papa.parse(gatorFile, {
-        worker: true,
-        complete: function(results) {
-            for (let i = 0; i < results.data.length; i++) {
-                if (i !== 0) {
-                    let gator = {};
-                    gator.name = results.data[i][1];
-                    gator.degree = results.data[i][2];
-                    gator.room = results.data[i][3];
-                    gator.country = results.data[i][4];
-                    gators.push(gator);
-                }
-            }
-        }
-    });
+function parseGators() {
+    let gators = goldleGators;
     return gators;
 }
 
@@ -36,21 +21,11 @@ function getGatorNames(gators) {
 
 }
 
-function parseFaculties(facultyFile) {
+function parseFaculties() {
     let facultyMap = new Map();
-    Papa.parse(facultyFile, {
-        worker: true,
-        complete: function(results) {
-            for (let i = 0; i < results.data.length; i++) {
-                if (i !== 0) {
-                    if (facultyMap.get(results.data[i][1]) === undefined) {
-                        facultyMap.set(results.data[i][1], []);
-                    }
-                    facultyMap.get(results.data[i][1]).push(results.data[i][0]);
-                }
-            }
-        }
-    });
+    for (let i = 0; i < goldleFacultyMap["value"].length; i++) {
+        facultyMap.set(goldleFacultyMap["value"][i][0], goldleFacultyMap["value"][i][1]);
+    }
     return facultyMap;
 }
 
@@ -79,15 +54,14 @@ class Goldle {
         this.status = 'inactive';
     }
     
-    setupGators = function(gatorData, facultyData) {
+    setupGators = function() {
         const goldle = this;
 
-        const gatorFile = fs.readFileSync(gatorData, 'utf8');
-        goldle.gators = parseGators(gatorFile);
+        goldle.gators = parseGators();
         goldle.gatorNames = getGatorNames(goldle.gators);
 
-        const facultyFile = fs.readFileSync(facultyData, 'utf8');
-        goldle.facultyMap = parseFaculties(facultyFile);
+        goldle.facultyMap = parseFaculties();
+        console.log('GAME HAS BEEN SET UP!');
     }
 
     getGatorByName = function(name) {
@@ -107,7 +81,7 @@ class Goldle {
     startGame = function() {
         if (same(this.status, 'started')) {
             console.log('Game already started');
-            return;
+            return this.status;
         }
 
         this.setupGators('gator-data.csv', 'faculty-data.csv');
@@ -115,7 +89,7 @@ class Goldle {
         this.numGuesses = 6;
         this.status = 'started';
         console.log('The game has been started!');
-        return;
+        return this.status;
     }
 
     searchName = function(name) {
@@ -220,40 +194,59 @@ class Goldle {
                 console.log('Guess ' + (7 - goldle.numGuesses).toString() + ' of 6');
                 let guessedGator = goldle.getGatorByName(name);
                 goldle.numGuesses--;
+                let newGuessState = {}
+                    newGuessState.name = {
+                        state: same(goldle.guessGator.name, guessedGator.name) ? 'correct' : 'incorrect',
+                        value: guessedGator.name,
+                    }
+                    newGuessState.degree = {
+                        state: goldle.checkDegree(guessedGator.degree),
+                        value: guessedGator.degree
+                    };
+                    newGuessState.floor = {
+                        state: goldle.checkFloor(guessedGator.room[0]),
+                        value: guessedGator.room[0]
+                    };
+                    newGuessState.country = {
+                        state: goldle.checkCountry(guessedGator.country),
+                        value: guessedGator.country
+                    };
+                    goldle.guessStates.push(newGuessState);
                 if (same(goldle.guessGator.name, name)) {
                     goldle.status = 'won';
                     console.log('You guessed the gator!');
                     console.log('Thank you for playing Goldle!');
-                    return;
+                    return {
+                        "guessState": newGuessState,
+                        "gameState": "won"
+                    };
                 } else if (goldle.numGuesses === 0) {
                     goldle.status = 'lost';
                     console.log('You failed to guess the gator...');
                     console.log('The gator was ' + goldle.guessGator.name + '!');
                     goldle.showGator();
                     console.log('Better luck next time!');
-                    return;
+                    return {
+                        "guessState": newGuessState,
+                        "gameState": "lost"
+                    };
                 } else {
-                    let newGuessState = {}
-                    newGuessState.name = guessedGator.name;
-                    newGuessState.degree = goldle.checkDegree(guessedGator.degree);
-                    newGuessState.floor = goldle.checkFloor(guessedGator.room[0]);
-                    newGuessState.country = goldle.checkCountry(guessedGator.country);
-                    goldle.guessStates.push(newGuessState);
-                    console.log(newGuessState);
                     console.log('You guessed wrong!');
-                    return;
+                    return {"guessState": newGuessState};
                 }
             } else {
                 console.log('Gator not found');
                 let recommendations = goldle.searchName(name);
+                let recommendationText = "";
                 if (recommendations.length > 0) {
-                    console.log('Did you mean ' + recommendations[0] + '?');
+                    recommendationText = 'Did you mean ' + recommendations[0] + '?';
+                    console.log(recommendationText);
                 }
-                return;
+                return {"error": "Gator not found\n" + recommendationText};
             }
         } else {
             console.log('Game not started');
-            return;
+            return {"error": "Game not started"};
         }
     }
 
@@ -273,6 +266,10 @@ class Goldle {
         } else {
             console.log('Gator not found');
         }
+    }
+
+    getState = function() {
+        return this.status;
     }
 }
 
