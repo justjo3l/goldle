@@ -8,6 +8,8 @@ import GuessBar from '../components/guessBar';
 
 import Goldle from '../../backend.js';
 
+import countryFlagEmoji from 'country-flag-emoji';
+
 export default function Home() {
 
   const [state, setState] = useState('inactive');
@@ -15,6 +17,16 @@ export default function Home() {
   const [guesses, setGuesses] = useState(0);
   const [guessStates, setGuessStates] = useState([]);
   const [activeRow, setActiveRow] = useState(null);
+
+  const getCountryEmoji = (country) => {
+    for (let i = 0; i < countryFlagEmoji.list.length; i++) {
+      if (countryFlagEmoji.list[i].name.toLowerCase().includes(country.toLowerCase())) {
+        return countryFlagEmoji.list[i].emoji;
+      }
+    }
+
+    return country;
+  }
 
   const updateGuessState = (newGuessState) => {
     setGuessStates([...guessStates, newGuessState.guessState]);
@@ -50,7 +62,7 @@ export default function Home() {
         activeRow.render(<div className={styles.row}>
         <div className={`${getStyles(currentGuessState.name)}`}>{currentGuessState.name.value}</div>
         <div className={`${getStyles(currentGuessState.degree)}`}>{currentGuessState.degree.value}</div>
-        <div className={`${getStyles(currentGuessState.country)}`}>{currentGuessState.country.value}</div>
+        <div className={`${getStyles(currentGuessState.country)} ${styles.country}`}>{getCountryEmoji(currentGuessState.country.value)}</div>
         <div className={`${getStyles(currentGuessState.floor)} ${styles.floor}`}>{currentGuessState.floor.value}</div>
         </div>);
       }

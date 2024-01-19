@@ -96,6 +96,10 @@
     background-color: #e5e53cc6;
 }
 
+.country {
+    font-size: 48px;
+}
+
 .floor {
     font-size: 48px;
     font-weight: 800;
