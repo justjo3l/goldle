@@ -10,6 +10,9 @@ import Goldle from '../../backend.js';
 
 import countryFlagEmoji from 'country-flag-emoji';
 
+import WinPopup from '../components/winPopup.js';
+import LosePopup from '../components/losePopup.js';
+
 export default function Home() {
 
   const [state, setState] = useState('inactive');
@@ -18,6 +21,8 @@ export default function Home() {
   const [guessStates, setGuessStates] = useState([]);
   const [activeRow, setActiveRow] = useState(null);
   const [recommendation, setRecommendation] = useState("");
+  const [winPopupOpen, setWinPopupOpen] = useState(false);
+  const [losePopupOpen, setLosePopupOpen] = useState(false);
 
   const getCountryEmoji = (country) => {
     for (let i = 0; i < countryFlagEmoji.list.length; i++) {
@@ -86,7 +91,11 @@ export default function Home() {
   }, [guessStates])
 
   useEffect(() => {
-    if (state !== 'inactive') {
+    if (state === 'won') {
+      setWinPopupOpen(true);
+    } else if (state === 'lost') {
+      setLosePopupOpen(true);
+    } else if (state !== 'inactive') {
       const rowNode = document.getElementById('r-' + (guesses + 1).toString());
       if (rowNode && state === 'started') {
         const row = ReactDOM.createRoot(rowNode);
@@ -114,6 +123,8 @@ export default function Home() {
         <button className={styles.startButton} onClick={handleStartClick}>START</button>
         }
         {state === 'started' && recommendation && <div className={styles.recommendation}>Did you mean <span onClick={recommendationClick}>{recommendation}</span>?</div>}
+        {state !== 'inactive' && <WinPopup state={winPopupOpen} goldle={goldle}/>}
+        {state !== 'inactive' && <LosePopup state={losePopupOpen} goldle={goldle}/>}
         {state !== 'inactive' &&
         <div className={styles.guessGrid}>
           <div className={`${styles.header} ${styles.row}`} id="r-0">
