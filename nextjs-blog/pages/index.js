@@ -17,6 +17,7 @@ export default function Home() {
   const [guesses, setGuesses] = useState(0);
   const [guessStates, setGuessStates] = useState([]);
   const [activeRow, setActiveRow] = useState(null);
+  const [recommendation, setRecommendation] = useState("");
 
   const getCountryEmoji = (country) => {
     for (let i = 0; i < countryFlagEmoji.list.length; i++) {
@@ -29,11 +30,26 @@ export default function Home() {
   }
 
   const updateGuessState = (newGuessState) => {
+    setRecommendation("");
     setGuessStates([...guessStates, newGuessState.guessState]);
     setGuesses(guesses + 1);
     if (newGuessState.gameState) {
       setState(newGuessState.gameState);
     }
+  }
+
+  const guessError = (errorState) => {
+    setRecommendation(errorState.recommendation);
+  }
+
+  const recommendationClick = () => {
+    setRecommendation("");
+    const element = <GuessBar goldle={goldle} onGuess={updateGuessState} onError={guessError} value={recommendation}/>;
+    activeRow.unmount();
+    const rowNode = document.getElementById('r-' + (guesses + 1).toString());
+    const row = ReactDOM.createRoot(rowNode);
+    setActiveRow(row);
+    row.render(element);
   }
 
   const handleStartClick = () => {
@@ -76,7 +92,7 @@ export default function Home() {
         const row = ReactDOM.createRoot(rowNode);
         setActiveRow(row);
         rowNode.style.gridTemplateColumns = '100%';
-        const element = <GuessBar goldle={goldle} onGuess={updateGuessState}/>;
+        const element = <GuessBar goldle={goldle} onGuess={updateGuessState} onError={guessError}/>;
         row.render(element);
       }
     }
@@ -97,7 +113,8 @@ export default function Home() {
         {state === 'inactive' &&
         <button className={styles.startButton} onClick={handleStartClick}>START</button>
         }
-        {state !== 'inactive' && 
+        {state === 'started' && recommendation && <div className={styles.recommendation}>Did you mean <span onClick={recommendationClick}>{recommendation}</span>?</div>}
+        {state !== 'inactive' &&
         <div className={styles.guessGrid}>
           <div className={`${styles.header} ${styles.row}`} id="r-0">
             <div className={styles.ele}>GATOR</div>

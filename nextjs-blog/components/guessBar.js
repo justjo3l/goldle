@@ -1,12 +1,13 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import styles from '../styles/GuessBar.module.css';
 
 export default function GuessBar(props) {
     const goldle = props.goldle;
     const onGuess = props.onGuess;
+    const onError = props.onError;
 
-    const [value, setValue] = useState('');
+    const [value, setValue] = useState(props.value || '');
 
     const handleSubmit = (e) => {
         if (e.key === "Enter") {
@@ -20,13 +21,16 @@ export default function GuessBar(props) {
                 onGuess(newGuessState);
             } else if (newGuessState.error) {
                 console.log(newGuessState.error);
+                onError(newGuessState);
+            } else {
+                console.log('Something went wrong');
             }
         }
     }
 
     return(
         <div className={styles.container}>
-            <input className={styles.guessBar} id='guessBar' type="text" onChange={(e) => setValue(e.target.value)} onKeyDown={handleSubmit} autoFocus></input>
+            <input className={styles.guessBar} id='guessBar' type="text" defaultValue={value} onChange={(e) => setValue(e.target.value)} onKeyDown={handleSubmit} autoFocus></input>
         </div>
     );
 }

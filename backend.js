@@ -180,7 +180,7 @@ class Goldle {
 
         if (same(guessedCountry, guessCountry)) {
             return 'correct';
-        } else if (same(guessedContinent, guessContinent)) {
+        } else if (guessedContinent && guessContinent && same(guessedContinent, guessContinent)) {
             return 'same continent';
         } else {
             return 'different continent';
@@ -242,7 +242,10 @@ class Goldle {
                     recommendationText = 'Did you mean ' + recommendations[0] + '?';
                     console.log(recommendationText);
                 }
-                return {"error": "Gator not found\n" + recommendationText};
+                return {
+                    "error": "Gator not found",
+                    "recommendation": recommendations[0]
+                };
             }
         } else {
             console.log('Game not started');

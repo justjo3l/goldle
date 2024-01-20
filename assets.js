@@ -91,7 +91,7 @@ export const goldleGators = [{"name":"AJ","degree":"International Studies / Jour
     {"name":"Matilda Guymerlightbody","degree":"Psychological Science","room":"421","country":"Australia"},
     {"name":"Amelie Robinson","degree":"Advanced Mathematics / Computer Science","room":"422","country":"Australia"},
     {"name":"Will Reeves","degree":"Mining Engineering","room":"423","country":"Australia"},
-    {"name":"Ben Williams","degree":"Finance","room":"424","country":"United States of America"},
+    {"name":"Ben Williams","degree":"Finance","room":"424","country":"United States"},
     {"name":"Jack Buchanan","degree":"Software Engineering","room":"425","country":"Australia"},
     {"name":"Robert Stuart Campbell","degree":"Commerce","room":"427","country":"Australia"},
     {"name":"Alannah Scalzo","degree":"Arts","room":"428","country":"Australia"},

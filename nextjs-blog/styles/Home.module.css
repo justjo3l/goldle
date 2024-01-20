@@ -126,3 +126,23 @@
     top: 0;
     margin: 25px 25px 0 0;
 }
+
+.recommendation {
+    text-align: center;
+    font-family: 'Inter';
+    font-size: 20px;
+    font-weight: 200;
+    line-height: normal;
+    color: #ffffff;
+}
+
+.recommendation > span {
+    font-style: italic;
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+}
+
+.recommendation > span:hover {
+    font-weight: 600;
+    cursor: pointer;
+}
