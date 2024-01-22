@@ -3,7 +3,8 @@ import React, { useEffect, useState } from 'react';
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 
-import styles from '../styles/LosePopup.module.css';
+import styles from '../styles/Popup.module.css';
+import moreStyles from '../styles/LosePopup.module.css';
 
 export default function LosePopup(props) {
     
@@ -21,7 +22,7 @@ export default function LosePopup(props) {
         modal nested>
         {
             close => (
-                <div className={styles.modal}>
+                <div className={`${styles.modal} ${moreStyles.modal}`}>
                     <div className={styles.container}>
                         <button onClick={() => close()} className={styles.close}>
                             &times;
