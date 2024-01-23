@@ -61,7 +61,6 @@ class Goldle {
         goldle.gatorNames = getGatorNames(goldle.gators);
 
         goldle.facultyMap = parseFaculties();
-        console.log('GAME HAS BEEN SET UP!');
     }
 
     getGatorByName = function(name) {
@@ -80,7 +79,6 @@ class Goldle {
 
     startGame = function() {
         if (same(this.status, 'started')) {
-            console.log('Game already started');
             return this.status;
         }
 
@@ -88,7 +86,6 @@ class Goldle {
         this.guessGator = this.getRandomGator();
         this.numGuesses = 6;
         this.status = 'started';
-        console.log('The game has been started!');
         return this.status;
     }
 
@@ -185,7 +182,6 @@ class Goldle {
         const goldle = this;
         if (same(goldle.status, 'started')) {
             if (goldle.nameExists(name)) {
-                console.log('Guess ' + (7 - goldle.numGuesses).toString() + ' of 6');
                 let guessedGator = goldle.getGatorByName(name);
                 goldle.numGuesses--;
                 let newGuessState = {}
@@ -208,33 +204,24 @@ class Goldle {
                     goldle.guessStates.push(newGuessState);
                 if (same(goldle.guessGator.name, name)) {
                     goldle.status = 'won';
-                    console.log('You guessed the gator!');
-                    console.log('Thank you for playing Goldle!');
                     return {
                         "guessState": newGuessState,
                         "gameState": "won"
                     };
                 } else if (goldle.numGuesses === 0) {
                     goldle.status = 'lost';
-                    console.log('You failed to guess the gator...');
-                    console.log('The gator was ' + goldle.guessGator.name + '!');
-                    goldle.showGator();
-                    console.log('Better luck next time!');
                     return {
                         "guessState": newGuessState,
                         "gameState": "lost"
                     };
                 } else {
-                    console.log('You guessed wrong!');
                     return {"guessState": newGuessState};
                 }
             } else {
-                console.log('Gator not found');
                 let recommendations = goldle.searchName(name);
                 let recommendationText = "";
                 if (recommendations.length > 0) {
                     recommendationText = 'Did you mean ' + recommendations[0] + '?';
-                    console.log(recommendationText);
                 }
                 return {
                     "error": "Gator not found",
@@ -242,7 +229,6 @@ class Goldle {
                 };
             }
         } else {
-            console.log('Game not started');
             return {"error": "Game not started"};
         }
     }
