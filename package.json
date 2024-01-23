@@ -1,15 +1,28 @@
 {
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "next build",
+    "dev": "next dev",
+    "start": "next start -p $PORT",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "country-flag-emoji": "^1.0.3",
+    "next": "latest",
+    "package-merge": "^0.1.2",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "reactjs-popup": "^2.0.6",
+    "countries-list": "^3.0.6"
+  },
+  "engines": {
+    "node": ">=18"
+  },
   "name": "goldle",
   "version": "1.0.0",
   "description": "",
   "main": "backend.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "author": "Joel Jose",
-  "license": "ISC",
-  "type": "module",
-  "dependencies": {
-    "countries-list": "^3.0.6"
-  }
+  "license": "ISC"
 }

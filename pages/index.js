@@ -6,7 +6,7 @@ import ReactDOM from 'react-dom/client';
 
 import GuessBar from '../components/guessBar';
 
-import Goldle from '../../backend.js';
+import Goldle from '../backend.js';
 
 import countryFlagEmoji from 'country-flag-emoji';
 
