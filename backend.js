@@ -129,12 +129,10 @@ class Goldle {
 
         const guessDegree = this.guessGator.degree;
 
-        if (same(guessDegree, "N/A")) {
-            return 'none';
-        }
-
         if (same(guessedDegree, guessDegree)) {
             return 'correct';
+        } else if (same(guessedDegree, "N/A")) {
+            return 'none';
         }
 
         let guessedFaculties = this.getFaculties(guessedDegree);
@@ -154,12 +152,10 @@ class Goldle {
 
         const guessFloor = this.guessGator.room[0];
 
-        if (same(guessFloor, "N/A")) {
-            return 'none';
-        }
-
         if (same(guessedFloor, guessFloor)) {
             return 'correct';
+        } else if (same(guessFloor, "N/A")) {
+            return 'none';
         } else if (Math.abs(guessedFloor - guessFloor) === 1) {
             return 'neighbour';
         } else {
@@ -171,15 +167,13 @@ class Goldle {
 
         const guessCountry = this.guessGator.country;
 
-        if (same(guessCountry, "N/A")) {
-            return 'none';
-        }
-
         let guessedContinent = getCountryData(getCountryCode(guessedCountry)).continent;
         let guessContinent = getCountryData(getCountryCode(guessCountry)).continent;
 
         if (same(guessedCountry, guessCountry)) {
             return 'correct';
+        } else if (same(guessCountry, "N/A")) {
+            return 'none';
         } else if (guessedContinent && guessContinent && same(guessedContinent, guessContinent)) {
             return 'same continent';
         } else {
@@ -257,7 +251,7 @@ class Goldle {
 
         const goldle = this;
         if (goldle.guessGator) {
-            console.log(goldle.guessGator);
+            return goldle.guessGator;
         }
        
     }
