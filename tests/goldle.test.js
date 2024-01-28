@@ -149,3 +149,27 @@ describe('testing checkDegree() in Goldle', () => {
         expect(goldle.checkDegree("Media")).toStrictEqual('different faculty');
     });
 });
+
+describe('testing checkFloor() in Goldle', () => {
+    let goldle;
+
+    beforeEach(() => {
+        goldle = new Goldle();
+        goldle.setupGators();
+        goldle.rigGame("Joel Jose");
+    });
+
+    test('checkFloor() should return correct if floor is correct', () => {
+        expect(goldle.checkFloor(3)).toStrictEqual('correct');
+    });
+
+    test('checkFloor() should return neighbour if floor is 1 away', () => {
+        expect(goldle.checkFloor(2)).toStrictEqual('neighbour');
+        expect(goldle.checkFloor(4)).toStrictEqual('neighbour');
+    });
+
+    test('checkFloor() should return incorrect if floor is incorrect and not N/A', () => {
+        expect(goldle.checkFloor(1)).toStrictEqual('incorrect');
+        expect(goldle.checkFloor(5)).toStrictEqual('incorrect');
+    });
+});

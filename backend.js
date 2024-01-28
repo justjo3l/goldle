@@ -146,11 +146,9 @@ class Goldle {
 
         const guessFloor = this.guessGator.room[0];
 
-        if (same(guessedFloor, guessFloor)) {
+        if (parseInt(guessedFloor) === parseInt(guessFloor)) {
             return 'correct';
-        } else if (same(guessFloor, "N/A")) {
-            return 'none';
-        } else if (Math.abs(guessedFloor - guessFloor) === 1) {
+        } else if (Math.abs(parseInt(guessedFloor) - parseInt(guessFloor)) === 1) {
             return 'neighbour';
         } else {
             return 'incorrect';
