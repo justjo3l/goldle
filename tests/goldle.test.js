@@ -68,3 +68,21 @@ describe('testing searchName() in Goldle', () => {
         expect(goldle.searchName('John Doe').length).toStrictEqual(0);
     });
 });
+
+describe('testing nameExists() in Goldle', () => {
+    
+    let goldle;
+
+    beforeEach(() => {
+        goldle = new Goldle();
+        goldle.setupGators();
+    });
+
+    test('nameExists() should return true if name exists', () => {
+        expect(goldle.nameExists('Joel Jose')).toStrictEqual(true);
+    });
+
+    test('nameExists() should return false if name does not exist', () => {
+        expect(goldle.nameExists('John Doe')).toStrictEqual(false);
+    });
+})
