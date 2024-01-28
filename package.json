@@ -11,6 +11,7 @@
     "@babel/preset-react": "^7.23.3",
     "countries-list": "^3.0.6",
     "country-flag-emoji": "^1.0.3",
+    "lodash": "^4.17.21",
     "next": "latest",
     "package-merge": "^0.1.2",
     "react": "18.2.0",
