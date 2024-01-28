@@ -44,7 +44,7 @@ class Goldle {
         this.gators = [];
         this.gatorNames = [];
         this.facultyMap = new Map();
-        this.guessGator = {};
+        this.guessGator = null;
         this.guessStates = [];
         this.numGuesses = 0;
         this.status = 'inactive';
@@ -146,11 +146,11 @@ class Goldle {
 
         const guessFloor = this.guessGator.room[0];
 
-        if (same(guessedFloor, guessFloor)) {
+        if (parseInt(guessedFloor) === parseInt(guessFloor)) {
             return 'correct';
-        } else if (same(guessFloor, "N/A")) {
+        } else if (same(this.guessGator.room, "N/A")) {
             return 'none';
-        } else if (Math.abs(guessedFloor - guessFloor) === 1) {
+        } else if (Math.abs(parseInt(guessedFloor) - parseInt(guessFloor)) === 1) {
             return 'neighbour';
         } else {
             return 'incorrect';
@@ -236,16 +236,17 @@ class Goldle {
         if (goldle.guessGator) {
             return goldle.guessGator;
         }
+
+        return null;
        
     }
 
     rigGame = function(name) {
         if (this.nameExists(name)) {
             this.guessGator = this.getGatorByName(name);
-            console.log('The gator has been rigged to ' + name + '!');
-        } else {
-            console.log('Gator not found');
+            return this.guessGator;
         }
+        return null;
     }
 
     getState = function() {

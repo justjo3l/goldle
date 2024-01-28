@@ -1,7 +1,8 @@
 import Goldle from '../backend.js';
 
-describe('testing getGatorByName() in Goldle', () => {
+import { goldleFacultyMap } from '../assets.js';
 
+describe('testing getGatorByName() in Goldle', () => {
     let goldle;
 
     beforeEach(() => {
@@ -19,7 +20,6 @@ describe('testing getGatorByName() in Goldle', () => {
 });
 
 describe('testing getRandomGator() in Goldle', () => {
-
     let goldle;
 
     beforeEach(() => {
@@ -33,7 +33,6 @@ describe('testing getRandomGator() in Goldle', () => {
 });
 
 describe('testing getState() and startGame() in Goldle', () => {
-
     let goldle;
 
     beforeEach(() => {
@@ -52,7 +51,6 @@ describe('testing getState() and startGame() in Goldle', () => {
 });
 
 describe('testing searchName() in Goldle', () => {
-    
     let goldle;
 
     beforeEach(() => {
@@ -67,4 +65,215 @@ describe('testing searchName() in Goldle', () => {
     test('searchName() should return an empty array if no name options exist', () => {
         expect(goldle.searchName('John Doe').length).toStrictEqual(0);
     });
+});
+
+describe('testing nameExists() in Goldle', () => {
+    let goldle;
+
+    beforeEach(() => {
+        goldle = new Goldle();
+        goldle.setupGators();
+    });
+
+    test('nameExists() should return true if name exists', () => {
+        expect(goldle.nameExists('Joel Jose')).toStrictEqual(true);
+    });
+
+    test('nameExists() should return false if name does not exist', () => {
+        expect(goldle.nameExists('John Doe')).toStrictEqual(false);
+    });
+});
+
+describe('testing getFaculty() in Goldle', () => {
+    let goldle;
+
+    beforeEach(() => {
+        goldle = new Goldle();
+        goldle.setupGators();
+    });
+
+    test('getFaculty() should return correct faculty if degree exists', () => {
+        const randomFacultyInfo = goldleFacultyMap.value[Math.floor(Math.random() * goldleFacultyMap.value.length)];
+        const randomFaculty = randomFacultyInfo[0];
+        const randomDegree = randomFacultyInfo[1][Math.floor(Math.random() * randomFacultyInfo[1].length)];
+        expect(goldle.getFaculty(randomDegree)).toStrictEqual(randomFaculty);
+    });
+
+    test('getFaculty() should return null if degree does not exist', () => {
+        expect(goldle.getFaculty('John Doe')).toStrictEqual(null);
+    });
+});
+
+describe('testing getFaculties() in Goldle', () => {
+    let goldle;
+
+    beforeEach(() => {
+        goldle = new Goldle();
+        goldle.setupGators();
+    });
+
+    test('getFaculties() should return correct faculties if degree/degrees exist', () => {
+        expect(goldle.getFaculties("Media / Computer Engineering")).toStrictEqual(["Faculty of Arts, Design and Architecture", "Faculty of Engineering"]);
+        expect(goldle.getFaculties("FakeMedia / Computer Engineering")).toStrictEqual(["Faculty of Engineering"]);
+        expect(goldle.getFaculties("Media / FakeComputer Engineering")).toStrictEqual(["Faculty of Arts, Design and Architecture"]);
+    });
+
+    test('getFaculties() should return empty list if degree/degrees are invalid', () => {
+        expect(goldle.getFaculties('John Doe').length).toStrictEqual(0);
+        expect(goldle.getFaculties('FakeMedia / FakeComputer Engineering').length).toStrictEqual(0);
+    });
+});
+
+describe('testing checkDegree() in Goldle', () => {
+    let goldle;
+
+    beforeEach(() => {
+        goldle = new Goldle();
+        goldle.setupGators();
+        goldle.rigGame("Joel Jose");
+    });
+
+    test('checkDegree() should return correct if degree is correct', () => {
+        expect(goldle.checkDegree("Computer Engineering")).toStrictEqual('correct');
+    });
+
+    test('checkDegree() should return same faculty if degree is from the same faculty', () => {
+        expect(goldle.checkDegree("Quantum Engineering")).toStrictEqual('same faculty');
+    });
+
+    test('checkDegree() should return none if degree is incorrect and N/A', () => {
+        expect(goldle.checkDegree("N/A")).toStrictEqual('none');
+    });
+
+    test('checkDegree() should return different faculty if degree is incorrect and not N/A', () => {
+        expect(goldle.checkDegree("Media")).toStrictEqual('different faculty');
+    });
+});
+
+describe('testing checkFloor() in Goldle', () => {
+    let goldle;
+
+    beforeEach(() => {
+        goldle = new Goldle();
+        goldle.setupGators();
+        goldle.rigGame("Joel Jose");
+    });
+
+    test('checkFloor() should return correct if floor is correct', () => {
+        expect(goldle.checkFloor(3)).toStrictEqual('correct');
+    });
+
+    test('checkFloor() should return neighbour if floor is 1 away', () => {
+        expect(goldle.checkFloor(2)).toStrictEqual('neighbour');
+        expect(goldle.checkFloor(4)).toStrictEqual('neighbour');
+    });
+
+    test('checkFloor() should return incorrect if floor is incorrect and not N/A', () => {
+        expect(goldle.checkFloor(1)).toStrictEqual('incorrect');
+        expect(goldle.checkFloor(5)).toStrictEqual('incorrect');
+    });
+});
+
+describe('testing checkCountry() in Goldle', () => {
+    let goldle;
+
+    beforeEach(() => {
+        goldle = new Goldle();
+        goldle.setupGators();
+        goldle.rigGame("Joel Jose");
+    });
+
+    test('checkCountry() should return correct if country is correct', () => {
+        expect(goldle.checkCountry("United Arab Emirates")).toStrictEqual('correct');
+    });
+
+    test('checkCountry() should return same continent if country is from the same continent', () => {
+        expect(goldle.checkCountry("China")).toStrictEqual('same continent');
+    });
+
+    test('checkCountry() should return different continent if country is incorrect and not N/A', () => {
+        expect(goldle.checkCountry("United Kingdom")).toStrictEqual('different continent');
+    });
+});
+
+describe('testing showGator() in Goldle', () => {
+    let goldle;
+
+    beforeEach(() => {
+        goldle = new Goldle();
+        goldle.setupGators();
+    });
+
+    test('showGator() should return gator details if gator has been set', () => {
+        goldle.startGame();
+        expect(goldle.showGator()).not.toStrictEqual(null);
+    });
+
+    test('showGator() should return null if gator has not been set', () => {
+        expect(goldle.showGator()).toStrictEqual(null);
+    });
+})
+
+describe('testing rigGame() in Goldle', () => {
+    let goldle;
+
+    beforeEach(() => {
+        goldle = new Goldle();
+        goldle.setupGators();
+    });
+
+    test('rigGame() should return gator if gator exists and game has been rigged', () => {
+        expect(goldle.rigGame("Joel Jose")).not.toStrictEqual(null);
+    });
+
+    test('rigGame() should return null if gator does not exist and game has not been rigged', () => {
+        expect(goldle.rigGame("John Doe")).toStrictEqual(null);
+    });
+});
+
+describe('testing guessName() in Goldle', () => {
+    let goldle;
+
+    beforeEach(() => {
+        goldle = new Goldle();
+        goldle.setupGators();
+    });
+
+    describe('errors', () => {
+        test('guessName() should return an error if game has not started', () => {
+            expect(goldle.guessName("Joel Jose").error).toStrictEqual("Game not started");
+        });
+
+        test('guessName() should return an error if name does not exist', () => {
+            goldle.startGame();
+            expect(goldle.guessName("John Doe").error).toStrictEqual("Gator not found");
+        });
+    });
+
+    describe('valid actions', () => {
+        beforeEach(() => {
+            goldle.startGame();
+            goldle.rigGame("Joel Jose");
+        });
+
+        test('guessName() should return a won gamestate if name is correct', () => {
+            const result = goldle.guessName("Joel Jose");
+            expect(result.guessState).not.toStrictEqual(undefined);
+            expect(result.gameState).toStrictEqual("won");
+        });
+
+        test('guessName() should return a guessState and lost gameState if name is incorrect and no guesses remain', () => {
+            goldle.numGuesses = 1;
+            const result = goldle.guessName("Amber Chan");
+            expect(result.guessState).not.toStrictEqual(undefined);
+            expect(result.gameState).toStrictEqual("lost");
+        });
+
+        test('guessName() should return a guessState if guess is made', () => {
+            const result = goldle.guessName("Amber Chan");
+            expect(result.guessState).not.toStrictEqual(undefined);
+            expect(result.gameState).toStrictEqual(undefined);
+        });
+    });
+
 });
