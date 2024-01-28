@@ -44,7 +44,7 @@ class Goldle {
         this.gators = [];
         this.gatorNames = [];
         this.facultyMap = new Map();
-        this.guessGator = {};
+        this.guessGator = null;
         this.guessStates = [];
         this.numGuesses = 0;
         this.status = 'inactive';
@@ -236,6 +236,8 @@ class Goldle {
         if (goldle.guessGator) {
             return goldle.guessGator;
         }
+
+        return null;
        
     }
 

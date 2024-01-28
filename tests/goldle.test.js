@@ -195,3 +195,21 @@ describe('testing checkCountry() in Goldle', () => {
         expect(goldle.checkCountry("United Kingdom")).toStrictEqual('different continent');
     });
 });
+
+describe('testing showGator() in Goldle', () => {
+    let goldle;
+
+    beforeEach(() => {
+        goldle = new Goldle();
+        goldle.setupGators();
+    });
+
+    test('showGator() should return gator details if gator has been set', () => {
+        goldle.startGame();
+        expect(goldle.showGator()).not.toStrictEqual(null);
+    });
+
+    test('showGator() should return null if gator has not been set', () => {
+        expect(goldle.showGator()).toStrictEqual(null);
+    });
+})
