@@ -32,7 +32,6 @@ function parseFaculties() {
 }
 
 class Goldle {
-    headerRow;
     gators;
     gatorNames;
     facultyMap;
@@ -42,7 +41,6 @@ class Goldle {
     status;
 
     constructor() {
-        this.headerRow = [];
         this.gators = [];
         this.gatorNames = [];
         this.facultyMap = new Map();
@@ -59,6 +57,7 @@ class Goldle {
         goldle.gatorNames = getGatorNames(goldle.gators);
 
         goldle.facultyMap = parseFaculties();
+        return {};
     }
 
     getGatorByName = function(name) {
