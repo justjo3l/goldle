@@ -148,6 +148,8 @@ class Goldle {
 
         if (parseInt(guessedFloor) === parseInt(guessFloor)) {
             return 'correct';
+        } else if (same(this.guessGator.room, "N/A")) {
+            return 'none';
         } else if (Math.abs(parseInt(guessedFloor) - parseInt(guessFloor)) === 1) {
             return 'neighbour';
         } else {
