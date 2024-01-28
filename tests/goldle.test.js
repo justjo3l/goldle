@@ -213,3 +213,20 @@ describe('testing showGator() in Goldle', () => {
         expect(goldle.showGator()).toStrictEqual(null);
     });
 })
+
+describe('testing rigGame() in Goldle', () => {
+    let goldle;
+
+    beforeEach(() => {
+        goldle = new Goldle();
+        goldle.setupGators();
+    });
+
+    test('rigGame() should return gator if gator exists and game has been rigged', () => {
+        expect(goldle.rigGame("Joel Jose")).not.toStrictEqual(null);
+    });
+
+    test('rigGame() should return null if gator does not exist and game has not been rigged', () => {
+        expect(goldle.rigGame("John Doe")).toStrictEqual(null);
+    });
+});
