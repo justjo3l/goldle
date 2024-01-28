@@ -1,7 +1,8 @@
 import Goldle from '../backend.js';
 
-describe('testing getGatorByName() in Goldle', () => {
+import { goldleFacultyMap } from '../assets.js';
 
+describe('testing getGatorByName() in Goldle', () => {
     let goldle;
 
     beforeEach(() => {
@@ -19,7 +20,6 @@ describe('testing getGatorByName() in Goldle', () => {
 });
 
 describe('testing getRandomGator() in Goldle', () => {
-
     let goldle;
 
     beforeEach(() => {
@@ -33,7 +33,6 @@ describe('testing getRandomGator() in Goldle', () => {
 });
 
 describe('testing getState() and startGame() in Goldle', () => {
-
     let goldle;
 
     beforeEach(() => {
@@ -52,7 +51,6 @@ describe('testing getState() and startGame() in Goldle', () => {
 });
 
 describe('testing searchName() in Goldle', () => {
-    
     let goldle;
 
     beforeEach(() => {
@@ -70,7 +68,6 @@ describe('testing searchName() in Goldle', () => {
 });
 
 describe('testing nameExists() in Goldle', () => {
-    
     let goldle;
 
     beforeEach(() => {
@@ -84,5 +81,25 @@ describe('testing nameExists() in Goldle', () => {
 
     test('nameExists() should return false if name does not exist', () => {
         expect(goldle.nameExists('John Doe')).toStrictEqual(false);
+    });
+});
+
+describe('testing getFaculty() in Goldle', () => {
+    let goldle;
+
+    beforeEach(() => {
+        goldle = new Goldle();
+        goldle.setupGators();
+    });
+
+    test('getFaculty() should return correct faculty if degree exists', () => {
+        const randomFacultyInfo = goldleFacultyMap.value[Math.floor(Math.random() * goldleFacultyMap.value.length)];
+        const randomFaculty = randomFacultyInfo[0];
+        const randomDegree = randomFacultyInfo[1][Math.floor(Math.random() * randomFacultyInfo[1].length)];
+        expect(goldle.getFaculty(randomDegree)).toStrictEqual(randomFaculty);
+    });
+
+    test('getFaculty() should return null if degree does not exist', () => {
+        expect(goldle.getFaculty('John Doe')).toStrictEqual(null);
     });
 })
