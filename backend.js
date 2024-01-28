@@ -242,10 +242,9 @@ class Goldle {
     rigGame = function(name) {
         if (this.nameExists(name)) {
             this.guessGator = this.getGatorByName(name);
-            console.log('The gator has been rigged to ' + name + '!');
-        } else {
-            console.log('Gator not found');
+            return this.guessGator;
         }
+        return null;
     }
 
     getState = function() {
