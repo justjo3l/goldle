@@ -2,6 +2,8 @@ import { getCountryCode, getCountryData } from 'countries-list';
 
 import { goldleGators, goldleFacultyMap } from './assets.js';
 
+import same from './utils/helper.js';
+
 const gameStates = ['inactive', 'started', 'won', 'lost'];
 const degreeStates = ['different faculty', 'same faculty', 'correct', 'none'];
 const floorStates = ['incorrect', 'neighbour', 'correct', 'none'];
@@ -27,10 +29,6 @@ function parseFaculties() {
         facultyMap.set(goldleFacultyMap["value"][i][0], goldleFacultyMap["value"][i][1]);
     }
     return facultyMap;
-}
-
-function same(val1, val2) {
-    return val1.toLowerCase() === val2.toLowerCase();
 }
 
 class Goldle {
