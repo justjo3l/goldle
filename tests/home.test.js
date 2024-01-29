@@ -154,4 +154,15 @@ describe('testing guess-grid error cases in Home', () => {
         const recommendationText = document.getElementById('recommendation');
         expect(recommendationText).toBeInTheDocument();
     });
+
+    test('guess grid click recommendation inserts it into guessBar', () => {
+        let guessBar = document.getElementById('guessBar');
+        fireEvent.change(guessBar, {target: {value: 'ambe'}});
+        fireEvent.keyDown(guessBar, {key: 'Enter', code: 'Enter'});
+        guessBar = document.getElementById('bar-1');
+        const recommendationName = document.getElementById('recommendation-name');
+        fireEvent.click(recommendationName);
+        guessBar = document.getElementById('guessBar');
+        expect(guessBar).toHaveValue(recommendationName.textContent);
+    });
 });

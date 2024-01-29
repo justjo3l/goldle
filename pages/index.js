@@ -37,8 +37,6 @@ export default function Home() {
         return countryFlagEmoji.list[i].emoji;
       }
     }
-
-    return country;
   }
 
   const updateGuessState = (newGuessState) => {
@@ -56,7 +54,7 @@ export default function Home() {
 
   const recommendationClick = () => {
     setRecommendation("");
-    const element = <GuessBar goldle={goldle} onGuess={updateGuessState} onError={guessError} value={recommendation}/>;
+    const element = <GuessBar goldle={goldle} onGuess={updateGuessState} onError={guessError} value={recommendation} id={"bar-" + (guesses + 1).toString()}/>;
     activeRow.unmount();
     const rowNode = document.getElementById('r-' + (guesses + 1).toString());
     const row = ReactDOM.createRoot(rowNode);
@@ -130,7 +128,7 @@ export default function Home() {
         {state === 'inactive' &&
         <button className={styles.startButton} onClick={handleStartClick}>START</button>
         }
-        {state === 'started' && recommendation && <div className={styles.recommendation} id='recommendation'>Did you mean <span onClick={recommendationClick}>{recommendation}</span>?</div>}
+        {state === 'started' && recommendation && <div className={styles.recommendation} id='recommendation'>Did you mean <span onClick={recommendationClick} id='recommendation-name'>{recommendation}</span>?</div>}
         {state !== 'inactive' && <WinPopup state={winPopupOpen} goldle={goldle}/>}
         {state !== 'inactive' && <LosePopup state={losePopupOpen} goldle={goldle}/>}
         {state !== 'inactive' &&
