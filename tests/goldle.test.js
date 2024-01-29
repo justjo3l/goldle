@@ -18,23 +18,6 @@ describe('testing getState() and startGame() in Goldle', () => {
     });
 });
 
-describe('testing searchName() in Goldle', () => {
-    let goldle;
-
-    beforeEach(() => {
-        goldle = new Goldle();
-        goldle.setupGators();
-    });
-
-    test('searchName() should return list of options if name could potentially exist', () => {
-        expect(goldle.searchName('joe').length).not.toStrictEqual(0);
-    });
-
-    test('searchName() should return an empty array if no name options exist', () => {
-        expect(goldle.searchName('John Doe').length).toStrictEqual(0);
-    });
-});
-
 describe('testing nameExists() in Goldle', () => {
     let goldle;
 

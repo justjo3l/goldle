@@ -3,11 +3,10 @@ import Goldle from '../backend/goldle.js';
 import { goldleFacultyMap } from '../assets.js';
 
 describe('testing getGatorByName() in Goldle', () => {
-    let goldle;
     let runCrew;
 
     beforeEach(() => {
-        goldle = new Goldle();
+        const goldle = new Goldle();
         goldle.setupGators();
         runCrew = goldle.runCrew;
     });
@@ -22,11 +21,10 @@ describe('testing getGatorByName() in Goldle', () => {
 });
 
 describe('testing getFaculty() in Goldle', () => {
-    let goldle;
     let runCrew;
 
     beforeEach(() => {
-        goldle = new Goldle();
+        const goldle = new Goldle();
         goldle.setupGators();
         runCrew = goldle.runCrew;
     });
@@ -44,11 +42,10 @@ describe('testing getFaculty() in Goldle', () => {
 });
 
 describe('testing getFaculties() in Goldle', () => {
-    let goldle;
     let runCrew;
 
     beforeEach(() => {
-        goldle = new Goldle();
+        const goldle = new Goldle();
         goldle.setupGators();
         runCrew = goldle.runCrew;
     });
@@ -62,5 +59,23 @@ describe('testing getFaculties() in Goldle', () => {
     test('getFaculties() should return empty list if degree/degrees are invalid', () => {
         expect(runCrew.getFaculties('John Doe').length).toStrictEqual(0);
         expect(runCrew.getFaculties('FakeMedia / FakeComputer Engineering').length).toStrictEqual(0);
+    });
+});
+
+describe('testing getRecommendations() in Goldle', () => {
+    let runCrew;
+
+    beforeEach(() => {
+        const goldle = new Goldle();
+        goldle.setupGators();
+        runCrew = goldle.runCrew;
+    });
+
+    test('getRecommendations() should return list of options if name could potentially exist', () => {
+        expect(runCrew.getRecommendations('joe').length).not.toStrictEqual(0);
+    });
+
+    test('getRecommendations() should return an empty array if no name options exist', () => {
+        expect(runCrew.getRecommendations('John Doe').length).toStrictEqual(0);
     });
 });

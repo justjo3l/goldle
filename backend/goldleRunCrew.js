@@ -58,6 +58,12 @@ class GoldleRunCrew {
         
         return faculties;
     }
+
+    getRecommendations = function(name) {
+        let foundNames = [...this.gatorNames];
+        foundNames = foundNames.filter((val) => val.toLowerCase().includes(name.toLowerCase()));
+        return foundNames;
+    }
 }
 
 export default GoldleRunCrew;

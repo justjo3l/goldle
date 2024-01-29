@@ -41,19 +41,9 @@ class Goldle {
 
         this.setupGators('gator-data.csv', 'faculty-data.csv');
         this.guessGator = this.gators[Math.floor(Math.random() * this.gators.length)];
-        if (numGuesses) {
-            this.numGuesses = numGuesses;
-        } else {
-            this.numGuesses = GUESSES;
-        }
+        this.numGuesses = numGuesses || GUESSES;
         this.status = 'started';
         return this.status;
-    }
-
-    searchName = function(name) {
-        let foundNames = [...this.gatorNames];
-        foundNames = foundNames.filter((val) => val.toLowerCase().includes(name.toLowerCase()));
-        return foundNames;
     }
 
     nameExists = function(name) {
@@ -156,7 +146,7 @@ class Goldle {
                     return {"guessState": newGuessState};
                 }
             } else {
-                let recommendations = goldle.searchName(name);
+                let recommendations = goldle.runCrew.getRecommendations(name);
                 let recommendationText = "";
                 if (recommendations.length > 0) {
                     recommendationText = 'Did you mean ' + recommendations[0] + '?';
