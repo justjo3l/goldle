@@ -8,10 +8,10 @@ import GuessBar from '../components/guessBar';
 
 import Goldle from '../backend/goldle.js';
 
-import countryFlagEmoji from 'country-flag-emoji';
-
 import WinPopup from '../components/winPopup.js';
 import LosePopup from '../components/losePopup.js';
+
+import { getCountryEmoji } from '../utils/helper.js';
 
 let globalGoldle;
 
@@ -30,14 +30,6 @@ export default function Home() {
   const [winPopupOpen, setWinPopupOpen] = useState(false);
   const [losePopupOpen, setLosePopupOpen] = useState(false);
   const [maxGuesses, setMaxGuesses] = useState(6);
-
-  const getCountryEmoji = (country) => {
-    for (let i = 0; i < countryFlagEmoji.list.length; i++) {
-      if (countryFlagEmoji.list[i].name.toLowerCase().includes(country.toLowerCase())) {
-        return countryFlagEmoji.list[i].emoji;
-      }
-    }
-  }
 
   const updateGuessState = (newGuessState) => {
     setRecommendation("");
@@ -116,7 +108,7 @@ export default function Home() {
   return (
     <div className={styles.home}>
       <Head>
-      <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet" />
         <title>Goldle</title>
       </Head>
       <main className={styles.main}>
