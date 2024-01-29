@@ -5,9 +5,9 @@ import { goldleGators, goldleFacultyMap } from './assets.js';
 import same from './utils/helper.js';
 
 const gameStates = ['inactive', 'started', 'won', 'lost'];
-const degreeStates = ['different faculty', 'same faculty', 'correct', 'none'];
+const degreeStates = ['incorrect', 'same-faculty', 'correct', 'none'];
 const floorStates = ['incorrect', 'neighbour', 'correct', 'none'];
-const countryStates = ['different continent', 'same continent', 'correct', 'none'];
+const countryStates = ['incorrect', 'same-continent', 'correct', 'none'];
 
 function parseGators() {
     let gators = goldleGators;
@@ -135,11 +135,11 @@ class Goldle {
 
         for (let i = 0; i < guessedFaculties.length; i++) {
             if (guessFaculties.includes(guessedFaculties[i])) {
-                return 'same faculty';
+                return 'same-faculty';
             }
         }
 
-        return 'different faculty';
+        return 'incorrect';
     }
 
     checkFloor = function(guessedFloor) {
@@ -169,9 +169,9 @@ class Goldle {
         } else if (same(guessCountry, "N/A")) {
             return 'none';
         } else if (guessedContinent && guessContinent && same(guessedContinent, guessContinent)) {
-            return 'same continent';
+            return 'same-continent';
         } else {
-            return 'different continent';
+            return 'incorrect';
         }
     }
 

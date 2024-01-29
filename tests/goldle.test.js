@@ -138,7 +138,7 @@ describe('testing checkDegree() in Goldle', () => {
     });
 
     test('checkDegree() should return same faculty if degree is from the same faculty', () => {
-        expect(goldle.checkDegree("Quantum Engineering")).toStrictEqual('same faculty');
+        expect(goldle.checkDegree("Quantum Engineering")).toStrictEqual('same-faculty');
     });
 
     test('checkDegree() should return none if degree is incorrect and N/A', () => {
@@ -146,7 +146,7 @@ describe('testing checkDegree() in Goldle', () => {
     });
 
     test('checkDegree() should return different faculty if degree is incorrect and not N/A', () => {
-        expect(goldle.checkDegree("Media")).toStrictEqual('different faculty');
+        expect(goldle.checkDegree("Media")).toStrictEqual('incorrect');
     });
 });
 
@@ -188,11 +188,11 @@ describe('testing checkCountry() in Goldle', () => {
     });
 
     test('checkCountry() should return same continent if country is from the same continent', () => {
-        expect(goldle.checkCountry("China")).toStrictEqual('same continent');
+        expect(goldle.checkCountry("China")).toStrictEqual('same-continent');
     });
 
     test('checkCountry() should return different continent if country is incorrect and not N/A', () => {
-        expect(goldle.checkCountry("United Kingdom")).toStrictEqual('different continent');
+        expect(goldle.checkCountry("United Kingdom")).toStrictEqual('incorrect');
     });
 });
 

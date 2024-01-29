@@ -73,7 +73,7 @@ export default function Home() {
   const getStyles = (guessStateVal) => {
     if (guessStateVal.state === 'correct') {
       return `${styles.ele} ${styles.correct}`;
-    } else if (guessStateVal.state === 'neighbour' || guessStateVal.state === 'same continent' || guessStateVal.state === 'same faculty') {
+    } else if (guessStateVal.state === 'neighbour' || guessStateVal.state === 'same-continent' || guessStateVal.state === 'same-faculty') {
       return `${styles.ele} ${styles.near}`;
     } else {
       return `${styles.ele}`;
@@ -88,10 +88,10 @@ export default function Home() {
         const currentGuessState = guessStates[guesses - 1];
 
         activeRow.render(<div className={styles.row} id={"row-" + guesses.toString()}>
-        <div className={`${getStyles(currentGuessState.name)}`}>{currentGuessState.name.value}</div>
-        <div className={`${getStyles(currentGuessState.degree)}`}>{currentGuessState.degree.value}</div>
-        <div className={`${getStyles(currentGuessState.country)} ${styles.country}`}>{getCountryEmoji(currentGuessState.country.value)}</div>
-        <div className={`${getStyles(currentGuessState.floor)} ${styles.floor}`}>{currentGuessState.floor.value}</div>
+        <div className={`${getStyles(currentGuessState.name)} ${currentGuessState.name.state}`} id={`row-${guesses.toString()}-name`}>{currentGuessState.name.value}</div>
+        <div className={`${getStyles(currentGuessState.degree)} ${currentGuessState.degree.state}`} id={`row-${guesses.toString()}-degree`}>{currentGuessState.degree.value}</div>
+        <div className={`${getStyles(currentGuessState.country)} ${styles.country} ${currentGuessState.country.state}`} id={`row-${guesses.toString()}-country`}>{getCountryEmoji(currentGuessState.country.value)}</div>
+        <div className={`${getStyles(currentGuessState.floor)} ${styles.floor} ${currentGuessState.floor.state}`} id={`row-${guesses.toString()}-floor`}>{currentGuessState.floor.value}</div>
         </div>);
       }
     }

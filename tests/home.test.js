@@ -93,4 +93,22 @@ describe('testing guess-grid game flow in Home', () => {
         guessBar = document.getElementById('guessBar');
         expect(guessBar).not.toBeInTheDocument();
     });
+
+    test('guess grid result row contents should be accurate if a guess is made', () => {
+        let guessBar = document.getElementById('guessBar');
+        fireEvent.change(guessBar, {target: {value: 'Amber Chan'}});
+        fireEvent.keyDown(guessBar, {key: 'Enter', code: 'Enter'});
+        const resultName = document.getElementById('row-1-name');
+        expect(resultName).toHaveTextContent('Amber Chan');
+        expect(resultName.classList.contains('incorrect')).toBe(true);
+        const resultDegree = document.getElementById('row-1-degree');
+        expect(resultDegree).toHaveTextContent('Communications / Journalism');
+        expect(resultDegree.classList.contains('incorrect')).toBe(true);
+        const resultCountry = document.getElementById('row-1-country');
+        expect(resultCountry).toHaveTextContent('🇸🇬');
+        expect(resultCountry.classList.contains('same-continent')).toBe(true);
+        const resultFloor = document.getElementById('row-1-floor');
+        expect(resultFloor).toHaveTextContent('3');
+        expect(resultFloor.classList.contains('correct')).toBe(true);
+    });
 });
