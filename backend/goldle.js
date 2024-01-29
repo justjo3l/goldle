@@ -44,21 +44,6 @@ class Goldle {
         return this.status;
     }
 
-    checkFloor = function(guessedFloor) {
-
-        const guessFloor = this.guessGator.room[0];
-
-        if (parseInt(guessedFloor) === parseInt(guessFloor)) {
-            return 'correct';
-        } else if (same(this.guessGator.room, "N/A")) {
-            return 'none';
-        } else if (Math.abs(parseInt(guessedFloor) - parseInt(guessFloor)) === 1) {
-            return 'neighbour';
-        } else {
-            return 'incorrect';
-        }
-    }
-
     checkCountry = function(guessedCountry) {
 
         const guessCountry = this.guessGator.country;
@@ -93,7 +78,7 @@ class Goldle {
                         value: guessedGator.degree
                     };
                     newGuessState.floor = {
-                        state: goldle.checkFloor(guessedGator.room[0]),
+                        state: goldle.runCrew.checkFloor(guessedGator.room[0]),
                         value: guessedGator.room[0]
                     };
                     newGuessState.country = {
