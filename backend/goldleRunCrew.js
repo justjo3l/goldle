@@ -5,6 +5,7 @@ class GoldleRunCrew {
         this.gators = [];
         this.gatorNames = [];
         this.facultyMap = new Map();
+        this.guessGator = null;
     }
 
     // Setup functions
@@ -24,6 +25,20 @@ class GoldleRunCrew {
             this.facultyMap.set(facultyMap["value"][i][0], facultyMap["value"][i][1]);
         }
         return {};
+    }
+
+    setupGator = function(name) {
+        if (name) {
+            const gator = this.getGatorByName(name);
+            if (gator) {
+                this.guessGator = gator;
+                return gator;
+            }
+            return null;
+        }
+        const randomGator = this.gators[Math.floor(Math.random() * this.gators.length)];
+        this.guessGator = randomGator;
+        return randomGator;
     }
 
     // Get functions
@@ -68,6 +83,29 @@ class GoldleRunCrew {
     // Check functions
     nameExists = function(name) {
         return this.gatorNames.includes(name);
+    }
+
+    checkDegree = function(guessedDegree) {
+
+        const guessDegree = this.guessGator.degree;
+
+        if (same(guessedDegree, guessDegree)) {
+            return 'correct';
+        } else if (same(guessedDegree, "N/A")) {
+            return 'none';
+        }
+
+        let guessedFaculties = this.getFaculties(guessedDegree);
+
+        let guessFaculties = this.getFaculties(guessDegree);
+
+        for (let i = 0; i < guessedFaculties.length; i++) {
+            if (guessFaculties.includes(guessedFaculties[i])) {
+                return 'same-faculty';
+            }
+        }
+
+        return 'incorrect';
     }
 }
 

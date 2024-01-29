@@ -16,9 +16,7 @@ const GUESSES = 6;
 class Goldle {
 
     constructor() {
-        this.gators = [];
         this.runCrew = new GoldleRunCrew();
-        this.guessGator = null;
         this.guessStates = [];
         this.numGuesses = 0;
         this.status = 'inactive';
@@ -40,33 +38,10 @@ class Goldle {
         }
 
         this.setupGators('gator-data.csv', 'faculty-data.csv');
-        this.guessGator = this.gators[Math.floor(Math.random() * this.gators.length)];
+        this.guessGator = this.runCrew.setupGator();
         this.numGuesses = numGuesses || GUESSES;
         this.status = 'started';
         return this.status;
-    }
-
-    checkDegree = function(guessedDegree) {
-
-        const guessDegree = this.guessGator.degree;
-
-        if (same(guessedDegree, guessDegree)) {
-            return 'correct';
-        } else if (same(guessedDegree, "N/A")) {
-            return 'none';
-        }
-
-        let guessedFaculties = this.runCrew.getFaculties(guessedDegree);
-
-        let guessFaculties = this.runCrew.getFaculties(guessDegree);
-
-        for (let i = 0; i < guessedFaculties.length; i++) {
-            if (guessFaculties.includes(guessedFaculties[i])) {
-                return 'same-faculty';
-            }
-        }
-
-        return 'incorrect';
     }
 
     checkFloor = function(guessedFloor) {
@@ -114,7 +89,7 @@ class Goldle {
                         value: guessedGator.name,
                     }
                     newGuessState.degree = {
-                        state: goldle.checkDegree(guessedGator.degree),
+                        state: goldle.runCrew.checkDegree(guessedGator.degree),
                         value: guessedGator.degree
                     };
                     newGuessState.floor = {
@@ -143,10 +118,6 @@ class Goldle {
                 }
             } else {
                 let recommendations = goldle.runCrew.getRecommendations(name);
-                let recommendationText = "";
-                if (recommendations.length > 0) {
-                    recommendationText = 'Did you mean ' + recommendations[0] + '?';
-                }
                 return {
                     "error": "Gator not found",
                     "recommendation": recommendations[0]
@@ -170,7 +141,7 @@ class Goldle {
 
     rigGame = function(name) {
         if (this.runCrew.nameExists(name)) {
-            this.guessGator = this.runCrew.getGatorByName(name);
+            this.guessGator = this.runCrew.setupGator(name);
             return this.guessGator;
         }
         return null;

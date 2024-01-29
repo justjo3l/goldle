@@ -2,7 +2,7 @@ import Goldle from '../backend/goldle.js';
 
 import { goldleFacultyMap } from '../assets.js';
 
-describe('testing getGatorByName() in Goldle', () => {
+describe('testing getGatorByName() in GoldleRunCrew', () => {
     let runCrew;
 
     beforeEach(() => {
@@ -20,7 +20,7 @@ describe('testing getGatorByName() in Goldle', () => {
     });
 });
 
-describe('testing getFaculty() in Goldle', () => {
+describe('testing getFaculty() in GoldleRunCrew', () => {
     let runCrew;
 
     beforeEach(() => {
@@ -41,7 +41,7 @@ describe('testing getFaculty() in Goldle', () => {
     });
 });
 
-describe('testing getFaculties() in Goldle', () => {
+describe('testing getFaculties() in GoldleRunCrew', () => {
     let runCrew;
 
     beforeEach(() => {
@@ -62,7 +62,7 @@ describe('testing getFaculties() in Goldle', () => {
     });
 });
 
-describe('testing getRecommendations() in Goldle', () => {
+describe('testing getRecommendations() in GoldleRunCrew', () => {
     let runCrew;
 
     beforeEach(() => {
@@ -80,7 +80,7 @@ describe('testing getRecommendations() in Goldle', () => {
     });
 });
 
-describe('testing nameExists() in Goldle', () => {
+describe('testing nameExists() in GoldleRunCrew', () => {
     let runCrew;
 
     beforeEach(() => {
@@ -95,5 +95,32 @@ describe('testing nameExists() in Goldle', () => {
 
     test('nameExists() should return false if name does not exist', () => {
         expect(runCrew.nameExists('John Doe')).toStrictEqual(false);
+    });
+});
+
+describe('testing checkDegree() in GoldleRunCrew', () => {
+    let runCrew;
+
+    beforeEach(() => {
+        const goldle = new Goldle();
+        goldle.setupGators();
+        goldle.rigGame("Joel Jose");
+        runCrew = goldle.runCrew;
+    });
+
+    test('checkDegree() should return correct if degree is correct', () => {
+        expect(runCrew.checkDegree("Computer Engineering")).toStrictEqual('correct');
+    });
+
+    test('checkDegree() should return same faculty if degree is from the same faculty', () => {
+        expect(runCrew.checkDegree("Quantum Engineering")).toStrictEqual('same-faculty');
+    });
+
+    test('checkDegree() should return none if degree is incorrect and N/A', () => {
+        expect(runCrew.checkDegree("N/A")).toStrictEqual('none');
+    });
+
+    test('checkDegree() should return incorrect if degree is incorrect and not N/A', () => {
+        expect(runCrew.checkDegree("Media")).toStrictEqual('incorrect');
     });
 });

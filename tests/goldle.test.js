@@ -18,32 +18,6 @@ describe('testing getState() and startGame() in Goldle', () => {
     });
 });
 
-describe('testing checkDegree() in Goldle', () => {
-    let goldle;
-
-    beforeEach(() => {
-        goldle = new Goldle();
-        goldle.setupGators();
-        goldle.rigGame("Joel Jose");
-    });
-
-    test('checkDegree() should return correct if degree is correct', () => {
-        expect(goldle.checkDegree("Computer Engineering")).toStrictEqual('correct');
-    });
-
-    test('checkDegree() should return same faculty if degree is from the same faculty', () => {
-        expect(goldle.checkDegree("Quantum Engineering")).toStrictEqual('same-faculty');
-    });
-
-    test('checkDegree() should return none if degree is incorrect and N/A', () => {
-        expect(goldle.checkDegree("N/A")).toStrictEqual('none');
-    });
-
-    test('checkDegree() should return different faculty if degree is incorrect and not N/A', () => {
-        expect(goldle.checkDegree("Media")).toStrictEqual('incorrect');
-    });
-});
-
 describe('testing checkFloor() in Goldle', () => {
     let goldle;
 
