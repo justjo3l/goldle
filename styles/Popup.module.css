@@ -1,9 +1,10 @@
 .modal {
-    background-color: #151111;
-    height: 100%;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
+  background-color: #151111;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .modal::before,
@@ -18,7 +19,7 @@
 }
 
 .modal::after {
-  filter: blur(25px);
+  filter: blur(1.5rem);
 }
 
 @keyframes animate {
@@ -39,7 +40,7 @@
   color: #ffffff;
   text-align: center;
   font-family: 'Inter';
-  font-size: 40px;
+  font-size: 2.5rem;
   font-style: normal;
   height: 100%;
   padding: 15% 0;
@@ -50,12 +51,19 @@
 }
 
 .close {
-    color: #ffffff;
-    display: block;
-    text-align: center;
-    margin: 0 0 0 auto;
-    border: none;
-    background: none;
-    padding: 10px;
-    cursor: pointer;
+  color: #ffffff;
+  display: block;
+  text-align: center;
+  margin: 0 0 0 auto;
+  border: none;
+  background: none;
+  padding: 1rem;
+  cursor: pointer;
+}
+
+@media (max-width: 800px) {
+
+  .content {
+    font-size: 200%;
+  }
 }
