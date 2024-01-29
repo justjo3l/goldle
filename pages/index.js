@@ -6,12 +6,18 @@ import ReactDOM from 'react-dom/client';
 
 import GuessBar from '../components/guessBar';
 
-import Goldle from '../backend.js';
-
-import countryFlagEmoji from 'country-flag-emoji';
+import Goldle from '../backend/goldle.js';
 
 import WinPopup from '../components/winPopup.js';
 import LosePopup from '../components/losePopup.js';
+
+import { getCountryEmoji } from '../utils/helper.js';
+
+let globalGoldle;
+
+export function getGoldle() {
+  return globalGoldle;
+}
 
 export default function Home() {
 
@@ -23,16 +29,7 @@ export default function Home() {
   const [recommendation, setRecommendation] = useState("");
   const [winPopupOpen, setWinPopupOpen] = useState(false);
   const [losePopupOpen, setLosePopupOpen] = useState(false);
-
-  const getCountryEmoji = (country) => {
-    for (let i = 0; i < countryFlagEmoji.list.length; i++) {
-      if (countryFlagEmoji.list[i].name.toLowerCase().includes(country.toLowerCase())) {
-        return countryFlagEmoji.list[i].emoji;
-      }
-    }
-
-    return country;
-  }
+  const [maxGuesses, setMaxGuesses] = useState(6);
 
   const updateGuessState = (newGuessState) => {
     setRecommendation("");
@@ -49,7 +46,7 @@ export default function Home() {
 
   const recommendationClick = () => {
     setRecommendation("");
-    const element = <GuessBar goldle={goldle} onGuess={updateGuessState} onError={guessError} value={recommendation}/>;
+    const element = <GuessBar goldle={goldle} onGuess={updateGuessState} onError={guessError} value={recommendation} id={"bar-" + (guesses + 1).toString()}/>;
     activeRow.unmount();
     const rowNode = document.getElementById('r-' + (guesses + 1).toString());
     const row = ReactDOM.createRoot(rowNode);
@@ -58,15 +55,16 @@ export default function Home() {
   }
 
   const handleStartClick = () => {
-    goldle.setupGators();
+    globalGoldle = goldle;
     goldle.startGame();
+    setMaxGuesses(goldle.numGuesses);
     setState(goldle.getState());
   }
 
   const getStyles = (guessStateVal) => {
     if (guessStateVal.state === 'correct') {
       return `${styles.ele} ${styles.correct}`;
-    } else if (guessStateVal.state === 'neighbour' || guessStateVal.state === 'same continent' || guessStateVal.state === 'same faculty') {
+    } else if (guessStateVal.state === 'neighbour' || guessStateVal.state === 'same-continent' || guessStateVal.state === 'same-faculty') {
       return `${styles.ele} ${styles.near}`;
     } else {
       return `${styles.ele}`;
@@ -80,11 +78,11 @@ export default function Home() {
         rowNode.style.gridTemplateColumns = '100%';
         const currentGuessState = guessStates[guesses - 1];
 
-        activeRow.render(<div className={styles.row}>
-        <div className={`${getStyles(currentGuessState.name)}`}>{currentGuessState.name.value}</div>
-        <div className={`${getStyles(currentGuessState.degree)}`}>{currentGuessState.degree.value}</div>
-        <div className={`${getStyles(currentGuessState.country)} ${styles.country}`}>{getCountryEmoji(currentGuessState.country.value)}</div>
-        <div className={`${getStyles(currentGuessState.floor)} ${styles.floor}`}>{currentGuessState.floor.value}</div>
+        activeRow.render(<div className={styles.row} id={"row-" + guesses.toString()}>
+        <div className={`${getStyles(currentGuessState.name)} ${currentGuessState.name.state}`} id={`row-${guesses.toString()}-name`}>{currentGuessState.name.value}</div>
+        <div className={`${getStyles(currentGuessState.degree)} ${currentGuessState.degree.state}`} id={`row-${guesses.toString()}-degree`}>{currentGuessState.degree.value}</div>
+        <div className={`${getStyles(currentGuessState.country)} ${styles.country} ${currentGuessState.country.state}`} id={`row-${guesses.toString()}-country`}>{getCountryEmoji(currentGuessState.country.value)}</div>
+        <div className={`${getStyles(currentGuessState.floor)} ${styles.floor} ${currentGuessState.floor.state}`} id={`row-${guesses.toString()}-floor`}>{currentGuessState.floor.value}</div>
         </div>);
       }
     }
@@ -101,7 +99,7 @@ export default function Home() {
         const row = ReactDOM.createRoot(rowNode);
         setActiveRow(row);
         rowNode.style.gridTemplateColumns = '100%';
-        const element = <GuessBar goldle={goldle} onGuess={updateGuessState} onError={guessError}/>;
+        const element = <GuessBar goldle={goldle} onGuess={updateGuessState} onError={guessError} id={"bar-" + (guesses + 1).toString()}/>;
         row.render(element);
       }
     }
@@ -110,40 +108,37 @@ export default function Home() {
   return (
     <div className={styles.home}>
       <Head>
-      <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet" />
         <title>Goldle</title>
       </Head>
       <main className={styles.main}>
         <div className={styles.titleBar}>
           <h1 className={styles.title}>GOLDLE</h1>
-          {state === 'started' && <h3 className={styles.guesses}>{guesses + 1}/6</h3>}
-          {(state === 'won' || state === 'lost') && <h3 className={styles.guesses}>{guesses}/6</h3>}
+          {state === 'started' && <h3 className={styles.guesses}>{guesses + 1}/{maxGuesses}</h3>}
+          {(state === 'won' || state === 'lost') && <h3 className={styles.guesses}>{guesses}/{maxGuesses}</h3>}
         </div>
         {state === 'inactive' &&
         <button className={styles.startButton} onClick={handleStartClick}>START</button>
         }
-        {state === 'started' && recommendation && <div className={styles.recommendation}>Did you mean <span onClick={recommendationClick}>{recommendation}</span>?</div>}
+        {state === 'started' && recommendation && <div className={styles.recommendation} id='recommendation'>Did you mean <span onClick={recommendationClick} id='recommendation-name'>{recommendation}</span>?</div>}
         {state !== 'inactive' && <WinPopup state={winPopupOpen} goldle={goldle}/>}
         {state !== 'inactive' && <LosePopup state={losePopupOpen} goldle={goldle}/>}
         {state !== 'inactive' &&
-        <div className={styles.guessGrid}>
+        <div className={styles.guessGrid} id='guess-grid'>
           <div className={`${styles.header} ${styles.row}`} id="r-0">
             <div className={styles.ele}>GATOR</div>
             <div className={styles.ele}>DEGREE</div>
             <div className={styles.ele}>COUNTRY</div>
             <div className={`${styles.ele} ${styles.eleEnd}`}>FLOOR</div>
           </div>
-          <div className={styles.rowContainer} id="r-1"></div>
-          <div className={styles.rowContainer} id="r-2"></div>
-          <div className={styles.rowContainer} id="r-3"></div>
-          <div className={styles.rowContainer} id="r-4"></div>
-          <div className={styles.rowContainer} id="r-5"></div>
-          <div className={styles.rowContainer} id="r-6"></div>
+          {Array.from(Array(maxGuesses).keys()).map((num) => {
+            return <div className={styles.rowContainer} id={`r-${num + 1}`} key={num}></div>
+          })}
         </div>
         }
       </main>
 
-      <style jsx global>{`
+      <style>{`
         html,
         body {
           padding: 0;

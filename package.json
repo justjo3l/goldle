@@ -5,10 +5,11 @@
     "build": "next build",
     "dev": "next dev",
     "start": "next start -p $PORT",
-    "test": "jest"
+    "test": "jest --coverage"
   },
   "dependencies": {
     "@babel/preset-react": "^7.23.3",
+    "@testing-library/react": "^14.1.2",
     "countries-list": "^3.0.6",
     "country-flag-emoji": "^1.0.3",
     "lodash": "^4.17.21",
@@ -30,6 +31,15 @@
   "license": "ISC",
   "devDependencies": {
     "@babel/preset-env": "^7.23.9",
-    "jest": "^29.7.0"
+    "@testing-library/jest-dom": "^6.3.0",
+    "jest": "^29.7.0",
+    "jest-dom": "^4.0.0",
+    "jest-environment-jsdom": "^29.7.0"
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "\\.(css|scss)$": "<rootDir>/__mocks__/styleMock.js"
+    },
+    "testEnvironment": "jsdom"
   }
 }

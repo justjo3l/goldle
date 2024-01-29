@@ -22,16 +22,16 @@ export default function WinPopup(props) {
         modal nested>
         {
             close => (
-                <div className={`${styles.modal} ${moreStyles.modal}`}>
+                <div className={`${styles.modal} ${moreStyles.modal}`} id="result-popup">
                     <div className={styles.container}>
-                        <button onClick={() => close()} className={styles.close}>
+                        <button onClick={() => close()} className={styles.close} id='close-button'>
                             &times;
                         </button>
                     </div>
                     <div className={styles.content}>
                         <div>Nice Work!</div>
                         <div>The Gator was</div>
-                        <div className={styles.gator}>{goldle.showGator().name}</div>
+                        <div className={styles.gator}>{goldle.runCrew.getGuessGator().name}</div>
                     </div>
                 </div>
             )
