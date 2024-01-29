@@ -31,11 +31,6 @@ class Goldle {
         goldle.facultyMap = goldle.runCrew.setupFacultyMap(goldleFacultyMap);
         return {};
     }
-    
-    getRandomGator = function() {
-        let randomIndex = Math.floor(Math.random() * this.gators.length);
-        return this.gators[randomIndex];
-    }
 
     startGame = function() {
         if (same(this.status, 'started')) {
@@ -43,7 +38,7 @@ class Goldle {
         }
 
         this.setupGators('gator-data.csv', 'faculty-data.csv');
-        this.guessGator = this.getRandomGator();
+        this.guessGator = this.gators[Math.floor(Math.random() * this.gators.length)];
         this.numGuesses = 6;
         this.status = 'started';
         return this.status;

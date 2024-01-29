@@ -1,18 +1,5 @@
 import Goldle from '../backend/goldle.js';
 
-describe('testing getRandomGator() in Goldle', () => {
-    let goldle;
-
-    beforeEach(() => {
-        goldle = new Goldle();
-        goldle.setupGators();
-    });
-
-    test('getRandomGator() should return a gator', () => {
-        expect(goldle.getRandomGator()).not.toStrictEqual(null);
-    });
-});
-
 describe('testing getState() and startGame() in Goldle', () => {
     let goldle;
 
