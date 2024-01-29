@@ -82,6 +82,11 @@ class GoldleRunCrew {
         return foundNames;
     }
 
+    getGuessGator = function() {
+        return this.guessGator;
+       
+    }
+
     // Check functions
     nameExists = function(name) {
         return this.gatorNames.includes(name);

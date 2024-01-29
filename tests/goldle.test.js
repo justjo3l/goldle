@@ -18,24 +18,6 @@ describe('testing getState() and startGame() in Goldle', () => {
     });
 });
 
-describe('testing showGator() in Goldle', () => {
-    let goldle;
-
-    beforeEach(() => {
-        goldle = new Goldle();
-        goldle.setupGators();
-    });
-
-    test('showGator() should return gator details if gator has been set', () => {
-        goldle.startGame();
-        expect(goldle.showGator()).not.toStrictEqual(null);
-    });
-
-    test('showGator() should return null if gator has not been set', () => {
-        expect(goldle.showGator()).toStrictEqual(null);
-    });
-})
-
 describe('testing rigGame() in Goldle', () => {
     let goldle;
 

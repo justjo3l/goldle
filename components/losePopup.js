@@ -31,7 +31,7 @@ export default function LosePopup(props) {
                     <div className={styles.content}>
                         <div>Better luck next time!</div>
                         <div>The Gator was</div>
-                        <div className={styles.gator}>{goldle.showGator().name}</div>
+                        <div className={styles.gator}>{goldle.runCrew.getGuessGator().name}</div>
                     </div>
                 </div>
             )

@@ -93,17 +93,6 @@ class Goldle {
         }
     }
 
-    showGator = function() {
-
-        const goldle = this;
-        if (goldle.guessGator) {
-            return goldle.guessGator;
-        }
-
-        return null;
-       
-    }
-
     rigGame = function(name) {
         if (this.runCrew.nameExists(name)) {
             this.guessGator = this.runCrew.setupGator(name);

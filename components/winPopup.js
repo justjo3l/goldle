@@ -31,7 +31,7 @@ export default function WinPopup(props) {
                     <div className={styles.content}>
                         <div>Nice Work!</div>
                         <div>The Gator was</div>
-                        <div className={styles.gator}>{goldle.showGator().name}</div>
+                        <div className={styles.gator}>{goldle.runCrew.getGuessGator().name}</div>
                     </div>
                 </div>
             )

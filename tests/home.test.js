@@ -45,6 +45,7 @@ describe('testing guess-grid game flow in Home', () => {
     
     let startButton;
     let goldle;
+    let runCrew;
 
     beforeEach(() => {
         render(<Home />);
@@ -52,6 +53,7 @@ describe('testing guess-grid game flow in Home', () => {
         fireEvent.click(startButton);
         goldle = getGoldle();
         goldle.rigGame("Joel Jose");
+        runCrew = goldle.runCrew;
     });
 
     test('guess grid has first guess bar rendered', () => {
@@ -87,7 +89,7 @@ describe('testing guess-grid game flow in Home', () => {
         expect(guessBar).not.toBeInTheDocument();
         const resultPopup = document.getElementById('result-popup');
         expect(resultPopup).toHaveTextContent('Nice Work!');
-        expect(resultPopup).toHaveTextContent(goldle.showGator().name);
+        expect(resultPopup).toHaveTextContent(runCrew.getGuessGator().name);
     });
 
     test('guess grid should render result row for each failed guess but not the guess bar after final guess is made', () => {
@@ -105,7 +107,7 @@ describe('testing guess-grid game flow in Home', () => {
         expect(guessBar).not.toBeInTheDocument();
         const resultPopup = document.getElementById('result-popup');
         expect(resultPopup).toHaveTextContent('Better luck next time!');
-        expect(resultPopup).toHaveTextContent(goldle.showGator().name);
+        expect(resultPopup).toHaveTextContent(runCrew.getGuessGator().name);
     });
 
     test('guess grid result row contents should be accurate if a guess is made', () => {

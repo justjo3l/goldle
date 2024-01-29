@@ -80,6 +80,26 @@ describe('testing getRecommendations() in GoldleRunCrew', () => {
     });
 });
 
+describe('testing getGuessGator() in Goldle', () => {
+    let goldle;
+    let runCrew;
+
+    beforeEach(() => {
+        goldle = new Goldle();
+        goldle.setupGators();
+        runCrew = goldle.runCrew;
+    });
+
+    test('getGuessGator() should return gator details if gator has been set', () => {
+        goldle.startGame();
+        expect(runCrew.getGuessGator()).not.toStrictEqual(null);
+    });
+
+    test('getGuessGator() should return null if gator has not been set', () => {
+        expect(runCrew.getGuessGator()).toStrictEqual(null);
+    });
+})
+
 describe('testing nameExists() in GoldleRunCrew', () => {
     let runCrew;
 
