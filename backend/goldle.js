@@ -11,6 +11,8 @@ const degreeStates = ['incorrect', 'same-faculty', 'correct', 'none'];
 const floorStates = ['incorrect', 'neighbour', 'correct', 'none'];
 const countryStates = ['incorrect', 'same-continent', 'correct', 'none'];
 
+const GUESSES = 6;
+
 class Goldle {
 
     constructor() {
@@ -32,14 +34,18 @@ class Goldle {
         return {};
     }
 
-    startGame = function() {
+    startGame = function(numGuesses) {
         if (same(this.status, 'started')) {
             return this.status;
         }
 
         this.setupGators('gator-data.csv', 'faculty-data.csv');
         this.guessGator = this.gators[Math.floor(Math.random() * this.gators.length)];
-        this.numGuesses = 6;
+        if (numGuesses) {
+            this.numGuesses = numGuesses;
+        } else {
+            this.numGuesses = GUESSES;
+        }
         this.status = 'started';
         return this.status;
     }

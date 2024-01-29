@@ -29,6 +29,7 @@ export default function Home() {
   const [recommendation, setRecommendation] = useState("");
   const [winPopupOpen, setWinPopupOpen] = useState(false);
   const [losePopupOpen, setLosePopupOpen] = useState(false);
+  const [maxGuesses, setMaxGuesses] = useState(6);
 
   const getCountryEmoji = (country) => {
     for (let i = 0; i < countryFlagEmoji.list.length; i++) {
@@ -67,6 +68,7 @@ export default function Home() {
     globalGoldle = goldle;
     goldle.setupGators();
     goldle.startGame();
+    setMaxGuesses(goldle.numGuesses);
     setState(goldle.getState());
   }
 
@@ -123,8 +125,8 @@ export default function Home() {
       <main className={styles.main}>
         <div className={styles.titleBar}>
           <h1 className={styles.title}>GOLDLE</h1>
-          {state === 'started' && <h3 className={styles.guesses}>{guesses + 1}/6</h3>}
-          {(state === 'won' || state === 'lost') && <h3 className={styles.guesses}>{guesses}/6</h3>}
+          {state === 'started' && <h3 className={styles.guesses}>{guesses + 1}/{maxGuesses}</h3>}
+          {(state === 'won' || state === 'lost') && <h3 className={styles.guesses}>{guesses}/{maxGuesses}</h3>}
         </div>
         {state === 'inactive' &&
         <button className={styles.startButton} onClick={handleStartClick}>START</button>
@@ -140,12 +142,9 @@ export default function Home() {
             <div className={styles.ele}>COUNTRY</div>
             <div className={`${styles.ele} ${styles.eleEnd}`}>FLOOR</div>
           </div>
-          <div className={styles.rowContainer} id="r-1"></div>
-          <div className={styles.rowContainer} id="r-2"></div>
-          <div className={styles.rowContainer} id="r-3"></div>
-          <div className={styles.rowContainer} id="r-4"></div>
-          <div className={styles.rowContainer} id="r-5"></div>
-          <div className={styles.rowContainer} id="r-6"></div>
+          {Array.from(Array(maxGuesses).keys()).map((num) => {
+            return <div className={styles.rowContainer} id={`r-${num + 1}`} key={num}></div>
+          })}
         </div>
         }
       </main>
