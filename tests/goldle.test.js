@@ -5,7 +5,6 @@ describe('testing getState() and startGame() in Goldle', () => {
 
     beforeEach(() => {
         goldle = new Goldle();
-        goldle.setupGators();
     });
 
     test('getState() should not return inactive if game has not started', () => {
@@ -23,7 +22,7 @@ describe('testing rigGame() in Goldle', () => {
 
     beforeEach(() => {
         goldle = new Goldle();
-        goldle.setupGators();
+        goldle.startGame();
     });
 
     test('rigGame() should return gator if gator exists and game has been rigged', () => {
@@ -40,7 +39,6 @@ describe('testing guessName() in Goldle', () => {
 
     beforeEach(() => {
         goldle = new Goldle();
-        goldle.setupGators();
     });
 
     describe('errors', () => {

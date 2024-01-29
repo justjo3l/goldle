@@ -1,5 +1,7 @@
 import { getCountryCode, getCountryData } from 'countries-list';
 
+import { goldleGators, goldleFacultyMap } from '../assets.js';
+
 import same from '../utils/helper.js';
 
 class GoldleRunCrew {
@@ -11,6 +13,14 @@ class GoldleRunCrew {
     }
 
     // Setup functions
+    setupGators = function() {
+
+        this.gators = goldleGators;
+        this.setupGatorNames(goldleGators);
+        this.setupFacultyMap(goldleFacultyMap);
+        return {};
+    }
+
     setupGatorNames = function(gators) {
         this.gatorNames = [];
         this.gators = gators;

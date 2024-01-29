@@ -1,5 +1,3 @@
-import { goldleGators, goldleFacultyMap } from '../assets.js';
-
 import same from '../utils/helper.js';
 
 import GoldleRunCrew from './goldleRunCrew.js';
@@ -19,24 +17,14 @@ class Goldle {
         this.numGuesses = 0;
         this.status = 'inactive';
     }
-    
-    setupGators = function() {
-        const goldle = this;
-
-        goldle.gators = goldleGators;
-        goldle.gatorNames = goldle.runCrew.setupGatorNames(goldleGators);
-
-        goldle.facultyMap = goldle.runCrew.setupFacultyMap(goldleFacultyMap);
-        return {};
-    }
 
     startGame = function(numGuesses) {
         if (same(this.status, 'started')) {
             return this.status;
         }
 
-        this.setupGators('gator-data.csv', 'faculty-data.csv');
-        this.guessGator = this.runCrew.setupGator();
+        this.runCrew.setupGators('gator-data.csv', 'faculty-data.csv');
+        this.runCrew.setupGator();
         this.numGuesses = numGuesses || GUESSES;
         this.status = 'started';
         return this.status;

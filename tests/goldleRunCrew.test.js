@@ -7,7 +7,7 @@ describe('testing getGatorByName() in GoldleRunCrew', () => {
 
     beforeEach(() => {
         const goldle = new Goldle();
-        goldle.setupGators();
+        goldle.startGame();
         runCrew = goldle.runCrew;
     });
 
@@ -25,7 +25,7 @@ describe('testing getFaculty() in GoldleRunCrew', () => {
 
     beforeEach(() => {
         const goldle = new Goldle();
-        goldle.setupGators();
+        goldle.startGame();
         runCrew = goldle.runCrew;
     });
 
@@ -46,7 +46,7 @@ describe('testing getFaculties() in GoldleRunCrew', () => {
 
     beforeEach(() => {
         const goldle = new Goldle();
-        goldle.setupGators();
+        goldle.startGame();
         runCrew = goldle.runCrew;
     });
 
@@ -67,7 +67,7 @@ describe('testing getRecommendations() in GoldleRunCrew', () => {
 
     beforeEach(() => {
         const goldle = new Goldle();
-        goldle.setupGators();
+        goldle.startGame();
         runCrew = goldle.runCrew;
     });
 
@@ -86,7 +86,6 @@ describe('testing getGuessGator() in Goldle', () => {
 
     beforeEach(() => {
         goldle = new Goldle();
-        goldle.setupGators();
         runCrew = goldle.runCrew;
     });
 
@@ -105,7 +104,7 @@ describe('testing nameExists() in GoldleRunCrew', () => {
 
     beforeEach(() => {
         const goldle = new Goldle();
-        goldle.setupGators();
+        goldle.startGame();
         runCrew = goldle.runCrew;
     });
 
@@ -123,7 +122,7 @@ describe('testing checkDegree() in GoldleRunCrew', () => {
 
     beforeEach(() => {
         const goldle = new Goldle();
-        goldle.setupGators();
+        goldle.startGame();
         goldle.rigGame("Joel Jose");
         runCrew = goldle.runCrew;
     });
@@ -150,7 +149,7 @@ describe('testing checkFloor() in Goldle', () => {
 
     beforeEach(() => {
         const goldle = new Goldle();
-        goldle.setupGators();
+        goldle.startGame();
         goldle.rigGame("Joel Jose");
         runCrew = goldle.runCrew;
     });
@@ -175,7 +174,7 @@ describe('testing checkCountry() in Goldle', () => {
 
     beforeEach(() => {
         const goldle = new Goldle();
-        goldle.setupGators();
+        goldle.startGame();
         goldle.rigGame("Joel Jose");
         runCrew = goldle.runCrew;
     });

@@ -66,7 +66,6 @@ export default function Home() {
 
   const handleStartClick = () => {
     globalGoldle = goldle;
-    goldle.setupGators();
     goldle.startGame();
     setMaxGuesses(goldle.numGuesses);
     setState(goldle.getState());
