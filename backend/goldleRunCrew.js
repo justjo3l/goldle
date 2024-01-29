@@ -1,3 +1,5 @@
+import { getCountryCode, getCountryData } from 'countries-list';
+
 import same from '../utils/helper.js';
 
 class GoldleRunCrew {
@@ -119,6 +121,24 @@ class GoldleRunCrew {
             return 'none';
         } else if (Math.abs(parseInt(guessedFloor) - parseInt(guessFloor)) === 1) {
             return 'neighbour';
+        } else {
+            return 'incorrect';
+        }
+    }
+
+    checkCountry = function(guessedCountry) {
+
+        const guessCountry = this.guessGator.country;
+
+        let guessedContinent = getCountryData(getCountryCode(guessedCountry)).continent;
+        let guessContinent = getCountryData(getCountryCode(guessCountry)).continent;
+
+        if (same(guessedCountry, guessCountry)) {
+            return 'correct';
+        } else if (same(guessCountry, "N/A")) {
+            return 'none';
+        } else if (guessedContinent && guessContinent && same(guessedContinent, guessContinent)) {
+            return 'same-continent';
         } else {
             return 'incorrect';
         }

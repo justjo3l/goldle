@@ -149,3 +149,26 @@ describe('testing checkFloor() in Goldle', () => {
         expect(runCrew.checkFloor(5)).toStrictEqual('incorrect');
     });
 });
+
+describe('testing checkCountry() in Goldle', () => {
+    let runCrew;
+
+    beforeEach(() => {
+        const goldle = new Goldle();
+        goldle.setupGators();
+        goldle.rigGame("Joel Jose");
+        runCrew = goldle.runCrew;
+    });
+
+    test('checkCountry() should return correct if country is correct', () => {
+        expect(runCrew.checkCountry("United Arab Emirates")).toStrictEqual('correct');
+    });
+
+    test('checkCountry() should return same continent if country is from the same continent', () => {
+        expect(runCrew.checkCountry("China")).toStrictEqual('same-continent');
+    });
+
+    test('checkCountry() should return different continent if country is incorrect and not N/A', () => {
+        expect(runCrew.checkCountry("United Kingdom")).toStrictEqual('incorrect');
+    });
+});

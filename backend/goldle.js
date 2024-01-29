@@ -1,5 +1,3 @@
-import { getCountryCode, getCountryData } from 'countries-list';
-
 import { goldleGators, goldleFacultyMap } from '../assets.js';
 
 import same from '../utils/helper.js';
@@ -44,24 +42,6 @@ class Goldle {
         return this.status;
     }
 
-    checkCountry = function(guessedCountry) {
-
-        const guessCountry = this.guessGator.country;
-
-        let guessedContinent = getCountryData(getCountryCode(guessedCountry)).continent;
-        let guessContinent = getCountryData(getCountryCode(guessCountry)).continent;
-
-        if (same(guessedCountry, guessCountry)) {
-            return 'correct';
-        } else if (same(guessCountry, "N/A")) {
-            return 'none';
-        } else if (guessedContinent && guessContinent && same(guessedContinent, guessContinent)) {
-            return 'same-continent';
-        } else {
-            return 'incorrect';
-        }
-    }
-
     guessName = function(name) {
         const goldle = this;
         if (same(goldle.status, 'started')) {
@@ -82,7 +62,7 @@ class Goldle {
                         value: guessedGator.room[0]
                     };
                     newGuessState.country = {
-                        state: goldle.checkCountry(guessedGator.country),
+                        state: goldle.runCrew.checkCountry(guessedGator.country),
                         value: guessedGator.country
                     };
                     goldle.guessStates.push(newGuessState);
