@@ -85,6 +85,9 @@ describe('testing guess-grid game flow in Home', () => {
         expect(resultRow).toBeInTheDocument();
         guessBar = document.getElementById('bar-2');
         expect(guessBar).not.toBeInTheDocument();
+        const resultPopup = document.getElementById('result-popup');
+        expect(resultPopup).toHaveTextContent('Nice Work!');
+        expect(resultPopup).toHaveTextContent(goldle.showGator().name);
     });
 
     test('guess grid should render result row for each failed guess but not the guess bar after final guess is made', () => {
@@ -100,6 +103,9 @@ describe('testing guess-grid game flow in Home', () => {
         }
         guessBar = document.getElementById('guessBar');
         expect(guessBar).not.toBeInTheDocument();
+        const resultPopup = document.getElementById('result-popup');
+        expect(resultPopup).toHaveTextContent('Better luck next time!');
+        expect(resultPopup).toHaveTextContent(goldle.showGator().name);
     });
 
     test('guess grid result row contents should be accurate if a guess is made', () => {

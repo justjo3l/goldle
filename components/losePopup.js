@@ -22,7 +22,7 @@ export default function LosePopup(props) {
         modal nested>
         {
             close => (
-                <div className={`${styles.modal} ${moreStyles.modal}`}>
+                <div className={`${styles.modal} ${moreStyles.modal}`} id="result-popup">
                     <div className={styles.container}>
                         <button onClick={() => close()} className={styles.close}>
                             &times;
