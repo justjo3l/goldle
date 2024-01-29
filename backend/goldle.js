@@ -1,8 +1,10 @@
 import { getCountryCode, getCountryData } from 'countries-list';
 
-import { goldleGators, goldleFacultyMap } from './assets.js';
+import { goldleGators, goldleFacultyMap } from '../assets.js';
 
-import same from './utils/helper.js';
+import same from '../utils/helper.js';
+
+import GoldleRunCrew from './goldleRunCrew.js';
 
 const gameStates = ['inactive', 'started', 'won', 'lost'];
 const degreeStates = ['incorrect', 'same-faculty', 'correct', 'none'];
@@ -13,8 +15,7 @@ class Goldle {
 
     constructor() {
         this.gators = [];
-        this.gatorNames = [];
-        this.facultyMap = new Map();
+        this.runCrew = new GoldleRunCrew();
         this.guessGator = null;
         this.guessStates = [];
         this.numGuesses = 0;
@@ -25,25 +26,10 @@ class Goldle {
         const goldle = this;
 
         goldle.gators = goldleGators;
-        goldle.gatorNames = [];
-        for (let i = 0; i < goldle.gators.length; i++) {
-            goldle.gatorNames.push(goldle.gators[i].name);
-        }
+        goldle.gatorNames = goldle.runCrew.setupGatorNames(goldleGators);
 
-        goldle.facultyMap = new Map();
-        for (let i = 0; i < goldleFacultyMap["value"].length; i++) {
-            goldle.facultyMap.set(goldleFacultyMap["value"][i][0], goldleFacultyMap["value"][i][1]);
-        }
+        goldle.facultyMap = goldle.runCrew.setupFacultyMap(goldleFacultyMap);
         return {};
-    }
-
-    getGatorByName = function(name) {
-        for (let i = 0; i < this.gators.length; i++) {
-            if (same(this.gators[i].name, name)) {
-                return this.gators[i];
-            }
-        }
-        return null;
     }
     
     getRandomGator = function() {
@@ -73,29 +59,6 @@ class Goldle {
         return this.gatorNames.includes(name);
     }
 
-    getFaculty = function(degree) {
-        degree = degree.toLowerCase();
-        for (let [key, value] of this.facultyMap.entries()) {
-            if (value.includes(degree)) {
-                return key;
-            }
-        }
-        return null;
-    }
-
-    getFaculties = function(degree) {
-        let faculties = [];
-
-        for (let i = 0; i < degree.split('/').length; i++) {
-            let faculty = this.getFaculty(degree.split('/')[i].trim());
-            if (faculty !== null) {
-                faculties.push(faculty);
-            }
-        }
-        
-        return faculties;
-    }
-
     checkDegree = function(guessedDegree) {
 
         const guessDegree = this.guessGator.degree;
@@ -106,9 +69,9 @@ class Goldle {
             return 'none';
         }
 
-        let guessedFaculties = this.getFaculties(guessedDegree);
+        let guessedFaculties = this.runCrew.getFaculties(guessedDegree);
 
-        let guessFaculties = this.getFaculties(guessDegree);
+        let guessFaculties = this.runCrew.getFaculties(guessDegree);
 
         for (let i = 0; i < guessedFaculties.length; i++) {
             if (guessFaculties.includes(guessedFaculties[i])) {
@@ -156,7 +119,7 @@ class Goldle {
         const goldle = this;
         if (same(goldle.status, 'started')) {
             if (goldle.nameExists(name)) {
-                let guessedGator = goldle.getGatorByName(name);
+                let guessedGator = goldle.runCrew.getGatorByName(name);
                 goldle.numGuesses--;
                 let newGuessState = {}
                     newGuessState.name = {
@@ -220,7 +183,7 @@ class Goldle {
 
     rigGame = function(name) {
         if (this.nameExists(name)) {
-            this.guessGator = this.getGatorByName(name);
+            this.guessGator = this.runCrew.getGatorByName(name);
             return this.guessGator;
         }
         return null;

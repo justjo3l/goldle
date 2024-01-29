@@ -1,23 +1,4 @@
-import Goldle from '../backend.js';
-
-import { goldleFacultyMap } from '../assets.js';
-
-describe('testing getGatorByName() in Goldle', () => {
-    let goldle;
-
-    beforeEach(() => {
-        goldle = new Goldle();
-        goldle.setupGators();
-    });
-
-    test('getGatorByName() should return gator if name exists', () => {
-        expect(goldle.getGatorByName('Joel Jose')).not.toStrictEqual(null);
-    });
-
-    test('getGatorByName() should return null if name does not exist', () => {
-        expect(goldle.getGatorByName('John Doe')).toStrictEqual(null);
-    });
-});
+import Goldle from '../backend/goldle.js';
 
 describe('testing getRandomGator() in Goldle', () => {
     let goldle;
@@ -81,46 +62,6 @@ describe('testing nameExists() in Goldle', () => {
 
     test('nameExists() should return false if name does not exist', () => {
         expect(goldle.nameExists('John Doe')).toStrictEqual(false);
-    });
-});
-
-describe('testing getFaculty() in Goldle', () => {
-    let goldle;
-
-    beforeEach(() => {
-        goldle = new Goldle();
-        goldle.setupGators();
-    });
-
-    test('getFaculty() should return correct faculty if degree exists', () => {
-        const randomFacultyInfo = goldleFacultyMap.value[Math.floor(Math.random() * goldleFacultyMap.value.length)];
-        const randomFaculty = randomFacultyInfo[0];
-        const randomDegree = randomFacultyInfo[1][Math.floor(Math.random() * randomFacultyInfo[1].length)];
-        expect(goldle.getFaculty(randomDegree)).toStrictEqual(randomFaculty);
-    });
-
-    test('getFaculty() should return null if degree does not exist', () => {
-        expect(goldle.getFaculty('John Doe')).toStrictEqual(null);
-    });
-});
-
-describe('testing getFaculties() in Goldle', () => {
-    let goldle;
-
-    beforeEach(() => {
-        goldle = new Goldle();
-        goldle.setupGators();
-    });
-
-    test('getFaculties() should return correct faculties if degree/degrees exist', () => {
-        expect(goldle.getFaculties("Media / Computer Engineering")).toStrictEqual(["Faculty of Arts, Design and Architecture", "Faculty of Engineering"]);
-        expect(goldle.getFaculties("FakeMedia / Computer Engineering")).toStrictEqual(["Faculty of Engineering"]);
-        expect(goldle.getFaculties("Media / FakeComputer Engineering")).toStrictEqual(["Faculty of Arts, Design and Architecture"]);
-    });
-
-    test('getFaculties() should return empty list if degree/degrees are invalid', () => {
-        expect(goldle.getFaculties('John Doe').length).toStrictEqual(0);
-        expect(goldle.getFaculties('FakeMedia / FakeComputer Engineering').length).toStrictEqual(0);
     });
 });
 
