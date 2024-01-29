@@ -129,7 +129,7 @@ export default function Home() {
         {state === 'inactive' &&
         <button className={styles.startButton} onClick={handleStartClick}>START</button>
         }
-        {state === 'started' && recommendation && <div className={styles.recommendation}>Did you mean <span onClick={recommendationClick}>{recommendation}</span>?</div>}
+        {state === 'started' && recommendation && <div className={styles.recommendation} id='recommendation'>Did you mean <span onClick={recommendationClick}>{recommendation}</span>?</div>}
         {state !== 'inactive' && <WinPopup state={winPopupOpen} goldle={goldle}/>}
         {state !== 'inactive' && <LosePopup state={losePopupOpen} goldle={goldle}/>}
         {state !== 'inactive' &&

@@ -44,14 +44,12 @@ describe('testing start stage in Home', () => {
 describe('testing guess-grid game flow in Home', () => {
     
     let startButton;
-    let guessGrid;
     let goldle;
 
     beforeEach(() => {
         render(<Home />);
         startButton = screen.getByText('START');
         fireEvent.click(startButton);
-        guessGrid = document.getElementById('guess-grid');
         goldle = getGoldle();
         goldle.rigGame("Joel Jose");
     });
@@ -59,6 +57,14 @@ describe('testing guess-grid game flow in Home', () => {
     test('guess grid has first guess bar rendered', () => {
         const guessBar = document.getElementById('bar-1');
         expect(guessBar).toBeInTheDocument();
+    });
+
+    test('guess grid does not show recommendation if valid input', () => {
+        const guessBar = document.getElementById('guessBar');
+        fireEvent.change(guessBar, {target: {value: 'Amber Chan'}});
+        fireEvent.keyDown(guessBar, {key: 'Enter', code: 'Enter'});
+        const recommendationText = document.getElementById('recommendation');
+        expect(recommendationText).not.toBeInTheDocument();
     });
 
     test('guess grid renders result row and next guess bar on incorrect guess', () => {
@@ -84,6 +90,8 @@ describe('testing guess-grid game flow in Home', () => {
     test('guess grid should render result row for each failed guess but not the guess bar after final guess is made', () => {
         let guessBar;
         for (let i = 0; i < 6; i++) {
+            const guessText = startButton = screen.getByText(`${i + 1}/6`);
+            expect(guessText).toBeInTheDocument();
             guessBar = document.getElementById('guessBar');
             fireEvent.change(guessBar, {target: {value: 'Amber Chan'}});
             fireEvent.keyDown(guessBar, {key: 'Enter', code: 'Enter'});
@@ -110,5 +118,32 @@ describe('testing guess-grid game flow in Home', () => {
         const resultFloor = document.getElementById('row-1-floor');
         expect(resultFloor).toHaveTextContent('3');
         expect(resultFloor.classList.contains('correct')).toBe(true);
+    });
+});
+
+describe('testing guess-grid error cases in Home', () => {
+    let startButton;
+    let goldle;
+
+    beforeEach(() => {
+        render(<Home />);
+        startButton = screen.getByText('START');
+        fireEvent.click(startButton);
+        goldle = getGoldle();
+        goldle.rigGame("Joel Jose");
+    });
+
+    test('guess grid does not render result row or next guess bar and shows recommendations (if available) if invalid input', () => {
+        let guessBar = document.getElementById('guessBar');
+        fireEvent.change(guessBar, {target: {value: 'ambe'}});
+        fireEvent.keyDown(guessBar, {key: 'Enter', code: 'Enter'});
+        guessBar = document.getElementById('bar-1');
+        expect(guessBar).toBeInTheDocument();
+        const resultRow = document.getElementById('row-1');
+        expect(resultRow).not.toBeInTheDocument();
+        guessBar = document.getElementById('bar-2');
+        expect(guessBar).not.toBeInTheDocument();
+        const recommendationText = document.getElementById('recommendation');
+        expect(recommendationText).toBeInTheDocument();
     });
 });
