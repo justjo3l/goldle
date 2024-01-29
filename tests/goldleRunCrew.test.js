@@ -79,3 +79,21 @@ describe('testing getRecommendations() in Goldle', () => {
         expect(runCrew.getRecommendations('John Doe').length).toStrictEqual(0);
     });
 });
+
+describe('testing nameExists() in Goldle', () => {
+    let runCrew;
+
+    beforeEach(() => {
+        const goldle = new Goldle();
+        goldle.setupGators();
+        runCrew = goldle.runCrew;
+    });
+
+    test('nameExists() should return true if name exists', () => {
+        expect(runCrew.nameExists('Joel Jose')).toStrictEqual(true);
+    });
+
+    test('nameExists() should return false if name does not exist', () => {
+        expect(runCrew.nameExists('John Doe')).toStrictEqual(false);
+    });
+});

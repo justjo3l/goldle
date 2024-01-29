@@ -64,6 +64,11 @@ class GoldleRunCrew {
         foundNames = foundNames.filter((val) => val.toLowerCase().includes(name.toLowerCase()));
         return foundNames;
     }
+
+    // Check functions
+    nameExists = function(name) {
+        return this.gatorNames.includes(name);
+    }
 }
 
 export default GoldleRunCrew;

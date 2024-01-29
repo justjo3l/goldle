@@ -46,10 +46,6 @@ class Goldle {
         return this.status;
     }
 
-    nameExists = function(name) {
-        return this.gatorNames.includes(name);
-    }
-
     checkDegree = function(guessedDegree) {
 
         const guessDegree = this.guessGator.degree;
@@ -109,7 +105,7 @@ class Goldle {
     guessName = function(name) {
         const goldle = this;
         if (same(goldle.status, 'started')) {
-            if (goldle.nameExists(name)) {
+            if (goldle.runCrew.nameExists(name)) {
                 let guessedGator = goldle.runCrew.getGatorByName(name);
                 goldle.numGuesses--;
                 let newGuessState = {}
@@ -173,7 +169,7 @@ class Goldle {
     }
 
     rigGame = function(name) {
-        if (this.nameExists(name)) {
+        if (this.runCrew.nameExists(name)) {
             this.guessGator = this.runCrew.getGatorByName(name);
             return this.guessGator;
         }
