@@ -103,41 +103,67 @@ class GoldleRunCrew {
     }
 
     // Guess Check functions
+    checkName = function(guessedName) {
+
+        const guessName = this.guessGator.name;
+
+        let state = 'incorrect';
+
+        if (same(guessedName, guessName)) {
+            state = 'correct';
+        }
+
+        return {
+            state: state,
+            value: guessedName
+        }
+    }
+
     checkDegree = function(guessedDegree) {
 
         const guessDegree = this.guessGator.degree;
 
+        let state = 'incorrect';
+
         if (same(guessedDegree, guessDegree)) {
-            return 'correct';
+            state = 'correct';
         } else if (same(guessedDegree, "N/A")) {
-            return 'none';
-        }
+            state = 'none';
+        } else {
+            let guessedFaculties = this.getFaculties(guessedDegree);
 
-        let guessedFaculties = this.getFaculties(guessedDegree);
+            let guessFaculties = this.getFaculties(guessDegree);
 
-        let guessFaculties = this.getFaculties(guessDegree);
-
-        for (let i = 0; i < guessedFaculties.length; i++) {
-            if (guessFaculties.includes(guessedFaculties[i])) {
-                return 'same-faculty';
+            for (let i = 0; i < guessedFaculties.length; i++) {
+                if (guessFaculties.includes(guessedFaculties[i])) {
+                    state = 'same-faculty';
+                }
             }
         }
 
-        return 'incorrect';
+        return {
+            state: state,
+            value: guessedDegree
+        }
     }
 
     checkFloor = function(guessedFloor) {
 
         const guessFloor = this.guessGator.room[0];
 
+        let state = 'incorrect';
+
         if (parseInt(guessedFloor) === parseInt(guessFloor)) {
-            return 'correct';
+            state = 'correct';
         } else if (same(this.guessGator.room, "N/A")) {
-            return 'none';
+            state = 'none';
         } else if (Math.abs(parseInt(guessedFloor) - parseInt(guessFloor)) === 1) {
-            return 'neighbour';
-        } else {
-            return 'incorrect';
+            state = 'neighbour';
+        }
+
+        return {
+            state: state,
+            value: guessedFloor
         }
     }
 
@@ -148,14 +174,19 @@ class GoldleRunCrew {
         let guessedContinent = getCountryData(getCountryCode(guessedCountry)).continent;
         let guessContinent = getCountryData(getCountryCode(guessCountry)).continent;
 
+        let state = 'incorrect';
+
         if (same(guessedCountry, guessCountry)) {
-            return 'correct';
+            state = 'correct';
         } else if (same(guessCountry, "N/A")) {
-            return 'none';
+            state = 'none';
         } else if (guessedContinent && guessContinent && same(guessedContinent, guessContinent)) {
-            return 'same-continent';
-        } else {
-            return 'incorrect';
+            state = 'same-continent';
+        }
+
+        return {
+            state: state,
+            value: guessedCountry
         }
     }
 }

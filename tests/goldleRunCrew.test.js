@@ -117,6 +117,31 @@ describe('testing nameExists() in GoldleRunCrew', () => {
     });
 });
 
+describe('testing checkName() in GoldleRunCrew', () => {
+    let runCrew;
+
+    beforeEach(() => {
+        const goldle = new Goldle();
+        goldle.startGame();
+        goldle.rigGame("Joel Jose");
+        runCrew = goldle.runCrew;
+    });
+
+    test('checkName() should return correct if name is correct', () => {
+        expect(runCrew.checkName("Joel Jose")).toStrictEqual({
+            state: 'correct',
+            value: 'Joel Jose'
+        });
+    });
+
+    test('checkName() should return incorrect if name is incorrect', () => {
+        expect(runCrew.checkName("Amber Chan")).toStrictEqual({
+            state: 'incorrect',
+            value: 'Amber Chan'
+        });
+    });
+});
+
 describe('testing checkDegree() in GoldleRunCrew', () => {
     let runCrew;
 
@@ -128,19 +153,31 @@ describe('testing checkDegree() in GoldleRunCrew', () => {
     });
 
     test('checkDegree() should return correct if degree is correct', () => {
-        expect(runCrew.checkDegree("Computer Engineering")).toStrictEqual('correct');
+        expect(runCrew.checkDegree("Computer Engineering")).toStrictEqual({
+            state: 'correct',
+            value: 'Computer Engineering'
+        });
     });
 
     test('checkDegree() should return same faculty if degree is from the same faculty', () => {
-        expect(runCrew.checkDegree("Quantum Engineering")).toStrictEqual('same-faculty');
+        expect(runCrew.checkDegree("Quantum Engineering")).toStrictEqual({
+            state: 'same-faculty',
+            value: 'Quantum Engineering'
+        });
     });
 
     test('checkDegree() should return none if degree is incorrect and N/A', () => {
-        expect(runCrew.checkDegree("N/A")).toStrictEqual('none');
+        expect(runCrew.checkDegree("N/A")).toStrictEqual({
+            state: 'none',
+            value: 'N/A'
+        });
     });
 
     test('checkDegree() should return incorrect if degree is incorrect and not N/A', () => {
-        expect(runCrew.checkDegree("Media")).toStrictEqual('incorrect');
+        expect(runCrew.checkDegree("Media")).toStrictEqual({
+            state: 'incorrect',
+            value: 'Media'
+        });
     });
 });
 
@@ -155,17 +192,32 @@ describe('testing checkFloor() in Goldle', () => {
     });
 
     test('checkFloor() should return correct if floor is correct', () => {
-        expect(runCrew.checkFloor(3)).toStrictEqual('correct');
+        expect(runCrew.checkFloor(3)).toStrictEqual({
+            state: 'correct',
+            value: 3
+        });
     });
 
     test('checkFloor() should return neighbour if floor is 1 away', () => {
-        expect(runCrew.checkFloor(2)).toStrictEqual('neighbour');
-        expect(runCrew.checkFloor(4)).toStrictEqual('neighbour');
+        expect(runCrew.checkFloor(2)).toStrictEqual({
+            state: 'neighbour',
+            value: 2
+        });
+        expect(runCrew.checkFloor(4)).toStrictEqual({
+            state: 'neighbour',
+            value: 4
+        });
     });
 
     test('checkFloor() should return incorrect if floor is incorrect and not N/A', () => {
-        expect(runCrew.checkFloor(1)).toStrictEqual('incorrect');
-        expect(runCrew.checkFloor(5)).toStrictEqual('incorrect');
+        expect(runCrew.checkFloor(1)).toStrictEqual({
+            state: 'incorrect',
+            value: 1
+        });
+        expect(runCrew.checkFloor(5)).toStrictEqual({
+            state: 'incorrect',
+            value: 5
+        });
     });
 });
 
@@ -180,14 +232,23 @@ describe('testing checkCountry() in Goldle', () => {
     });
 
     test('checkCountry() should return correct if country is correct', () => {
-        expect(runCrew.checkCountry("United Arab Emirates")).toStrictEqual('correct');
+        expect(runCrew.checkCountry("United Arab Emirates")).toStrictEqual({
+            state: 'correct',
+            value: 'United Arab Emirates'
+        });
     });
 
     test('checkCountry() should return same continent if country is from the same continent', () => {
-        expect(runCrew.checkCountry("China")).toStrictEqual('same-continent');
+        expect(runCrew.checkCountry("China")).toStrictEqual({
+            state: 'same-continent',
+            value: 'China'
+        });
     });
 
     test('checkCountry() should return different continent if country is incorrect and not N/A', () => {
-        expect(runCrew.checkCountry("United Kingdom")).toStrictEqual('incorrect');
+        expect(runCrew.checkCountry("United Kingdom")).toStrictEqual({
+            state: 'incorrect',
+            value: 'United Kingdom'
+        });
     });
 });
