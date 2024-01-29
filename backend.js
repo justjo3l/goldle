@@ -10,13 +10,6 @@ const floorStates = ['incorrect', 'neighbour', 'correct', 'none'];
 const countryStates = ['incorrect', 'same-continent', 'correct', 'none'];
 
 class Goldle {
-    gators;
-    gatorNames;
-    facultyMap;
-    guessGator;
-    guessStates;
-    numGuesses;
-    status;
 
     constructor() {
         this.gators = [];
