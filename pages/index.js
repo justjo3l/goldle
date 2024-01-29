@@ -87,7 +87,7 @@ export default function Home() {
         rowNode.style.gridTemplateColumns = '100%';
         const currentGuessState = guessStates[guesses - 1];
 
-        activeRow.render(<div className={styles.row}>
+        activeRow.render(<div className={styles.row} id={"row-" + guesses.toString()}>
         <div className={`${getStyles(currentGuessState.name)}`}>{currentGuessState.name.value}</div>
         <div className={`${getStyles(currentGuessState.degree)}`}>{currentGuessState.degree.value}</div>
         <div className={`${getStyles(currentGuessState.country)} ${styles.country}`}>{getCountryEmoji(currentGuessState.country.value)}</div>

@@ -61,28 +61,34 @@ describe('testing guess-grid game flow in Home', () => {
         expect(guessBar).toBeInTheDocument();
     });
 
-    test('guess grid has renders next guess bar on incorrect guess', () => {
+    test('guess grid renders result row and next guess bar on incorrect guess', () => {
         let guessBar = document.getElementById('guessBar');
         fireEvent.change(guessBar, {target: {value: 'Amber Chan'}});
         fireEvent.keyDown(guessBar, {key: 'Enter', code: 'Enter'});
+        const resultRow = document.getElementById('row-1');
+        expect(resultRow).toBeInTheDocument();
         guessBar = document.getElementById('bar-2');
         expect(guessBar).toBeInTheDocument();
     });
 
-    test('guess grid should not render next guess bar on correct guess', () => {
+    test('guess grid should render result row but not the next guess bar on correct guess', () => {
         let guessBar = document.getElementById('guessBar');
         fireEvent.change(guessBar, {target: {value: 'Joel Jose'}});
         fireEvent.keyDown(guessBar, {key: 'Enter', code: 'Enter'});
+        const resultRow = document.getElementById('row-1');
+        expect(resultRow).toBeInTheDocument();
         guessBar = document.getElementById('bar-2');
         expect(guessBar).not.toBeInTheDocument();
     });
 
-    test('guess grid should not render next guess bar on all failed guesses', () => {
+    test('guess grid should render result row for each failed guess but not the guess bar after final guess is made', () => {
         let guessBar;
         for (let i = 0; i < 6; i++) {
             guessBar = document.getElementById('guessBar');
             fireEvent.change(guessBar, {target: {value: 'Amber Chan'}});
             fireEvent.keyDown(guessBar, {key: 'Enter', code: 'Enter'});
+            const resultRow = document.getElementById('row-' + (i + 1).toString());
+            expect(resultRow).toBeInTheDocument();
         }
         guessBar = document.getElementById('guessBar');
         expect(guessBar).not.toBeInTheDocument();
