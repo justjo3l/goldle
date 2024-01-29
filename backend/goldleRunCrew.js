@@ -155,7 +155,7 @@ class GoldleRunCrew {
 
         if (parseInt(guessedFloor) === parseInt(guessFloor)) {
             state = 'correct';
-        } else if (same(this.guessGator.room, "N/A")) {
+        } else if (same(guessedFloor.toString(), "N/A")) {
             state = 'none';
         } else if (Math.abs(parseInt(guessedFloor) - parseInt(guessFloor)) === 1) {
             state = 'neighbour';
@@ -178,7 +178,7 @@ class GoldleRunCrew {
 
         if (same(guessedCountry, guessCountry)) {
             state = 'correct';
-        } else if (same(guessCountry, "N/A")) {
+        } else if (same(guessedCountry, "N/A")) {
             state = 'none';
         } else if (guessedContinent && guessContinent && same(guessedContinent, guessContinent)) {
             state = 'same-continent';

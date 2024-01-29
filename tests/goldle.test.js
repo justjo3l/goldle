@@ -15,6 +15,12 @@ describe('testing getState() and startGame() in Goldle', () => {
         goldle.startGame();
         expect(goldle.getState()).toStrictEqual('started');
     });
+
+    test('getState() should return started if game has started and is attempted to start again', () => {
+        goldle.startGame();
+        goldle.startGame();
+        expect(goldle.getState()).toStrictEqual('started');
+    });
 });
 
 describe('testing rigGame() in Goldle', () => {

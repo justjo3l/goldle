@@ -2,6 +2,27 @@ import GoldleRunCrew from '../backend/goldleRunCrew.js';
 
 import { goldleFacultyMap } from '../assets.js';
 
+describe('testing setupGuessGator() in GoldleRunCrew', () => {
+    let runCrew;
+
+    beforeEach(() => {
+        runCrew = new GoldleRunCrew();
+        runCrew.setupGators();
+    });
+
+    test('setupGuessGator() should be successful if name is valid', () => {
+        expect(runCrew.setupGuessGator('Joel Jose')).not.toStrictEqual(null);
+    });
+
+    test('setupGuessGator() should return null if name does not exist', () => {
+        expect(runCrew.setupGuessGator('John Doe')).toStrictEqual(null);
+    });
+
+    test('setupGuessGator() should be random if name is not provided', () => {
+        expect(runCrew.setupGuessGator()).not.toStrictEqual(null);
+    });
+});
+
 describe('testing getGatorByName() in GoldleRunCrew', () => {
     let runCrew;
 
@@ -200,6 +221,13 @@ describe('testing checkFloor() in Goldle', () => {
         });
     });
 
+    test('checkFloor() should return none if floor is incorrect and N/A', () => {
+        expect(runCrew.checkFloor("N/A")).toStrictEqual({
+            state: 'none',
+            value: 'N/A'
+        });
+    });
+
     test('checkFloor() should return incorrect if floor is incorrect and not N/A', () => {
         expect(runCrew.checkFloor(1)).toStrictEqual({
             state: 'incorrect',
@@ -232,6 +260,13 @@ describe('testing checkCountry() in Goldle', () => {
         expect(runCrew.checkCountry("China")).toStrictEqual({
             state: 'same-continent',
             value: 'China'
+        });
+    });
+
+    test('checkCountry() should return none if country is incorrect and N/A', () => {
+        expect(runCrew.checkCountry("N/A")).toStrictEqual({
+            state: 'none',
+            value: 'N/A'
         });
     });
 

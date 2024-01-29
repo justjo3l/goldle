@@ -5,7 +5,7 @@
     "build": "next build",
     "dev": "next dev",
     "start": "next start -p $PORT",
-    "test": "jest"
+    "test": "jest --coverage"
   },
   "dependencies": {
     "@babel/preset-react": "^7.23.3",

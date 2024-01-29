@@ -24,7 +24,7 @@ export default function LosePopup(props) {
             close => (
                 <div className={`${styles.modal} ${moreStyles.modal}`} id="result-popup">
                     <div className={styles.container}>
-                        <button onClick={() => close()} className={styles.close}>
+                        <button onClick={() => close()} className={styles.close} id='close-button'>
                             &times;
                         </button>
                     </div>
