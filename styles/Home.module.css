@@ -2,11 +2,12 @@
     color: #FFF;
     text-align: center;
     font-family: 'Inter';
-    font-size: 50px;
+    font-size: 3.2rem;
     font-style: normal;
     font-weight: 800;
     line-height: normal;
-    letter-spacing: 12.5px;
+    letter-spacing: 1rem;
+    margin: 0;
 }
 
 .main {
@@ -24,13 +25,13 @@
 }
 
 .startButton {
-    margin: 180px;
-    width: 320px;
-    height: 160px;
+    margin: 11.5rem;
+    width: 20rem;
+    height: 10rem;
     background: green;
     text-align: center;
     font-family: 'Inter';
-    font-size: 40px;
+    font-size: 2.5rem;
     font-style: normal;
     font-weight: 800;
     color: #ffffff;
@@ -43,9 +44,8 @@
 }
 
 .guessGrid {
-    width: 900px;
-    height: 560px;
-    flex-shrink: 0;
+    width: 80%;
+    height: 35rem;
     background: #3F3333;
     display: grid;
     grid-template-rows: repeat(7, 1fr);
@@ -61,12 +61,14 @@
     width: 100%;
     display: grid;
     grid-template-columns: 30% 40% 15% 15%;
-    border-bottom: 6px solid #151111;
+    border-bottom: 0.4rem solid #151111;
 }
 
 .header {
+    writing-mode: sideways-lr;
+    text-orientation: sideways;
     background-color: #151111;
-    font-size: 30px;
+    font-size: 1rem;
     font-weight: 800;
 }
 
@@ -75,12 +77,12 @@
     justify-content: center;
     align-items: center;
     font-family: 'Inter';
-    font-size: 20px;
+    font-size: 100%;
     font-style: normal;
     font-weight: 600;
     line-height: normal;
     color: #FFF;
-    border-right: 6px solid #151111;
+    border-right: 0.4rem solid #151111;
     text-align: center;
 }
 
@@ -97,40 +99,38 @@
 }
 
 .country {
-    font-size: 48px;
+    font-size: 300%;
 }
 
 .floor {
-    font-size: 48px;
+    font-size: 300%;
     font-weight: 800;
+    width: 100%;
 }
 
 .titleBar {
     width: 100%;
-    height: 100px;
-    display: flex;
-    justify-content: center;
+    height: 7rem;
+    display: grid;
+    grid-template-columns: 0.2fr 1fr 0.2fr;
     align-items: center;
 }
 
 .guesses {
+    margin: 0;
     color: #FFF;
     text-align: center;
     font-family: 'Inter';
-    font-size: 40px;
+    font-size: 3rem;
     font-style: normal;
     font-weight: 800;
     line-height: normal;
-    position: absolute;
-    right: 0;
-    top: 0;
-    margin: 25px 25px 0 0;
 }
 
 .recommendation {
     text-align: center;
     font-family: 'Inter';
-    font-size: 20px;
+    font-size: 1.3rem;
     font-weight: 200;
     line-height: normal;
     color: #ffffff;
@@ -139,10 +139,52 @@
 .recommendation > span {
     font-style: italic;
     text-decoration: underline;
-    text-decoration-thickness: 1px;
+    text-decoration-thickness: 0.1rem;
 }
 
 .recommendation > span:hover {
     font-weight: 600;
     cursor: pointer;
+}
+
+#guesses {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+@media (max-width: 800px) {
+
+    .title {
+        font-size: 200%;
+    }
+
+    .guesses {
+        margin-top: 1rem;
+        font-size: 200%;
+    }
+
+    .country {
+        font-size: 200%;
+    }
+
+    .floor {
+        font-size: 200%;
+    }
+
+    .header {
+        background-color: #151111;
+        writing-mode: vertical-lr;
+        text-orientation: upright;
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 30% 40% 15% 15%;
+    }
+
+    .titleBar {
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr;
+        margin-bottom: 3rem;
+    }
 }

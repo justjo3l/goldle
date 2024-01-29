@@ -113,9 +113,10 @@ export default function Home() {
       </Head>
       <main className={styles.main}>
         <div className={styles.titleBar}>
-          <h1 className={styles.title}>GOLDLE</h1>
-          {state === 'started' && <h3 className={styles.guesses}>{guesses + 1}/{maxGuesses}</h3>}
-          {(state === 'won' || state === 'lost') && <h3 className={styles.guesses}>{guesses}/{maxGuesses}</h3>}
+          <div></div>
+          <h1 className={styles.title} id='title'>GOLDLE</h1>
+          {state === 'started' && <h3 className={styles.guesses} id='guesses'>{guesses + 1}/{maxGuesses}</h3>}
+          {(state === 'won' || state === 'lost') && <h3 className={styles.guesses} id='guesses'>{guesses}/{maxGuesses}</h3>}
         </div>
         {state === 'inactive' &&
         <button className={styles.startButton} onClick={handleStartClick}>START</button>

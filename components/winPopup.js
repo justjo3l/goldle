@@ -17,7 +17,7 @@ export default function WinPopup(props) {
             padding: 0,
             border: 'none',
             height: '50%',
-            width: '45%'
+            width: '45%',
         }}
         modal nested>
         {
