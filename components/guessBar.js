@@ -6,6 +6,7 @@ export default function GuessBar(props) {
     const goldle = props.goldle;
     const onGuess = props.onGuess;
     const onError = props.onError;
+    const id = props.id;
 
     const [value, setValue] = useState(props.value || '');
 
@@ -22,7 +23,7 @@ export default function GuessBar(props) {
     }
 
     return(
-        <div className={styles.container}>
+        <div className={styles.container} id={id}>
             <input className={styles.guessBar} id='guessBar' type="text" defaultValue={value} onChange={(e) => setValue(e.target.value)} onKeyDown={handleSubmit} autoFocus></input>
         </div>
     );

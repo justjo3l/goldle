@@ -13,6 +13,12 @@ import countryFlagEmoji from 'country-flag-emoji';
 import WinPopup from '../components/winPopup.js';
 import LosePopup from '../components/losePopup.js';
 
+let globalGoldle;
+
+export function getGoldle() {
+  return globalGoldle;
+}
+
 export default function Home() {
 
   const [state, setState] = useState('inactive');
@@ -58,6 +64,7 @@ export default function Home() {
   }
 
   const handleStartClick = () => {
+    globalGoldle = goldle;
     goldle.setupGators();
     goldle.startGame();
     setState(goldle.getState());
@@ -101,7 +108,7 @@ export default function Home() {
         const row = ReactDOM.createRoot(rowNode);
         setActiveRow(row);
         rowNode.style.gridTemplateColumns = '100%';
-        const element = <GuessBar goldle={goldle} onGuess={updateGuessState} onError={guessError}/>;
+        const element = <GuessBar goldle={goldle} onGuess={updateGuessState} onError={guessError} id={"bar-" + (guesses + 1).toString()}/>;
         row.render(element);
       }
     }
@@ -126,7 +133,7 @@ export default function Home() {
         {state !== 'inactive' && <WinPopup state={winPopupOpen} goldle={goldle}/>}
         {state !== 'inactive' && <LosePopup state={losePopupOpen} goldle={goldle}/>}
         {state !== 'inactive' &&
-        <div className={styles.guessGrid}>
+        <div className={styles.guessGrid} id='guess-grid'>
           <div className={`${styles.header} ${styles.row}`} id="r-0">
             <div className={styles.ele}>GATOR</div>
             <div className={styles.ele}>DEGREE</div>
