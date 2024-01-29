@@ -14,14 +14,6 @@ function parseGators() {
     return gators;
 }
 
-function parseFaculties() {
-    let facultyMap = new Map();
-    for (let i = 0; i < goldleFacultyMap["value"].length; i++) {
-        facultyMap.set(goldleFacultyMap["value"][i][0], goldleFacultyMap["value"][i][1]);
-    }
-    return facultyMap;
-}
-
 class Goldle {
     gators;
     gatorNames;
@@ -50,7 +42,10 @@ class Goldle {
             goldle.gatorNames.push(goldle.gators[i].name);
         }
 
-        goldle.facultyMap = parseFaculties();
+        goldle.facultyMap = new Map();
+        for (let i = 0; i < goldleFacultyMap["value"].length; i++) {
+            goldle.facultyMap.set(goldleFacultyMap["value"][i][0], goldleFacultyMap["value"][i][1]);
+        }
         return {};
     }
 
