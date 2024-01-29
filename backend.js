@@ -9,11 +9,6 @@ const degreeStates = ['incorrect', 'same-faculty', 'correct', 'none'];
 const floorStates = ['incorrect', 'neighbour', 'correct', 'none'];
 const countryStates = ['incorrect', 'same-continent', 'correct', 'none'];
 
-function parseGators() {
-    let gators = goldleGators;
-    return gators;
-}
-
 class Goldle {
     gators;
     gatorNames;
@@ -36,7 +31,7 @@ class Goldle {
     setupGators = function() {
         const goldle = this;
 
-        goldle.gators = parseGators();
+        goldle.gators = goldleGators;
         goldle.gatorNames = [];
         for (let i = 0; i < goldle.gators.length; i++) {
             goldle.gatorNames.push(goldle.gators[i].name);
