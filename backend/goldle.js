@@ -38,7 +38,7 @@ class Goldle {
                 goldle.numGuesses--;
                 let newGuessState = {}
                     newGuessState.name = {
-                        state: same(goldle.guessGator.name, guessedGator.name) ? 'correct' : 'incorrect',
+                        state: same(goldle.runCrew.getGuessGator().name, guessedGator.name) ? 'correct' : 'incorrect',
                         value: guessedGator.name,
                     }
                     newGuessState.degree = {
@@ -54,7 +54,7 @@ class Goldle {
                         value: guessedGator.country
                     };
                     goldle.guessStates.push(newGuessState);
-                if (same(goldle.guessGator.name, name)) {
+                if (same(goldle.runCrew.getGuessGator().name, name)) {
                     goldle.status = 'won';
                     return {
                         "guessState": newGuessState,
