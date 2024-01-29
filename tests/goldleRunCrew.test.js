@@ -1,4 +1,4 @@
-import Goldle from '../backend/goldle.js';
+import GoldleRunCrew from '../backend/goldleRunCrew.js';
 
 import { goldleFacultyMap } from '../assets.js';
 
@@ -6,9 +6,8 @@ describe('testing getGatorByName() in GoldleRunCrew', () => {
     let runCrew;
 
     beforeEach(() => {
-        const goldle = new Goldle();
-        goldle.startGame();
-        runCrew = goldle.runCrew;
+        runCrew = new GoldleRunCrew();
+        runCrew.setupGators();
     });
 
     test('getGatorByName() should return gator if name exists', () => {
@@ -24,9 +23,8 @@ describe('testing getFaculty() in GoldleRunCrew', () => {
     let runCrew;
 
     beforeEach(() => {
-        const goldle = new Goldle();
-        goldle.startGame();
-        runCrew = goldle.runCrew;
+        runCrew = new GoldleRunCrew();
+        runCrew.setupGators();
     });
 
     test('getFaculty() should return correct faculty if degree exists', () => {
@@ -45,9 +43,8 @@ describe('testing getFaculties() in GoldleRunCrew', () => {
     let runCrew;
 
     beforeEach(() => {
-        const goldle = new Goldle();
-        goldle.startGame();
-        runCrew = goldle.runCrew;
+        runCrew = new GoldleRunCrew();
+        runCrew.setupGators();
     });
 
     test('getFaculties() should return correct faculties if degree/degrees exist', () => {
@@ -66,9 +63,8 @@ describe('testing getRecommendations() in GoldleRunCrew', () => {
     let runCrew;
 
     beforeEach(() => {
-        const goldle = new Goldle();
-        goldle.startGame();
-        runCrew = goldle.runCrew;
+        runCrew = new GoldleRunCrew();
+        runCrew.setupGators();
     });
 
     test('getRecommendations() should return list of options if name could potentially exist', () => {
@@ -81,16 +77,15 @@ describe('testing getRecommendations() in GoldleRunCrew', () => {
 });
 
 describe('testing getGuessGator() in Goldle', () => {
-    let goldle;
     let runCrew;
 
     beforeEach(() => {
-        goldle = new Goldle();
-        runCrew = goldle.runCrew;
+        runCrew = new GoldleRunCrew();
     });
 
     test('getGuessGator() should return gator details if gator has been set', () => {
-        goldle.startGame();
+        runCrew.setupGators();
+        runCrew.setupGuessGator("Joel Jose")
         expect(runCrew.getGuessGator()).not.toStrictEqual(null);
     });
 
@@ -103,9 +98,8 @@ describe('testing nameExists() in GoldleRunCrew', () => {
     let runCrew;
 
     beforeEach(() => {
-        const goldle = new Goldle();
-        goldle.startGame();
-        runCrew = goldle.runCrew;
+        runCrew = new GoldleRunCrew();
+        runCrew.setupGators();
     });
 
     test('nameExists() should return true if name exists', () => {
@@ -121,10 +115,9 @@ describe('testing checkName() in GoldleRunCrew', () => {
     let runCrew;
 
     beforeEach(() => {
-        const goldle = new Goldle();
-        goldle.startGame();
-        goldle.rigGame("Joel Jose");
-        runCrew = goldle.runCrew;
+        runCrew = new GoldleRunCrew();
+        runCrew.setupGators();
+        runCrew.setupGuessGator("Joel Jose");
     });
 
     test('checkName() should return correct if name is correct', () => {
@@ -146,10 +139,9 @@ describe('testing checkDegree() in GoldleRunCrew', () => {
     let runCrew;
 
     beforeEach(() => {
-        const goldle = new Goldle();
-        goldle.startGame();
-        goldle.rigGame("Joel Jose");
-        runCrew = goldle.runCrew;
+        runCrew = new GoldleRunCrew();
+        runCrew.setupGators();
+        runCrew.setupGuessGator("Joel Jose");
     });
 
     test('checkDegree() should return correct if degree is correct', () => {
@@ -185,10 +177,9 @@ describe('testing checkFloor() in Goldle', () => {
     let runCrew;
 
     beforeEach(() => {
-        const goldle = new Goldle();
-        goldle.startGame();
-        goldle.rigGame("Joel Jose");
-        runCrew = goldle.runCrew;
+        runCrew = new GoldleRunCrew();
+        runCrew.setupGators();
+        runCrew.setupGuessGator("Joel Jose");
     });
 
     test('checkFloor() should return correct if floor is correct', () => {
@@ -225,10 +216,9 @@ describe('testing checkCountry() in Goldle', () => {
     let runCrew;
 
     beforeEach(() => {
-        const goldle = new Goldle();
-        goldle.startGame();
-        goldle.rigGame("Joel Jose");
-        runCrew = goldle.runCrew;
+        runCrew = new GoldleRunCrew();
+        runCrew.setupGators();
+        runCrew.setupGuessGator("Joel Jose");
     });
 
     test('checkCountry() should return correct if country is correct', () => {

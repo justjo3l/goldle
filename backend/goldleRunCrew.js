@@ -39,7 +39,7 @@ class GoldleRunCrew {
         return {};
     }
 
-    setupGator = function(name) {
+    setupGuessGator = function(name) {
         if (name) {
             const gator = this.getGatorByName(name);
             if (gator) {

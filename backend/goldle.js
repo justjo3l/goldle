@@ -24,7 +24,7 @@ class Goldle {
         }
 
         this.runCrew.setupGators('gator-data.csv', 'faculty-data.csv');
-        this.runCrew.setupGator();
+        this.runCrew.setupGuessGator();
         this.numGuesses = numGuesses || GUESSES;
         this.status = 'started';
         return this.status;
@@ -71,7 +71,7 @@ class Goldle {
 
     rigGame = function(name) {
         if (this.runCrew.nameExists(name)) {
-            this.guessGator = this.runCrew.setupGator(name);
+            this.guessGator = this.runCrew.setupGuessGator(name);
             return this.guessGator;
         }
         return null;
