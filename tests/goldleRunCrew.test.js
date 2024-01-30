@@ -35,6 +35,22 @@ describe('testing getGatorByName() in GoldleRunCrew', () => {
         expect(runCrew.getGatorByName('Joel Jose')).not.toStrictEqual(null);
     });
 
+    test('getGatorByName() should return gator if first name exists in different case', () => {
+        expect(runCrew.getGatorByName('joEl jOse', false)).not.toStrictEqual(null);
+    });
+
+    test('getGatorByName() [NOT EXACT] should return gator if first name exists and only one option exists', () => {
+        expect(runCrew.getGatorByName('Joel', false)).not.toStrictEqual(null);
+    });
+
+    test('getGatorByName() [NOT EXACT] should return gator if multiple parts of name exists and only one option exists', () => {
+        expect(runCrew.getGatorByName('Grace Gath', false)).not.toStrictEqual(null);
+    });
+
+    test('getGatorByName() [NOT EXACT] should return null if first name exists and more than one option exists', () => {
+        expect(runCrew.getGatorByName('James', false)).toStrictEqual(null);
+    });
+
     test('getGatorByName() should return null if name does not exist', () => {
         expect(runCrew.getGatorByName('John Doe')).toStrictEqual(null);
     });

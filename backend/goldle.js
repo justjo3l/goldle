@@ -37,14 +37,14 @@ class Goldle {
                 "error": "Game not started"
             };
         }
-        if (!goldle.runCrew.nameExists(name)) {
+        const guessedGator = goldle.runCrew.getGatorByName(name, false);
+        if (!guessedGator) {
             let recommendations = goldle.runCrew.getRecommendations(name);
             return {
                 "error": "Gator not found",
                 "recommendation": recommendations[0]
             };
         }
-        const guessedGator = goldle.runCrew.getGatorByName(name);
         goldle.numGuesses -= 1;
         let newGuessState = {};
         newGuessState.name = goldle.runCrew.checkName(guessedGator.name);

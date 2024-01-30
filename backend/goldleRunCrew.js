@@ -54,12 +54,24 @@ class GoldleRunCrew {
     }
 
     // Get functions
-    getGatorByName = function(name) {
+    getGatorByName = function(name, exact=true) {
+        let options = [];
         for (let i = 0; i < this.gators.length; i++) {
             if (same(this.gators[i].name, name)) {
                 return this.gators[i];
+            } else if (!exact) {
+                const gatorNameSplit = this.gators[i].name.toLowerCase().split(' ');
+                const guessNameSplit = name.toLowerCase().split(' ');
+                if (guessNameSplit.some(name => gatorNameSplit.includes(name))) {
+                    options.push(this.gators[i]);
+                }
             }
         }
+
+        if (options.length == 1) {
+            return options[0];
+        }
+
         return null;
     }
 
@@ -99,7 +111,13 @@ class GoldleRunCrew {
 
     // Check functions
     nameExists = function(name) {
-        return this.gatorNames.includes(name);
+        for (let i = 0; i < this.gatorNames.length; i++) {
+            if (same(this.gatorNames[i], name)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     // Guess Check functions
