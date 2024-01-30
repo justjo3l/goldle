@@ -35,7 +35,6 @@ export default function Home() {
     setRecommendation("");
     setGuessStates([...guessStates, newGuessState.guessState]);
     setGuesses(guesses + 1);
-    console.log(newGuessState);
     if (newGuessState.gameState) {
       setState(newGuessState.gameState);
     }
@@ -83,7 +82,6 @@ export default function Home() {
     } else if (state === 'lost') {
       setLosePopupOpen(true);
     } else if (state === 'started') {
-      console.log('AGAIN!');
       const rowNode = document.getElementById('r-' + (guesses + 1).toString());
       const row = ReactDOM.createRoot(rowNode);
       setActiveRow(row);
