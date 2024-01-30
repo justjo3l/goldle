@@ -35,6 +35,22 @@ describe('testing getGatorByName() in GoldleRunCrew', () => {
         expect(runCrew.getGatorByName('Joel Jose')).not.toStrictEqual(null);
     });
 
+    test('getGatorByName() should return gator if first name exists in different case', () => {
+        expect(runCrew.getGatorByName('joEl jOse', false)).not.toStrictEqual(null);
+    });
+
+    test('getGatorByName() [NOT EXACT] should return gator if first name exists and only one option exists', () => {
+        expect(runCrew.getGatorByName('Joel', false)).not.toStrictEqual(null);
+    });
+
+    test('getGatorByName() [NOT EXACT] should return gator if multiple parts of name exists and only one option exists', () => {
+        expect(runCrew.getGatorByName('Grace Gath', false)).not.toStrictEqual(null);
+    });
+
+    test('getGatorByName() [NOT EXACT] should return null if first name exists and more than one option exists', () => {
+        expect(runCrew.getGatorByName('James', false)).toStrictEqual(null);
+    });
+
     test('getGatorByName() should return null if name does not exist', () => {
         expect(runCrew.getGatorByName('John Doe')).toStrictEqual(null);
     });
@@ -144,14 +160,16 @@ describe('testing checkName() in GoldleRunCrew', () => {
     test('checkName() should return correct if name is correct', () => {
         expect(runCrew.checkName("Joel Jose")).toStrictEqual({
             state: 'correct',
-            value: 'Joel Jose'
+            value: 'Joel Jose',
+            hint: '👍'
         });
     });
 
     test('checkName() should return incorrect if name is incorrect', () => {
         expect(runCrew.checkName("Amber Chan")).toStrictEqual({
             state: 'incorrect',
-            value: 'Amber Chan'
+            value: 'Amber Chan',
+            hint: 'The gator is not Amber Chan'
         });
     });
 });
@@ -168,28 +186,32 @@ describe('testing checkDegree() in GoldleRunCrew', () => {
     test('checkDegree() should return correct if degree is correct', () => {
         expect(runCrew.checkDegree("Computer Engineering")).toStrictEqual({
             state: 'correct',
-            value: 'Computer Engineering'
+            value: 'Computer Engineering',
+            hint: '👍'
         });
     });
 
     test('checkDegree() should return same faculty if degree is from the same faculty', () => {
         expect(runCrew.checkDegree("Quantum Engineering")).toStrictEqual({
             state: 'same-faculty',
-            value: 'Quantum Engineering'
+            value: 'Quantum Engineering',
+            hint: 'The gator is from the Faculty of Engineering'
         });
     });
 
     test('checkDegree() should return none if degree is incorrect and N/A', () => {
         expect(runCrew.checkDegree("N/A")).toStrictEqual({
             state: 'none',
-            value: 'N/A'
+            value: 'N/A',
+            hint: ''
         });
     });
 
     test('checkDegree() should return incorrect if degree is incorrect and not N/A', () => {
         expect(runCrew.checkDegree("Media")).toStrictEqual({
             state: 'incorrect',
-            value: 'Media'
+            value: 'Media',
+            hint: 'The gator is not from the Faculty of Arts, Design and Architecture'
         });
     });
 });
@@ -206,36 +228,42 @@ describe('testing checkFloor() in Goldle', () => {
     test('checkFloor() should return correct if floor is correct', () => {
         expect(runCrew.checkFloor(3)).toStrictEqual({
             state: 'correct',
-            value: 3
+            value: 3,
+            hint: '👍'
         });
     });
 
     test('checkFloor() should return neighbour if floor is 1 away', () => {
         expect(runCrew.checkFloor(2)).toStrictEqual({
             state: 'neighbour',
-            value: 2
+            value: 2,
+            hint: 'The gator is on a neighbouring floor'
         });
         expect(runCrew.checkFloor(4)).toStrictEqual({
             state: 'neighbour',
-            value: 4
+            value: 4,
+            hint: 'The gator is on a neighbouring floor'
         });
     });
 
     test('checkFloor() should return none if floor is incorrect and N/A', () => {
         expect(runCrew.checkFloor("N/A")).toStrictEqual({
             state: 'none',
-            value: 'N/A'
+            value: 'N/A',
+            hint: ''
         });
     });
 
     test('checkFloor() should return incorrect if floor is incorrect and not N/A', () => {
         expect(runCrew.checkFloor(1)).toStrictEqual({
             state: 'incorrect',
-            value: 1
+            value: 1,
+            hint: 'The gator is not on a neighbouring floor'
         });
         expect(runCrew.checkFloor(5)).toStrictEqual({
             state: 'incorrect',
-            value: 5
+            value: 5,
+            hint: 'The gator is not on a neighbouring floor'
         });
     });
 });
@@ -252,28 +280,32 @@ describe('testing checkCountry() in Goldle', () => {
     test('checkCountry() should return correct if country is correct', () => {
         expect(runCrew.checkCountry("United Arab Emirates")).toStrictEqual({
             state: 'correct',
-            value: 'United Arab Emirates'
+            value: 'United Arab Emirates',
+            hint: '👍'
         });
     });
 
     test('checkCountry() should return same continent if country is from the same continent', () => {
         expect(runCrew.checkCountry("China")).toStrictEqual({
             state: 'same-continent',
-            value: 'China'
+            value: 'China',
+            hint: 'The gator is from Asia'
         });
     });
 
     test('checkCountry() should return none if country is incorrect and N/A', () => {
         expect(runCrew.checkCountry("N/A")).toStrictEqual({
             state: 'none',
-            value: 'N/A'
+            value: 'N/A',
+            hint: ''
         });
     });
 
     test('checkCountry() should return different continent if country is incorrect and not N/A', () => {
         expect(runCrew.checkCountry("United Kingdom")).toStrictEqual({
             state: 'incorrect',
-            value: 'United Kingdom'
+            value: 'United Kingdom',
+            hint: 'The gator is from a different continent'
         });
     });
 });

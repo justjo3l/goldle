@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import styles from '../styles/Home.module.css';
+import eleStyles from '../styles/GuessElement.module.css';
 
 import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom/client';
@@ -11,7 +12,7 @@ import Goldle from '../backend/goldle.js';
 import WinPopup from '../components/winPopup.js';
 import LosePopup from '../components/losePopup.js';
 
-import { getCountryEmoji } from '../utils/helper.js';
+import GuessElement from '../components/guessElement.js';
 
 let globalGoldle;
 
@@ -61,16 +62,6 @@ export default function Home() {
     setState(goldle.getState());
   }
 
-  const getStyles = (guessStateVal) => {
-    if (guessStateVal.state === 'correct') {
-      return `${styles.ele} ${styles.correct}`;
-    } else if (guessStateVal.state === 'neighbour' || guessStateVal.state === 'same-continent' || guessStateVal.state === 'same-faculty') {
-      return `${styles.ele} ${styles.near}`;
-    } else {
-      return `${styles.ele}`;
-    }
-  }
-
   useEffect(() => {
     const rowNode = document.getElementById('r-' + guesses.toString());
     if (rowNode && state !== 'inactive') {
@@ -78,10 +69,10 @@ export default function Home() {
       const currentGuessState = guessStates[guesses - 1];
 
       activeRow.render(<div className={styles.row} id={"row-" + guesses.toString()}>
-      <div className={`${getStyles(currentGuessState.name)} ${currentGuessState.name.state}`} id={`row-${guesses.toString()}-name`}>{currentGuessState.name.value}</div>
-      <div className={`${getStyles(currentGuessState.degree)} ${currentGuessState.degree.state}`} id={`row-${guesses.toString()}-degree`}>{currentGuessState.degree.value}</div>
-      <div className={`${getStyles(currentGuessState.country)} ${styles.country} ${currentGuessState.country.state}`} id={`row-${guesses.toString()}-country`}>{getCountryEmoji(currentGuessState.country.value)}</div>
-      <div className={`${getStyles(currentGuessState.floor)} ${styles.floor} ${currentGuessState.floor.state}`} id={`row-${guesses.toString()}-floor`}>{currentGuessState.floor.value}</div>
+        <GuessElement guess={currentGuessState.name} id={`row-${guesses.toString()}-name`} guessKey='name' />
+        <GuessElement guess={currentGuessState.degree} id={`row-${guesses.toString()}-degree`} guessKey='degree' />
+        <GuessElement guess={currentGuessState.country} id={`row-${guesses.toString()}-country`} guessKey='country' />
+        <GuessElement guess={currentGuessState.floor} id={`row-${guesses.toString()}-floor`} guessKey='floor' />
       </div>);
     }
   }, [guessStates])
@@ -91,7 +82,7 @@ export default function Home() {
       setWinPopupOpen(true);
     } else if (state === 'lost') {
       setLosePopupOpen(true);
-    } else if (state !== 'inactive') {
+    } else if (state === 'started') {
       const rowNode = document.getElementById('r-' + (guesses + 1).toString());
       const row = ReactDOM.createRoot(rowNode);
       setActiveRow(row);
@@ -123,10 +114,10 @@ export default function Home() {
         {state !== 'inactive' &&
         <div className={styles.guessGrid} id='guess-grid'>
           <div className={`${styles.header} ${styles.row}`} id="r-0">
-            <div className={styles.ele}>GATOR</div>
-            <div className={styles.ele}>DEGREE</div>
-            <div className={styles.ele}>COUNTRY</div>
-            <div className={`${styles.ele} ${styles.eleEnd}`}>FLOOR</div>
+            <div className={eleStyles.ele}>GATOR</div>
+            <div className={eleStyles.ele}>DEGREE</div>
+            <div className={eleStyles.ele}>COUNTRY</div>
+            <div className={`${eleStyles.ele} ${eleStyles.eleEnd}`}>FLOOR</div>
           </div>
           {Array.from(Array(maxGuesses).keys()).map((num) => {
             return <div className={styles.rowContainer} id={`r-${num + 1}`} key={num}></div>

@@ -37,14 +37,14 @@ class Goldle {
                 "error": "Game not started"
             };
         }
-        if (!goldle.runCrew.nameExists(name)) {
+        const guessedGator = goldle.runCrew.getGatorByName(name, false);
+        if (!guessedGator) {
             let recommendations = goldle.runCrew.getRecommendations(name);
             return {
                 "error": "Gator not found",
                 "recommendation": recommendations[0]
             };
         }
-        const guessedGator = goldle.runCrew.getGatorByName(name);
         goldle.numGuesses -= 1;
         let newGuessState = {};
         newGuessState.name = goldle.runCrew.checkName(guessedGator.name);
@@ -52,7 +52,7 @@ class Goldle {
         newGuessState.floor = goldle.runCrew.checkFloor(guessedGator.room[0]);
         newGuessState.country = goldle.runCrew.checkCountry(guessedGator.country);
         goldle.guessStates.push(newGuessState);
-        if (same(goldle.runCrew.getGuessGator().name, name)) {
+        if (newGuessState.name.state === 'correct') {
             goldle.status = 'won';
             return {
                 "guessState": newGuessState,
