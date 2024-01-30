@@ -93,13 +93,11 @@ export default function Home() {
       setLosePopupOpen(true);
     } else if (state !== 'inactive') {
       const rowNode = document.getElementById('r-' + (guesses + 1).toString());
-      if (rowNode && state === 'started') {
-        const row = ReactDOM.createRoot(rowNode);
-        setActiveRow(row);
-        rowNode.style.gridTemplateColumns = '100%';
-        const element = <GuessBar goldle={goldle} onGuess={updateGuessState} onError={guessError} id={"bar-" + (guesses + 1).toString()}/>;
-        row.render(element);
-      }
+      const row = ReactDOM.createRoot(rowNode);
+      setActiveRow(row);
+      rowNode.style.gridTemplateColumns = '100%';
+      const element = <GuessBar goldle={goldle} onGuess={updateGuessState} onError={guessError} id={"bar-" + (guesses + 1).toString()}/>;
+      row.render(element);
     }
   }, [state, guesses]);
 
