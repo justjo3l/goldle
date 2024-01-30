@@ -31,6 +31,12 @@
     border-right: none;
 }
 
+.hint {
+    font-size: 1rem;
+    font-weight: 400;
+    cursor: pointer;
+}
+
 @media (max-width: 800px) {
 
     .ele {
@@ -43,5 +49,9 @@
 
     .floor {
         font-size: 200%;
+    }
+
+    .hint {
+        font-size: 0.5rem;
     }
 }

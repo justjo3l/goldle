@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import styles from '../styles/GuessElement.module.css';
 
@@ -8,6 +8,14 @@ export default function GuessElement(props) {
     const guess = props.guess;
     const key = props.guessKey;
     const id = props.id;
+    
+    const [flipState, setFlipState] = useState(false);
+
+    const flip = () => {
+      if (guess.state !== 'correct') {
+        setFlipState(!flipState);
+      }
+    }
 
     const getStyles = (guessVal) => {
         if (guessVal.state === 'correct') {
@@ -38,8 +46,15 @@ export default function GuessElement(props) {
     }
     
     return (
-        <div className={`${getStyles(guess)} ${getKeyStyles()} ${guess.state}`} id={id}>
-            {getValue(guess)}
+        <div className={`${getStyles(guess)} ${getKeyStyles()} ${guess.state}`} id={id} onClick={flip}>
+          {
+            flipState ?
+            (<div className={styles.hint}>
+              {guess.hint}
+            </div>)
+            :
+            getValue(guess)
+          }
         </div>
     );
 }
