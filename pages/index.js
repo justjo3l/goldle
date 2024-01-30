@@ -72,19 +72,17 @@ export default function Home() {
   }
 
   useEffect(() => {
-    if (state !== 'inactive') {
-      const rowNode = document.getElementById('r-' + guesses.toString());
-      if (rowNode && state !== 'inactive') {
-        rowNode.style.gridTemplateColumns = '100%';
-        const currentGuessState = guessStates[guesses - 1];
+    const rowNode = document.getElementById('r-' + guesses.toString());
+    if (rowNode && state !== 'inactive') {
+      rowNode.style.gridTemplateColumns = '100%';
+      const currentGuessState = guessStates[guesses - 1];
 
-        activeRow.render(<div className={styles.row} id={"row-" + guesses.toString()}>
-        <div className={`${getStyles(currentGuessState.name)} ${currentGuessState.name.state}`} id={`row-${guesses.toString()}-name`}>{currentGuessState.name.value}</div>
-        <div className={`${getStyles(currentGuessState.degree)} ${currentGuessState.degree.state}`} id={`row-${guesses.toString()}-degree`}>{currentGuessState.degree.value}</div>
-        <div className={`${getStyles(currentGuessState.country)} ${styles.country} ${currentGuessState.country.state}`} id={`row-${guesses.toString()}-country`}>{getCountryEmoji(currentGuessState.country.value)}</div>
-        <div className={`${getStyles(currentGuessState.floor)} ${styles.floor} ${currentGuessState.floor.state}`} id={`row-${guesses.toString()}-floor`}>{currentGuessState.floor.value}</div>
-        </div>);
-      }
+      activeRow.render(<div className={styles.row} id={"row-" + guesses.toString()}>
+      <div className={`${getStyles(currentGuessState.name)} ${currentGuessState.name.state}`} id={`row-${guesses.toString()}-name`}>{currentGuessState.name.value}</div>
+      <div className={`${getStyles(currentGuessState.degree)} ${currentGuessState.degree.state}`} id={`row-${guesses.toString()}-degree`}>{currentGuessState.degree.value}</div>
+      <div className={`${getStyles(currentGuessState.country)} ${styles.country} ${currentGuessState.country.state}`} id={`row-${guesses.toString()}-country`}>{getCountryEmoji(currentGuessState.country.value)}</div>
+      <div className={`${getStyles(currentGuessState.floor)} ${styles.floor} ${currentGuessState.floor.state}`} id={`row-${guesses.toString()}-floor`}>{currentGuessState.floor.value}</div>
+      </div>);
     }
   }, [guessStates])
 
