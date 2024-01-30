@@ -52,7 +52,7 @@ class Goldle {
         newGuessState.floor = goldle.runCrew.checkFloor(guessedGator.room[0]);
         newGuessState.country = goldle.runCrew.checkCountry(guessedGator.country);
         goldle.guessStates.push(newGuessState);
-        if (same(goldle.runCrew.getGuessGator().name, name)) {
+        if (newGuessState.name.state === 'correct') {
             goldle.status = 'won';
             return {
                 "guessState": newGuessState,
