@@ -72,42 +72,6 @@
     font-weight: 800;
 }
 
-.ele {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: 'Inter';
-    font-size: 140%;
-    font-style: normal;
-    font-weight: 600;
-    line-height: normal;
-    color: #FFF;
-    border-right: 0.4rem solid #151111;
-    text-align: center;
-}
-
-.eleEnd {
-    border-right: none;
-}
-
-.correct {
-    background-color: #3dbc3dc6;
-}
-
-.near {
-    background-color: #e5e53cc6;
-}
-
-.country {
-    font-size: 300%;
-}
-
-.floor {
-    font-size: 300%;
-    font-weight: 800;
-    width: 100%;
-}
-
 .titleBar {
     width: 100%;
     height: 7rem;
@@ -156,24 +120,12 @@
 
 @media (max-width: 800px) {
 
-    .ele {
-        font-size: 100%;
-    }
-
     .title {
         font-size: 200%;
     }
 
     .guesses {
         margin-top: 1rem;
-        font-size: 200%;
-    }
-
-    .country {
-        font-size: 200%;
-    }
-
-    .floor {
         font-size: 200%;
     }
 

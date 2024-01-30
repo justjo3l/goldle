@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import styles from '../styles/Home.module.css';
+import eleStyles from '../styles/GuessElement.module.css';
 
 import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom/client';
@@ -113,10 +114,10 @@ export default function Home() {
         {state !== 'inactive' &&
         <div className={styles.guessGrid} id='guess-grid'>
           <div className={`${styles.header} ${styles.row}`} id="r-0">
-            <div className={styles.ele}>GATOR</div>
-            <div className={styles.ele}>DEGREE</div>
-            <div className={styles.ele}>COUNTRY</div>
-            <div className={`${styles.ele} ${styles.eleEnd}`}>FLOOR</div>
+            <div className={eleStyles.ele}>GATOR</div>
+            <div className={eleStyles.ele}>DEGREE</div>
+            <div className={eleStyles.ele}>COUNTRY</div>
+            <div className={`${eleStyles.ele} ${eleStyles.eleEnd}`}>FLOOR</div>
           </div>
           {Array.from(Array(maxGuesses).keys()).map((num) => {
             return <div className={styles.rowContainer} id={`r-${num + 1}`} key={num}></div>

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import styles from '../styles/Home.module.css';
+import styles from '../styles/GuessElement.module.css';
 
 import { getCountryEmoji } from '../utils/helper.js';
 
@@ -19,7 +19,7 @@ export default function GuessElement(props) {
         }
     }
 
-    const getKeyStyles = (guessVal) => {
+    const getKeyStyles = () => {
         if (key.includes('country')) {
           return `${styles.country}`;
         } else if (key.includes('floor')) {
