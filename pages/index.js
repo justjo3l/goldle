@@ -96,6 +96,9 @@ export default function Home() {
     <div className={styles.home}>
       <Head>
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet" />
+        <meta title="og:title" content="Goldle" />
+        <meta title="og:description" content="The Goldstein College Guessing Game" />
+        <meta title="og:url" content="https://goldle-b45c53352e44.herokuapp.com" />
         <title>Goldle</title>
       </Head>
       <main className={styles.main}>
