@@ -2,11 +2,6 @@ import same from '../utils/helper.js';
 
 import GoldleRunCrew from './goldleRunCrew.js';
 
-const gameStates = ['inactive', 'started', 'won', 'lost'];
-const degreeStates = ['incorrect', 'same-faculty', 'correct', 'none'];
-const floorStates = ['incorrect', 'neighbour', 'correct', 'none'];
-const countryStates = ['incorrect', 'same-continent', 'correct', 'none'];
-
 const GUESSES = 6;
 
 class Goldle {

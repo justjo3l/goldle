@@ -1,6 +1,6 @@
 import GoldleRunCrew from '../backend/goldleRunCrew.js';
 
-import { goldleFacultyMap } from '../assets.js';
+import { goldleFacultyMap } from '../assets/assets.js';
 
 describe('testing setupGuessGator() in GoldleRunCrew', () => {
     let runCrew;

@@ -1,4 +1,4 @@
 .modal::before,
 .modal::after {
-  background: linear-gradient(45deg,red, #800000, #FF0800, #801818, #960018, #B22222);
+    background: linear-gradient(45deg,red, #800000, #FF0800, #801818, #960018, #B22222);
 }

@@ -8,7 +8,7 @@ export default function GuessElement(props) {
     const guess = props.guess;
     const key = props.guessKey;
     const id = props.id;
-    
+
     const [flipState, setFlipState] = useState(false);
 
     const flip = () => {
@@ -36,7 +36,7 @@ export default function GuessElement(props) {
           return '';
         }
     }
-    
+
     const getValue = (guessVal) => {
         if (key.includes('country')) {
           return getCountryEmoji(guessVal.value);
@@ -44,17 +44,17 @@ export default function GuessElement(props) {
           return guessVal.value;
         }
     }
-    
+
     return (
         <div className={`${getStyles(guess)} ${getKeyStyles()} ${guess.state}`} id={id} onClick={flip}>
-          {
+            {
             flipState ?
             (<div className={styles.hint}>
               {guess.hint}
             </div>)
             :
             getValue(guess)
-          }
+            }
         </div>
     );
 }
