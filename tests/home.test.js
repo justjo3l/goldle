@@ -42,7 +42,7 @@ describe('testing start stage in Home', () => {
 });
 
 describe('testing guess-grid game flow in Home', () => {
-    
+
     let startButton;
     let goldle;
     let runCrew;
@@ -139,6 +139,18 @@ describe('testing guess-grid error cases in Home', () => {
         fireEvent.click(startButton);
         goldle = getGoldle();
         goldle.rigGame("Joel Jose");
+    });
+
+    test('guess grid does not change if another key is down instead of enter on guess bar', () => {
+        let guessBar = document.getElementById('guessBar');
+        fireEvent.change(guessBar, {target: {value: 'ambe'}});
+        fireEvent.keyDown(guessBar, {key: 'a', code: 'a'});
+        guessBar = document.getElementById('bar-1');
+        expect(guessBar).toBeInTheDocument();
+        const resultRow = document.getElementById('row-1');
+        expect(resultRow).not.toBeInTheDocument();
+        guessBar = document.getElementById('bar-2');
+        expect(guessBar).not.toBeInTheDocument();
     });
 
     test('guess grid does not render result row or next guess bar and shows recommendations (if available) if invalid input', () => {

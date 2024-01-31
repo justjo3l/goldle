@@ -1,6 +1,6 @@
 import { getCountryCode, getCountryData, continents } from 'countries-list';
 
-import { goldleGators, goldleFacultyMap } from '../assets.js';
+import { goldleGators, goldleFacultyMap } from '../assets/assets.js';
 
 import same from '../utils/helper.js';
 

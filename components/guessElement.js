@@ -1,14 +1,22 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
 import styles from '../styles/GuessElement.module.css';
 
 import { getCountryEmoji } from '../utils/helper.js';
 
+import PropTypes from 'prop-types';
+
+GuessElement.propTypes = {
+    guess: PropTypes.object.isRequired,
+    guessKey: PropTypes.string.isRequired,
+    id: PropTypes.string,
+}
+
 export default function GuessElement(props) {
     const guess = props.guess;
     const key = props.guessKey;
-    const id = props.id;
-    
+    const id = props.id || '';
+
     const [flipState, setFlipState] = useState(false);
 
     const flip = () => {
@@ -36,7 +44,7 @@ export default function GuessElement(props) {
           return '';
         }
     }
-    
+
     const getValue = (guessVal) => {
         if (key.includes('country')) {
           return getCountryEmoji(guessVal.value);
@@ -44,17 +52,17 @@ export default function GuessElement(props) {
           return guessVal.value;
         }
     }
-    
+
     return (
-        <div className={`${getStyles(guess)} ${getKeyStyles()} ${guess.state}`} id={id} onClick={flip}>
-          {
+        <div className={`${getStyles(guess)} ${getKeyStyles()} ${guess.state} guessEle`} id={id} onClick={flip}>
+            {
             flipState ?
             (<div className={styles.hint}>
               {guess.hint}
             </div>)
             :
             getValue(guess)
-          }
+            }
         </div>
     );
 }
