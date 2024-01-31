@@ -23,7 +23,7 @@ export function getGoldle() {
 export default function Home() {
 
     const [state, setState] = useState('inactive');
-    const [goldle, setGoldle] = useState(new Goldle());
+    const [goldle] = useState(new Goldle());
     const [guesses, setGuesses] = useState(0);
     const [guessStates, setGuessStates] = useState([]);
     const [activeRow, setActiveRow] = useState(null);

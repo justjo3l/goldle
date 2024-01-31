@@ -27,6 +27,9 @@ module.exports = {
     "plugins": [
         "react"
     ],
+    "ignorePatterns": [
+        "**.test.js",
+    ],
     "rules": {
     }
 }

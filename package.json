@@ -6,7 +6,8 @@
     "dev": "next dev",
     "start": "next start -p $PORT",
     "test": "jest --coverage",
-    "lint": "eslint . --ext .js,.jsx"
+    "lint": "eslint . --ext .js,.jsx",
+    "lint-fix": "eslint . --ext .js,.jsx --fix"
   },
   "dependencies": {
     "@babel/preset-react": "^7.23.3",

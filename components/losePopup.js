@@ -6,6 +6,13 @@ import 'reactjs-popup/dist/index.css';
 import styles from '../styles/Popup.module.css';
 import moreStyles from '../styles/LosePopup.module.css';
 
+import PropTypes from 'prop-types';
+
+LosePopup.propTypes = {
+    state: PropTypes.bool.isRequired,
+    goldle: PropTypes.object.isRequired,
+}
+
 export default function LosePopup(props) {
 
     const open = props.state;

@@ -6,8 +6,15 @@ import 'reactjs-popup/dist/index.css';
 import styles from '../styles/Popup.module.css';
 import moreStyles from '../styles/WinPopup.module.css';
 
+import PropTypes from 'prop-types';
+
+WinPopup.propTypes = {
+    state: PropTypes.bool.isRequired,
+    goldle: PropTypes.object.isRequired,
+}
+
 export default function WinPopup(props) {
-    
+
     const open = props.state;
     const goldle = props.goldle;
 
