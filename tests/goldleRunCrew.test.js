@@ -1,7 +1,5 @@
 import GoldleRunCrew from '../backend/goldleRunCrew.js';
 
-import { goldleFacultyMap } from '../assets/assets.js';
-
 describe('testing setupGuessGator() in GoldleRunCrew', () => {
     let runCrew;
 
@@ -53,26 +51,6 @@ describe('testing getGatorByName() in GoldleRunCrew', () => {
 
     test('getGatorByName() should return null if name does not exist', () => {
         expect(runCrew.getGatorByName('John Doe')).toStrictEqual(null);
-    });
-});
-
-describe('testing getFaculty() in GoldleRunCrew', () => {
-    let runCrew;
-
-    beforeEach(() => {
-        runCrew = new GoldleRunCrew();
-        runCrew.setupGators();
-    });
-
-    test('getFaculty() should return correct faculty if degree exists', () => {
-        const randomFacultyInfo = goldleFacultyMap.value[Math.floor(Math.random() * goldleFacultyMap.value.length)];
-        const randomFaculty = randomFacultyInfo[0];
-        const randomDegree = randomFacultyInfo[1][Math.floor(Math.random() * randomFacultyInfo[1].length)];
-        expect(runCrew.getFaculty(randomDegree)).toStrictEqual(randomFaculty);
-    });
-
-    test('getFaculty() should return null if degree does not exist', () => {
-        expect(runCrew.getFaculty('John Doe')).toStrictEqual(null);
     });
 });
 

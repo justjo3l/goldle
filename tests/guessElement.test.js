@@ -1,4 +1,4 @@
-import GuessElement from '../components/guessElement.js';
+import GuessElement from '../components/GuessElement/guessElement.js';
 
 import '@testing-library/jest-dom'
 
