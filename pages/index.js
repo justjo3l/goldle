@@ -1,18 +1,18 @@
 import Head from 'next/head';
 import styles from '../styles/Home.module.css';
-import eleStyles from '../styles/GuessElement.module.css';
+import eleStyles from '../components/GuessElement/GuessElement.module.css';
 
 import React, {useEffect, useState} from 'react';
 import ReactDOM from 'react-dom/client';
 
-import GuessBar from '../components/guessBar';
+import GuessBar from '../components/GuessBar/guessBar.js';
 
 import Goldle from '../backend/goldle.js';
 
-import WinPopup from '../components/winPopup.js';
-import LosePopup from '../components/losePopup.js';
+import WinPopup from '../components/WinPopup/winPopup.js';
+import LosePopup from '../components/LosePopup/losePopup.js';
 
-import GuessElement from '../components/guessElement.js';
+import GuessElement from '../components/GuessElement/guessElement.js';
 
 let globalGoldle;
 

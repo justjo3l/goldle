@@ -1,5 +1,5 @@
-import WinPopup from "../components/winPopup";
-import LosePopup from "../components/losePopup";
+import WinPopup from "../components/WinPopup/winPopup.js";
+import LosePopup from "../components/LosePopup/losePopup.js";
 
 import '@testing-library/jest-dom'
 

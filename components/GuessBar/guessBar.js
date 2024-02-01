@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 
-import styles from '../styles/GuessBar.module.css';
+import styles from './GuessBar.module.css';
 
 import PropTypes from 'prop-types';
 

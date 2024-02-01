@@ -1,4 +1,4 @@
-import GuessBar from '../components/guessBar.js';
+import GuessBar from '../components/GuessBar/guessBar.js';
 
 import '@testing-library/jest-dom'
 

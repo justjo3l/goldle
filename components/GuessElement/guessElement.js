@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
 
-import styles from '../styles/GuessElement.module.css';
+import styles from './GuessElement.module.css';
 
-import {getCountryEmoji} from '../utils/helper.js';
+import {getCountryEmoji} from '../../utils/helper.js';
 
 import PropTypes from 'prop-types';
 

@@ -3,12 +3,12 @@ import React from 'react';
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 
-import styles from '../styles/Popup.module.css';
-import moreStyles from '../styles/WinPopup.module.css';
+import styles from '../../styles/Popup.module.css';
+import moreStyles from './LosePopup.module.css';
 
 import PropTypes from 'prop-types';
 
-WinPopup.propTypes = {
+LosePopup.propTypes = {
   state: PropTypes.bool.isRequired,
   goldle: PropTypes.object.isRequired,
 };
@@ -16,9 +16,9 @@ WinPopup.propTypes = {
 /**
  * @param {*} props
  * @return {JSX.Element}
- * @description Returns the win popup for Goldle.
+ * @description Returns the lose popup for Goldle.
  */
-export default function WinPopup(props) {
+export default function LosePopup(props) {
   const open = props.state;
   const goldle = props.goldle;
 
@@ -40,7 +40,7 @@ export default function WinPopup(props) {
               </button>
             </div>
             <div className={styles.content}>
-              <div>Nice Work!</div>
+              <div>Better luck next time!</div>
               <div>The Gator was</div>
               <div className={styles.gator}>{goldle.runCrew.getGuessGator().name}</div>
             </div>
