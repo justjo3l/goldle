@@ -34,4 +34,9 @@ module.exports = {
   'rules': {
     'max-len': ['error', 140, 4],
   },
+  'settings': {
+    'react': {
+      'version': 'detect',
+    },
+  },
 };
