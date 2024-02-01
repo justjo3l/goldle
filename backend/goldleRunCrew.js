@@ -2,9 +2,17 @@ import {getCountryCode, getCountryData, continents} from 'countries-list';
 
 import {goldleGators, goldleFacultyMap} from '../assets/assets.js';
 
-import same from '../utils/helper.js';
+import same, {getFaculty} from '../utils/helper.js';
 
+/**
+ * @description The GoldleRunCrew class.
+ * @class
+ */
 class GoldleRunCrew {
+  /**
+   * @description Creates a GoldleRunCrew object.
+   * @constructor
+   */
   constructor() {
     this.gators = [];
     this.gatorNames = [];
@@ -13,6 +21,11 @@ class GoldleRunCrew {
   }
 
   // Setup functions
+
+  /**
+   * @return {object} Empty object.
+   * @description Sets up the gators.
+  */
   setupGators = function() {
     this.gators = goldleGators;
     this.setupGatorNames(goldleGators);
@@ -20,6 +33,11 @@ class GoldleRunCrew {
     return {};
   };
 
+  /**
+   * @param {Array} gators
+   * @return {Array} The gator names.
+   * @description Sets up the gator names.
+   */
   setupGatorNames = function(gators) {
     this.gatorNames = [];
     this.gators = gators;
@@ -30,6 +48,11 @@ class GoldleRunCrew {
     return this.gatorNames;
   };
 
+  /**
+   * @param {object} facultyMap
+   * @return {object} Empty object.
+   * @description Sets up the faculty map.
+   */
   setupFacultyMap = function(facultyMap) {
     this.facultyMap = new Map();
     for (let i = 0; i < facultyMap['value'].length; i++) {
@@ -38,6 +61,11 @@ class GoldleRunCrew {
     return {};
   };
 
+  /**
+   * @param {string} name
+   * @return {object} The guess gator or null.
+   * @description Sets up the guess gator.
+   */
   setupGuessGator = function(name) {
     if (name) {
       const gator = this.getGatorByName(name);
@@ -53,6 +81,13 @@ class GoldleRunCrew {
   };
 
   // Get functions
+
+  /**
+   * @param {string} name
+   * @param {boolean} exact
+   * @return {object} The gator or null.
+   * @description Gets a gator by name.
+  */
   getGatorByName = function(name, exact=true) {
     const options = [];
     for (let i = 0; i < this.gators.length; i++) {
@@ -74,21 +109,16 @@ class GoldleRunCrew {
     return null;
   };
 
-  getFaculty = function(degree) {
-    degree = degree.toLowerCase();
-    for (const [key, value] of this.facultyMap.entries()) {
-      if (value.includes(degree)) {
-        return key;
-      }
-    }
-    return null;
-  };
-
+  /**
+   * @param {string} degree
+   * @return {Array} The faculties.
+   * @description Gets the faculties of a degree.
+   */
   getFaculties = function(degree) {
     const faculties = [];
 
     for (let i = 0; i < degree.split('/').length; i++) {
-      const faculty = this.getFaculty(degree.split('/')[i].trim());
+      const faculty = getFaculty(degree.split('/')[i].trim(), this.facultyMap);
       if (faculty !== null) {
         faculties.push(faculty);
       }
@@ -97,17 +127,32 @@ class GoldleRunCrew {
     return faculties;
   };
 
+  /**
+   * @param {string} name
+   * @return {Array} The recommendations.
+   * @description Gets the recommendations for a name.
+   */
   getRecommendations = function(name) {
     let foundNames = [...this.gatorNames];
     foundNames = foundNames.filter((val) => val.toLowerCase().includes(name.toLowerCase()));
     return foundNames;
   };
 
+  /**
+   * @return {object} The guess gator.
+   * @description Gets the guess gator.
+   */
   getGuessGator = function() {
     return this.guessGator;
   };
 
   // Check functions
+
+  /**
+   * @param {string} name
+   * @return {boolean} Whether the name exists.
+   * @description Checks if a name exists.
+   */
   nameExists = function(name) {
     for (let i = 0; i < this.gatorNames.length; i++) {
       if (same(this.gatorNames[i], name)) {
@@ -119,6 +164,12 @@ class GoldleRunCrew {
   };
 
   // Guess Check functions
+
+  /**
+   * @param {string} guessedName
+   * @return {object} The guess state.
+   * @description Checks the name guess.
+   */
   checkName = function(guessedName) {
     const guessName = this.guessGator.name;
 
@@ -139,6 +190,11 @@ class GoldleRunCrew {
     };
   };
 
+  /**
+   * @param {string} guessedDegree
+   * @return {object} The guess state.
+   * @description Checks the degree guess.
+   */
   checkDegree = function(guessedDegree) {
     const guessDegree = this.guessGator.degree;
 
@@ -182,6 +238,11 @@ class GoldleRunCrew {
     };
   };
 
+  /**
+   * @param {string} guessedFloor
+   * @return {object} The guess state.
+   * @description Checks the floor guess.
+   */
   checkFloor = function(guessedFloor) {
     const guessFloor = this.guessGator.room[0];
 
@@ -207,6 +268,11 @@ class GoldleRunCrew {
     };
   };
 
+  /**
+   * @param {string} guessedCountry
+   * @return {object} The guess state.
+   * @description Checks the country guess.
+   */
   checkCountry = function(guessedCountry) {
     const guessCountry = this.guessGator.country;
 

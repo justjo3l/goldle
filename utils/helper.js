@@ -10,6 +10,11 @@ function same(val1, val2) {
   return val1.toLowerCase() === val2.toLowerCase();
 }
 
+/**
+ * @param {string} country
+ * @return {string} The country emoji.
+ * @description Gets the emoji of a country.
+ */
 export const getCountryEmoji = (country) => {
   const countryName = country.toLowerCase();
   for (let i = 0; i < countryFlagEmoji.list.length; i++) {
@@ -17,6 +22,22 @@ export const getCountryEmoji = (country) => {
       return countryFlagEmoji.list[i].emoji;
     }
   }
+};
+
+/**
+ * @param {string} degree
+ * @param {object} facultyMap
+ * @return {string} The faculty or null.
+ * @description Gets the faculty of a degree.
+ */
+export const getFaculty = function(degree, facultyMap) {
+  degree = degree.toLowerCase();
+  for (const [key, value] of facultyMap.entries()) {
+    if (value.includes(degree)) {
+      return key;
+    }
+  }
+  return null;
 };
 
 export default same;
