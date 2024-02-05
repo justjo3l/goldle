@@ -10,7 +10,7 @@ describe('testing start stage in Home', () => {
 
     beforeEach(() => {
         render(<Home />);
-        startButton = screen.getByText('START');
+        startButton = screen.getByText(/start/i);
     });
 
     describe('testing pre-game start screen', () => {
@@ -49,7 +49,7 @@ describe('testing guess-grid game flow in Home', () => {
 
     beforeEach(() => {
         render(<Home />);
-        startButton = screen.getByText('START');
+        startButton = screen.getByText(/start/i);
         fireEvent.click(startButton);
         goldle = getGoldle();
         goldle.rigGame("Joel Jose");
@@ -135,7 +135,7 @@ describe('testing guess-grid error cases in Home', () => {
 
     beforeEach(() => {
         render(<Home />);
-        startButton = screen.getByText('START');
+        startButton = screen.getByText(/start/i);
         fireEvent.click(startButton);
         goldle = getGoldle();
         goldle.rigGame("Joel Jose");

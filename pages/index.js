@@ -13,6 +13,7 @@ import WinPopup from '../components/WinPopup/winPopup.js';
 import LosePopup from '../components/LosePopup/losePopup.js';
 
 import GuessElement from '../components/GuessElement/guessElement.js';
+import PlayButton from '../components/PlayButton/playButton.js';
 
 let globalGoldle;
 
@@ -134,7 +135,7 @@ export default function Home() {
           <h3 className={styles.guesses} id='guesses'>{guesses}/{maxGuesses}</h3>}
         </div>
         {state === 'inactive' &&
-                <button className={styles.startButton} onClick={handleStartClick}>START</button>
+          <PlayButton text='start' onClick={handleStartClick} />
         }
         {state === 'started' && recommendation &&
         <div
