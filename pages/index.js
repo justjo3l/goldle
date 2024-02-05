@@ -13,6 +13,7 @@ import WinPopup from '../components/WinPopup/winPopup.js';
 import LosePopup from '../components/LosePopup/losePopup.js';
 
 import GuessElement from '../components/GuessElement/guessElement.js';
+import PlayButton from '../components/PlayButton/playButton.js';
 
 let globalGoldle;
 
@@ -71,8 +72,25 @@ export default function Home() {
     row.render(element);
   };
 
+  const resetGame = () => {
+    setGuesses(0);
+    setGuessStates([]);
+    setWinPopupOpen(false);
+    setLosePopupOpen(false);
+    let i = 1;
+    let rowNode = document.getElementById('r-' + i.toString());
+    while (rowNode && rowNode.hasChildNodes()) {
+      const newRowNode = rowNode.cloneNode(true);
+      newRowNode.removeChild(newRowNode.childNodes[0]);
+      rowNode.replaceWith(newRowNode);
+      i += 1;
+      rowNode = document.getElementById('r-' + i.toString());
+    }
+  };
+
   const handleStartClick = () => {
     globalGoldle = goldle;
+    resetGame();
     goldle.startGame();
     setMaxGuesses(goldle.numGuesses);
     setState(goldle.getState());
@@ -80,7 +98,7 @@ export default function Home() {
 
   useEffect(() => {
     const rowNode = document.getElementById('r-' + guesses.toString());
-    if (rowNode && state !== 'inactive') {
+    if (guessStates.length > 0 && activeRow && rowNode && state !== 'inactive') {
       rowNode.style.gridTemplateColumns = '100%';
       const currentGuessState = guessStates[guesses - 1];
 
@@ -134,7 +152,7 @@ export default function Home() {
           <h3 className={styles.guesses} id='guesses'>{guesses}/{maxGuesses}</h3>}
         </div>
         {state === 'inactive' &&
-                <button className={styles.startButton} onClick={handleStartClick}>START</button>
+          <PlayButton text='start' onClick={handleStartClick} id={styles.startButton} />
         }
         {state === 'started' && recommendation &&
         <div
@@ -159,6 +177,7 @@ export default function Home() {
                   })}
                 </div>
         }
+        {(state === 'won' || state === 'lost') && <PlayButton text='play again' onClick={handleStartClick} id={styles.playAgainButton}/>}
       </main>
 
       <style>{`

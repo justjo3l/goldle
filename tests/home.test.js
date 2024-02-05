@@ -10,7 +10,7 @@ describe('testing start stage in Home', () => {
 
     beforeEach(() => {
         render(<Home />);
-        startButton = screen.getByText('START');
+        startButton = screen.getByText(/start/i);
     });
 
     describe('testing pre-game start screen', () => {
@@ -49,7 +49,7 @@ describe('testing guess-grid game flow in Home', () => {
 
     beforeEach(() => {
         render(<Home />);
-        startButton = screen.getByText('START');
+        startButton = screen.getByText(/start/i);
         fireEvent.click(startButton);
         goldle = getGoldle();
         goldle.rigGame("Joel Jose");
@@ -90,6 +90,8 @@ describe('testing guess-grid game flow in Home', () => {
         const resultPopup = document.getElementById('result-popup');
         expect(resultPopup).toHaveTextContent('Nice Work!');
         expect(resultPopup).toHaveTextContent(runCrew.getGuessGator().name);
+        const playAgainButton = screen.getByText(/play again/i);
+        expect(playAgainButton).toBeInTheDocument();
     });
 
     test('guess grid should render result row for each failed guess but not the guess bar after final guess is made', () => {
@@ -108,6 +110,8 @@ describe('testing guess-grid game flow in Home', () => {
         const resultPopup = document.getElementById('result-popup');
         expect(resultPopup).toHaveTextContent('Better luck next time!');
         expect(resultPopup).toHaveTextContent(runCrew.getGuessGator().name);
+        const playAgainButton = screen.getByText(/play again/i);
+        expect(playAgainButton).toBeInTheDocument();
     });
 
     test('guess grid result row contents should be accurate if a guess is made', () => {
@@ -127,6 +131,33 @@ describe('testing guess-grid game flow in Home', () => {
         expect(resultFloor).toHaveTextContent('3');
         expect(resultFloor.classList.contains('correct')).toBe(true);
     });
+
+    test('guess grid should start game again if won and play again button is clicked', () => {
+        let guessBar = document.getElementById('guessBar');
+        fireEvent.change(guessBar, {target: {value: 'Joel Jose'}});
+        fireEvent.keyDown(guessBar, {key: 'Enter', code: 'Enter'});
+        const playAgainButton = screen.getByText(/play again/i);
+        fireEvent.click(playAgainButton);
+        guessBar = document.getElementById('guessBar');
+        expect(guessBar).toBeInTheDocument();
+    });
+
+    test('guess grid should start game again if lost and play again button is clicked', () => {
+        let guessBar;
+        for (let i = 0; i < 6; i++) {
+            guessBar = document.getElementById('guessBar');
+            fireEvent.change(guessBar, {target: {value: 'Amber Chan'}});
+            fireEvent.keyDown(guessBar, {key: 'Enter', code: 'Enter'});
+        }
+        const playAgainButton = screen.getByText(/play again/i);
+        fireEvent.click(playAgainButton);
+        guessBar = document.getElementById('guessBar');
+        expect(guessBar).toBeInTheDocument();
+        for (let i = 2; i <= 6; i++) {
+            let row = document.getElementById('r-' + i.toString());
+            expect(row).toHaveTextContent('');
+        }
+    });
 });
 
 describe('testing guess-grid error cases in Home', () => {
@@ -135,7 +166,7 @@ describe('testing guess-grid error cases in Home', () => {
 
     beforeEach(() => {
         render(<Home />);
-        startButton = screen.getByText('START');
+        startButton = screen.getByText(/start/i);
         fireEvent.click(startButton);
         goldle = getGoldle();
         goldle.rigGame("Joel Jose");
