@@ -7,6 +7,7 @@ import PropTypes from 'prop-types';
 PlayButton.propTypes = {
   text: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired,
+  id: PropTypes.string,
 };
 
 /**
@@ -17,9 +18,10 @@ PlayButton.propTypes = {
 export default function PlayButton(props) {
   const text = props.text;
   const onClick = props.onClick;
+  const id = props.id || '';
 
   return (
-    <button className={styles.playButton} onClick={onClick}>
+    <button className={styles.playButton} onClick={onClick} id={id}>
       {text}
     </button>);
 }

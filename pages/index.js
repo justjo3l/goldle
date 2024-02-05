@@ -152,7 +152,7 @@ export default function Home() {
           <h3 className={styles.guesses} id='guesses'>{guesses}/{maxGuesses}</h3>}
         </div>
         {state === 'inactive' &&
-          <PlayButton text='start' onClick={handleStartClick} />
+          <PlayButton text='start' onClick={handleStartClick} id={styles.startButton} />
         }
         {state === 'started' && recommendation &&
         <div
@@ -164,7 +164,6 @@ export default function Home() {
         </div>}
         {state !== 'inactive' && <WinPopup state={winPopupOpen} goldle={goldle}/>}
         {state !== 'inactive' && <LosePopup state={losePopupOpen} goldle={goldle}/>}
-        {(state === 'won' || state === 'lost') && <PlayButton text='play again' onClick={handleStartClick} />}
         {state !== 'inactive' &&
                 <div className={styles.guessGrid} id='guess-grid'>
                   <div className={`${styles.header} ${styles.row}`} id="r-0">
@@ -178,6 +177,7 @@ export default function Home() {
                   })}
                 </div>
         }
+        {(state === 'won' || state === 'lost') && <PlayButton text='play again' onClick={handleStartClick} id={styles.playAgainButton}/>}
       </main>
 
       <style>{`
