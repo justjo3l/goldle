@@ -1,13 +1,13 @@
 import React from 'react';
 
-import GuessElement from '../components/GuessElement/GuessElement.js';
+import GuessElement from 'components/GuessElement/GuessElement.js';
 
 import '@testing-library/jest-dom'
 import { describe, test, expect } from '@jest/globals';
 
 import { render, fireEvent } from '@testing-library/react';
 
-import Goldle from "../backend/goldle.js";
+import Goldle from "backend/goldle.js";
 
 describe('testing GuessElement', () => {
 

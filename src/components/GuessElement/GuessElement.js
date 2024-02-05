@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 
 import './GuessElement.css';
 
-import {getCountryEmoji} from '../../utils/helper.js';
+import {getCountryEmoji} from 'utils/helper.js';
 
 import PropTypes from 'prop-types';
 

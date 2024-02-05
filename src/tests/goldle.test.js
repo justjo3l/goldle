@@ -1,4 +1,4 @@
-import Goldle from '../backend/goldle.js';
+import Goldle from 'backend/goldle.js';
 
 import '@testing-library/jest-dom'
 import { describe, test, expect, beforeEach } from '@jest/globals';

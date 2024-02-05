@@ -3,7 +3,7 @@ import React from 'react';
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 
-import '../../styles/Popup.css';
+import 'styles/Popup.css';
 import './LosePopup.css';
 
 import PropTypes from 'prop-types';

@@ -1,14 +1,14 @@
 import React from 'react';
 
-import WinPopup from "../components/WinPopup/WinPopup.js";
-import LosePopup from "../components/LosePopup/LosePopup.js";
+import WinPopup from "components/WinPopup/WinPopup.js";
+import LosePopup from "components/LosePopup/LosePopup.js";
 
 import '@testing-library/jest-dom'
 import { describe, test, expect } from '@jest/globals';
 
 import { render, fireEvent } from '@testing-library/react';
 
-import Goldle from "../backend/goldle.js";
+import Goldle from "backend/goldle.js";
 
 describe('testing Popup', () => {
 

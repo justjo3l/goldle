@@ -1,6 +1,6 @@
-import same from '../utils/helper.js';
+import same from 'utils/helper.js';
 
-import GoldleRunCrew from './goldleRunCrew.js';
+import GoldleRunCrew from 'backend/goldleRunCrew.js';
 
 const GUESSES = 6;
 

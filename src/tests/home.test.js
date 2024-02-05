@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { render, screen, fireEvent } from '@testing-library/react';
-import Home, { getGoldle } from '../pages/Home.js';
+import Home, { getGoldle } from 'pages/Home.js';
 
 import '@testing-library/jest-dom';
 import { describe, test, expect, beforeEach } from '@jest/globals';

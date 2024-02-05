@@ -1,4 +1,4 @@
-import GoldleRunCrew from '../backend/goldleRunCrew.js';
+import GoldleRunCrew from 'backend/goldleRunCrew.js';
 
 import '@testing-library/jest-dom'
 import { describe, test, expect, beforeEach } from '@jest/globals';

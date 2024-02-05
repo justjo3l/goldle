@@ -1,8 +1,8 @@
 import {getCountryCode, getCountryData, continents} from 'countries-list';
 
-import {goldleGators, goldleFacultyMap} from '../assets/assets.js';
+import {goldleGators, goldleFacultyMap} from 'assets/assets.js';
 
-import same, {getFaculty} from '../utils/helper.js';
+import same, {getFaculty} from 'utils/helper.js';
 
 /**
  * @description The GoldleRunCrew class.

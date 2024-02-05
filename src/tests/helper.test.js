@@ -1,8 +1,8 @@
-import same, {getFaculty} from '../utils/helper.js';
+import same, {getFaculty} from 'utils/helper.js';
 
-import { goldleFacultyMap } from '../assets/assets.js';
+import { goldleFacultyMap } from 'assets/assets.js';
 
-import GoldleRunCrew from '../backend/goldleRunCrew.js';
+import GoldleRunCrew from 'backend/goldleRunCrew.js';
 
 import '@testing-library/jest-dom'
 import { describe, test, expect, beforeEach } from '@jest/globals';
