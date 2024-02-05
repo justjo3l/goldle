@@ -137,4 +137,16 @@
         grid-template-rows: 1fr 1fr;
         margin-bottom: 3rem;
     }
+
+    #startButton {
+        font-size: 180%;
+        max-width: 60%;
+        max-height: 6rem;
+    }
+
+    #playAgainButton {
+        font-size: 120%;
+        max-width: 40%;
+        max-height: 3rem;
+    }
 }
