@@ -22,6 +22,27 @@
     filter: blur(1.5rem);
 }
 
+#modal-content {
+    color: #ffffff;
+    text-align: center;
+    font-family: 'Inter';
+    font-size: 2.5rem;
+    font-style: normal;
+    height: 100%;
+    padding: 15% 0;
+}
+
+#close-button {
+    color: #ffffff;
+    display: block;
+    text-align: center;
+    margin: 0 0 0 auto;
+    border: none;
+    background: none;
+    padding: 1rem;
+    cursor: pointer;
+}
+
 @keyframes animate {
     0% {
         background-position: 0 0;
@@ -34,31 +55,6 @@
     100% {
         background-position: 0 0;
     }
-}
-
-.content {
-    color: #ffffff;
-    text-align: center;
-    font-family: 'Inter';
-    font-size: 2.5rem;
-    font-style: normal;
-    height: 100%;
-    padding: 15% 0;
-}
-
-.gator {
-    font-weight: 800;
-}
-
-.close {
-    color: #ffffff;
-    display: block;
-    text-align: center;
-    margin: 0 0 0 auto;
-    border: none;
-    background: none;
-    padding: 1rem;
-    cursor: pointer;
 }
 
 @media (max-width: 800px) {

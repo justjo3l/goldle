@@ -1,6 +1,6 @@
 import React from 'react';
 
-import styles from './PlayButton.module.css';
+import './PlayButton.css';
 
 import PropTypes from 'prop-types';
 
@@ -21,7 +21,7 @@ export default function PlayButton(props) {
   const id = props.id || '';
 
   return (
-    <button className={styles.playButton} onClick={onClick} id={id}>
+    <button className='play-button' onClick={onClick} id={id}>
       {text}
     </button>);
 }

@@ -16,7 +16,7 @@ describe('testing GuessBar', () => {
         goldle.startGame();
         goldle.rigGame('Joel Jose');
         render(<GuessBar goldle={goldle} onGuess={() => {}} onError={() => {}} />);
-        const guessBar = document.getElementById('guessBar');
+        const guessBar = document.getElementById('guess-bar');
         expect(guessBar).toBeInTheDocument();
     });
 
@@ -25,7 +25,7 @@ describe('testing GuessBar', () => {
         goldle.startGame();
         goldle.rigGame('Joel Jose');
         render(<GuessBar goldle={goldle} onGuess={() => {}} onError={() => {}} />);
-        const guessBar = document.getElementById('guessBar');
+        const guessBar = document.getElementById('guess-bar');
         fireEvent.change(guessBar, {target: {value: 'Jo'}});
         fireEvent.keyDown(guessBar, {key: 'Enter', code: 'Enter'});
         expect(guessBar).toBeInTheDocument();

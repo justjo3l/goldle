@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 
-import styles from './GuessElement.module.css';
+import './GuessElement.css';
 
 import {getCountryEmoji} from '../../utils/helper.js';
 
@@ -32,19 +32,19 @@ export default function GuessElement(props) {
 
   const getStyles = (guessVal) => {
     if (guessVal.state === 'correct') {
-      return `${styles.ele} ${styles.correct}`;
+      return 'correct';
     } else if (guessVal.state === 'neighbour' || guessVal.state === 'same-continent' || guessVal.state === 'same-faculty') {
-      return `${styles.ele} ${styles.near}`;
+      return 'near';
     } else {
-      return `${styles.ele}`;
+      return 'incorrect';
     }
   };
 
   const getKeyStyles = () => {
     if (key.includes('country')) {
-      return `${styles.country}`;
+      return 'country';
     } else if (key.includes('floor')) {
-      return `${styles.floor}`;
+      return 'floor';
     } else {
       return '';
     }
@@ -59,10 +59,10 @@ export default function GuessElement(props) {
   };
 
   return (
-    <div className={`${getStyles(guess)} ${getKeyStyles()} ${guess.state} guessEle`} id={id} onClick={flip}>
+    <div className={`ele ${getStyles(guess)} ${getKeyStyles()}`} id={id} onClick={flip}>
       {
             flipState ?
-            (<div className={styles.hint}>
+            (<div className='hint'>
               {guess.hint}
             </div>) :
             getValue(guess)

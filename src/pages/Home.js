@@ -1,5 +1,5 @@
-import styles from '../styles/Home.module.css';
-import eleStyles from '../components/GuessElement/GuessElement.module.css';
+import '../styles/Home.css';
+import '../components/GuessElement/GuessElement.css';
 
 import React, {useEffect, useState} from 'react';
 import ReactDOM from 'react-dom/client';
@@ -100,7 +100,7 @@ export default function Home() {
       rowNode.style.gridTemplateColumns = '100%';
       const currentGuessState = guessStates[guesses - 1];
 
-      activeRow.render(<div className={styles.row} id={'row-' + guesses.toString()}>
+      activeRow.render(<div className='row' id={'row-' + guesses.toString()}>
         <GuessElement guess={currentGuessState.name} id={`row-${guesses.toString()}-name`} guessKey='name' />
         <GuessElement guess={currentGuessState.degree} id={`row-${guesses.toString()}-degree`} guessKey='degree' />
         <GuessElement guess={currentGuessState.country} id={`row-${guesses.toString()}-country`} guessKey='country' />
@@ -133,7 +133,7 @@ export default function Home() {
   }, [state, guesses]);
 
   return (
-    <div className={styles.home}>
+    <div id='home'>
       <header>
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet" />
         <meta title="og:title" content="Goldle" />
@@ -141,20 +141,19 @@ export default function Home() {
         <meta title="og:url" content="https://goldle-b45c53352e44.herokuapp.com" />
         <title>Goldle</title>
       </header>
-      <main className={styles.main}>
-        <div className={styles.titleBar}>
+      <main>
+        <div className='title-bar'>
           <div></div>
-          <h1 className={styles.title} id='title'>GOLDLE</h1>
-          {state === 'started' && <h3 className={styles.guesses} id='guesses'>{guesses + 1}/{maxGuesses}</h3>}
+          <h1 id='title'>GOLDLE</h1>
+          {state === 'started' && <h3 id='guesses'>{guesses + 1}/{maxGuesses}</h3>}
           {(state === 'won' || state === 'lost') &&
-          <h3 className={styles.guesses} id='guesses'>{guesses}/{maxGuesses}</h3>}
+          <h3 id='guesses'>{guesses}/{maxGuesses}</h3>}
         </div>
         {state === 'inactive' &&
-          <PlayButton text='start' onClick={handleStartClick} id={styles.startButton} />
+          <PlayButton text='start' onClick={handleStartClick} id='start-button' />
         }
         {state === 'started' && recommendation &&
         <div
-          className={styles.recommendation}
           id='recommendation'>
           Did you mean
           <span onClick={recommendationClick} id='recommendation-name'>{recommendation}</span>
@@ -163,44 +162,20 @@ export default function Home() {
         {state !== 'inactive' && <WinPopup state={winPopupOpen} goldle={goldle}/>}
         {state !== 'inactive' && <LosePopup state={losePopupOpen} goldle={goldle}/>}
         {state !== 'inactive' &&
-                <div className={styles.guessGrid} id='guess-grid'>
-                  <div className={`${styles.header} ${styles.row}`} id="r-0">
-                    <div className={eleStyles.ele}>GATOR</div>
-                    <div className={eleStyles.ele}>DEGREE</div>
-                    <div className={eleStyles.ele}>COUNTRY</div>
-                    <div className={`${eleStyles.ele} ${eleStyles.eleEnd}`}>FLOOR</div>
+                <div id='guess-grid'>
+                  <div className='header row' id="r-0">
+                    <div className='ele'>GATOR</div>
+                    <div className='ele'>DEGREE</div>
+                    <div className='ele'>COUNTRY</div>
+                    <div className='ele'>FLOOR</div>
                   </div>
                   {Array.from(Array(maxGuesses).keys()).map((num) => {
-                    return <div className={styles.rowContainer} id={`r-${num + 1}`} key={num}></div>;
+                    return <div className='row-container' id={`r-${num + 1}`} key={num}></div>;
                   })}
                 </div>
         }
-        {(state === 'won' || state === 'lost') && <PlayButton text='play again' onClick={handleStartClick} id={styles.playAgainButton}/>}
+        {(state === 'won' || state === 'lost') && <PlayButton text='play again' onClick={handleStartClick} id='play-again-button' />}
       </main>
-
-      <style>{`
-                html,
-                body {
-                padding: 0;
-                margin: 0;
-                background-color: #151111;
-                font-family:
-                    -apple-system,
-                    BlinkMacSystemFont,
-                    Segoe UI,
-                    Roboto,
-                    Oxygen,
-                    Ubuntu,
-                    Cantarell,
-                    Fira Sans,
-                    Droid Sans,
-                    Helvetica Neue,
-                    sans-serif;
-                }
-                * {
-                box-sizing: border-box;
-                }
-            `}</style>
     </div>
   );
 }

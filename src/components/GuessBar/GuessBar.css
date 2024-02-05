@@ -1,4 +1,4 @@
-.container {
+.guess-bar-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -7,7 +7,7 @@
     height: 100%;
 }
 
-.guessBar {
+#guess-bar {
     text-align: center;
     font-family: 'Inter';
     font-weight: 600;

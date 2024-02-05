@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 
-import styles from './GuessBar.module.css';
+import './GuessBar.css';
 
 import PropTypes from 'prop-types';
 
@@ -38,10 +38,9 @@ export default function GuessBar(props) {
   };
 
   return (
-    <div className={styles.container} id={id}>
+    <div className='guess-bar-container' id={id}>
       <input
-        className={styles.guessBar}
-        id='guessBar'
+        id='guess-bar'
         type="text"
         defaultValue={value}
         onChange={(e) => setValue(e.target.value)}

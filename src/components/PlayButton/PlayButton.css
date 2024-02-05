@@ -1,4 +1,4 @@
-.playButton {
+.play-button {
     background: green;
     text-align: center;
     font-family: 'Inter';
@@ -10,7 +10,7 @@
     text-transform: uppercase;
 }
 
-.playButton:hover {
+.play-button:hover {
     background: #3dbc3d;
     cursor: pointer;
 }

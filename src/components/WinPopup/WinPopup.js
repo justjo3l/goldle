@@ -3,8 +3,8 @@ import React from 'react';
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 
-import styles from '../../styles/Popup.module.css';
-import moreStyles from './WinPopup.module.css';
+import '../../styles/Popup.css';
+import './WinPopup.css';
 
 import PropTypes from 'prop-types';
 
@@ -33,16 +33,16 @@ export default function WinPopup(props) {
       modal nested>
       {
         (close) => (
-          <div className={`${styles.modal} ${moreStyles.modal}`} id="result-popup">
-            <div className={styles.container}>
-              <button onClick={() => close()} className={styles.close} id='close-button'>
-                            &times;
+          <div className='modal' id='win-modal'>
+            <div>
+              <button onClick={() => close()} id='close-button'>
+                &times;
               </button>
             </div>
-            <div className={styles.content}>
+            <div id='modal-content'>
               <div>Nice Work!</div>
               <div>The Gator was</div>
-              <div className={styles.gator}>{goldle.runCrew.getGuessGator().name}</div>
+              <div id='gator'>{goldle.runCrew.getGuessGator().name}</div>
             </div>
           </div>
         )
