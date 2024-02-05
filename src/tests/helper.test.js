@@ -4,6 +4,9 @@ import { goldleFacultyMap } from '../assets/assets.js';
 
 import GoldleRunCrew from '../backend/goldleRunCrew.js';
 
+import '@testing-library/jest-dom'
+import { describe, test, expect, beforeEach } from '@jest/globals';
+
 describe('testing same() in helper.js', () => {
     test('same() should return true if strings are same regardless of case', () => {
         expect(same('hello', 'hello')).toBe(true);

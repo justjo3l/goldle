@@ -1,5 +1,8 @@
 import GoldleRunCrew from '../backend/goldleRunCrew.js';
 
+import '@testing-library/jest-dom'
+import { describe, test, expect, beforeEach } from '@jest/globals';
+
 describe('testing setupGuessGator() in GoldleRunCrew', () => {
     let runCrew;
 

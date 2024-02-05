@@ -1,8 +1,9 @@
-import GuessBar from '../components/GuessBar/guessBar.js';
-
-import '@testing-library/jest-dom'
-
 import React from 'react';
+
+import GuessBar from '../components/GuessBar/GuessBar.js';
+
+import '@testing-library/jest-dom';
+import { describe, test, expect } from '@jest/globals';
 
 import { render, fireEvent } from '@testing-library/react';
 

@@ -1,8 +1,9 @@
-import GuessElement from '../components/GuessElement/guessElement.js';
+import React from 'react';
+
+import GuessElement from '../components/GuessElement/GuessElement.js';
 
 import '@testing-library/jest-dom'
-
-import React from 'react';
+import { describe, test, expect } from '@jest/globals';
 
 import { render, fireEvent } from '@testing-library/react';
 

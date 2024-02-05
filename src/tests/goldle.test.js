@@ -1,5 +1,8 @@
 import Goldle from '../backend/goldle.js';
 
+import '@testing-library/jest-dom'
+import { describe, test, expect, beforeEach } from '@jest/globals';
+
 describe('testing getState() and startGame() in Goldle', () => {
     let goldle;
 

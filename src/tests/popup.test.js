@@ -1,9 +1,10 @@
-import WinPopup from "../components/WinPopup/winPopup.js";
-import LosePopup from "../components/LosePopup/losePopup.js";
+import React from 'react';
+
+import WinPopup from "../components/WinPopup/WinPopup.js";
+import LosePopup from "../components/LosePopup/LosePopup.js";
 
 import '@testing-library/jest-dom'
-
-import React from 'react';
+import { describe, test, expect } from '@jest/globals';
 
 import { render, fireEvent } from '@testing-library/react';
 
