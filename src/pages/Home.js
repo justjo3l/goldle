@@ -145,7 +145,7 @@ export default function Home() {
         {recommendation &&
         <div
           id='recommendation'>
-          Did you mean
+          {'Did you mean '}
           <span onClick={recommendationClick} id='recommendation-name'>{recommendation}</span>
           ?
         </div>}
