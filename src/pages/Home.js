@@ -10,7 +10,7 @@ import WinPopup from '../components/WinPopup/WinPopup.js';
 import LosePopup from '../components/LosePopup/LosePopup.js';
 
 import GuessBar from '../components/GuessBar/GuessBar.js';
-import GuessElement from '../components/GuessElement/GuessElement.js';
+import GuessRow from '../components/GuessRow/GuessRow.js';
 import PlayButton from '../components/PlayButton/PlayButton.js';
 
 let globalGoldle;
@@ -100,12 +100,7 @@ export default function Home() {
       rowNode.style.gridTemplateColumns = '100%';
       const currentGuessState = guessStates[guesses - 1];
 
-      activeRow.render(<div className='row' id={'row-' + guesses.toString()}>
-        <GuessElement guess={currentGuessState.name} id={`row-${guesses.toString()}-name`} guessKey='name' />
-        <GuessElement guess={currentGuessState.degree} id={`row-${guesses.toString()}-degree`} guessKey='degree' />
-        <GuessElement guess={currentGuessState.country} id={`row-${guesses.toString()}-country`} guessKey='country' />
-        <GuessElement guess={currentGuessState.floor} id={`row-${guesses.toString()}-floor`} guessKey='floor' />
-      </div>);
+      activeRow.render(<GuessRow guessState={currentGuessState} numGuesses={guesses}/>);
     }
   }, [guessStates]);
 
