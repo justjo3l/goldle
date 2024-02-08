@@ -58,7 +58,8 @@
 }
 
 @media (max-width: 800px) {
-    .content {
+    #modal-content {
+        margin: 1rem;
         font-size: 200%;
     }
 }
