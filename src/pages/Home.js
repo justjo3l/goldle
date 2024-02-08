@@ -34,8 +34,6 @@ export default function Home() {
   const [guessStates, setGuessStates] = useState([]);
   const [activeRow, setActiveRow] = useState(null);
   const [recommendation, setRecommendation] = useState('');
-  const [winPopupOpen, setWinPopupOpen] = useState(false);
-  const [losePopupOpen, setLosePopupOpen] = useState(false);
   const [maxGuesses, setMaxGuesses] = useState(6);
 
   const updateGuessState = (newGuessState) => {
@@ -73,8 +71,6 @@ export default function Home() {
   const resetGame = () => {
     setGuesses(0);
     setGuessStates([]);
-    setWinPopupOpen(false);
-    setLosePopupOpen(false);
     let i = 1;
     let rowNode = document.getElementById('r-' + i.toString());
     while (rowNode && rowNode.hasChildNodes()) {
@@ -105,11 +101,7 @@ export default function Home() {
   }, [guessStates]);
 
   useEffect(() => {
-    if (state === 'won') {
-      setWinPopupOpen(true);
-    } else if (state === 'lost') {
-      setLosePopupOpen(true);
-    } else if (state === 'started') {
+    if (state === 'started') {
       const rowNode = document.getElementById('r-' + (guesses + 1).toString());
       const row = ReactDOM.createRoot(rowNode);
       setActiveRow(row);
@@ -154,8 +146,8 @@ export default function Home() {
           <span onClick={recommendationClick} id='recommendation-name'>{recommendation}</span>
           ?
         </div>}
-        {state !== 'inactive' && <WinPopup state={winPopupOpen} goldle={goldle}/>}
-        {state !== 'inactive' && <LosePopup state={losePopupOpen} goldle={goldle}/>}
+        {state === 'won' && <WinPopup state={state === 'won'} goldle={goldle}/>}
+        {state === 'lost' && <LosePopup state={state === 'lost'} goldle={goldle}/>}
         {state !== 'inactive' &&
                 <div id='guess-grid'>
                   <div className='header row' id="r-0">
