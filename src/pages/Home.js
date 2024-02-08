@@ -30,46 +30,45 @@ export function getGoldle() {
 export default function Home() {
   const [state, setState] = useState('inactive');
   const [goldle] = useState(new Goldle());
-  const [guesses, setGuesses] = useState(0);
   const [guessStates, setGuessStates] = useState([]);
   const [activeRow, setActiveRow] = useState(null);
   const [recommendation, setRecommendation] = useState('');
   const [maxGuesses, setMaxGuesses] = useState(6);
 
+  // Runs when a valid guess is made.
   const updateGuessState = (newGuessState) => {
     setRecommendation('');
     setGuessStates([...guessStates, newGuessState.guessState]);
-    setGuesses(guesses + 1);
     if (newGuessState.gameState) {
       setState(newGuessState.gameState);
     }
   };
 
+  // Runs when an invalid guess is made.
   const guessError = (errorState) => {
     setRecommendation(errorState.recommendation);
   };
 
+  // Runs when a recommendation is clicked.
   const recommendationClick = () => {
     setRecommendation('');
 
-    const element =
-    <GuessBar
+    activeRow.unmount();
+    const rowNode = document.getElementById('r-' + (guessStates.length + 1).toString());
+    const row = ReactDOM.createRoot(rowNode);
+    setActiveRow(row);
+    row.render(<GuessBar
       goldle={goldle}
       onGuess={updateGuessState}
       onError={guessError}
       value={recommendation}
-      id={'bar-' + (guesses + 1).toString()}
-    />;
-
-    activeRow.unmount();
-    const rowNode = document.getElementById('r-' + (guesses + 1).toString());
-    const row = ReactDOM.createRoot(rowNode);
-    setActiveRow(row);
-    row.render(element);
+      id={'bar-' + (guessStates.length + 1).toString()}
+    />);
   };
 
+  // Runs when the game is reset.
   const resetGame = () => {
-    setGuesses(0);
+    globalGoldle = goldle;
     setGuessStates([]);
     let i = 1;
     let rowNode = document.getElementById('r-' + i.toString());
@@ -82,27 +81,30 @@ export default function Home() {
     }
   };
 
+  // Runs when the start button is clicked.
   const handleStartClick = () => {
-    globalGoldle = goldle;
     resetGame();
     goldle.startGame();
     setMaxGuesses(goldle.numGuesses);
     setState(goldle.getState());
   };
 
+  // Runs whenever a change to the guessStates array is made.
   useEffect(() => {
-    const rowNode = document.getElementById('r-' + guesses.toString());
-    if (guessStates.length > 0 && activeRow && rowNode && state !== 'inactive') {
+
+    const rowNode = document.getElementById('r-' + guessStates.length.toString());
+
+    // Runs when a guess is made.
+    if (guessStates.length > 0) {
       rowNode.style.gridTemplateColumns = '100%';
-      const currentGuessState = guessStates[guesses - 1];
+      const currentGuessState = guessStates[guessStates.length - 1];
 
-      activeRow.render(<GuessRow guessState={currentGuessState} numGuesses={guesses}/>);
+      activeRow.render(<GuessRow guessState={currentGuessState} numGuesses={guessStates.length}/>);
     }
-  }, [guessStates]);
 
-  useEffect(() => {
+    // Runs when a guess is made or the game is reset.
     if (state === 'started') {
-      const rowNode = document.getElementById('r-' + (guesses + 1).toString());
+      const rowNode = document.getElementById('r-' + (guessStates.length + 1).toString());
       const row = ReactDOM.createRoot(rowNode);
       setActiveRow(row);
       rowNode.style.gridTemplateColumns = '100%';
@@ -112,12 +114,13 @@ export default function Home() {
         goldle={goldle}
         onGuess={updateGuessState}
         onError={guessError}
-        id={'bar-' + (guesses + 1).toString()}
+        id={'bar-' + (guessStates.length + 1).toString()}
       />;
 
       row.render(element);
     }
-  }, [state, guesses]);
+
+  }, [state, guessStates]);
 
   return (
     <div id='home'>
@@ -132,14 +135,14 @@ export default function Home() {
         <div className='title-bar'>
           <div></div>
           <h1 id='title'>GOLDLE</h1>
-          {state === 'started' && <h3 id='guesses'>{guesses + 1}/{maxGuesses}</h3>}
+          {state === 'started' && <h3 id='guesses'>{guessStates.length + 1}/{maxGuesses}</h3>}
           {(state === 'won' || state === 'lost') &&
-          <h3 id='guesses'>{guesses}/{maxGuesses}</h3>}
+          <h3 id='guesses'>{guessStates.length}/{maxGuesses}</h3>}
         </div>
         {state === 'inactive' &&
           <PlayButton text='start' onClick={handleStartClick} id='start-button' />
         }
-        {state === 'started' && recommendation &&
+        {recommendation &&
         <div
           id='recommendation'>
           Did you mean

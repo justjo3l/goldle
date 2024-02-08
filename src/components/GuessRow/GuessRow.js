@@ -20,12 +20,14 @@ export default function GuessRow(props) {
   const guessState = props.guessState;
   const numGuesses = props.numGuesses;
 
+  const idPrefix = `row-${numGuesses.toString()}`
+
   return (
     <div className='row' id={'row-' + numGuesses.toString()}>
-        <GuessElement guess={guessState.name} id={`row-${numGuesses.toString()}-name`} guessKey='name' />
-        <GuessElement guess={guessState.degree} id={`row-${numGuesses.toString()}-degree`} guessKey='degree' />
-        <GuessElement guess={guessState.country} id={`row-${numGuesses.toString()}-country`} guessKey='country' />
-        <GuessElement guess={guessState.floor} id={`row-${numGuesses.toString()}-floor`} guessKey='floor' />
+        <GuessElement guess={guessState.name} id={idPrefix + '-name'} guessKey='name' />
+        <GuessElement guess={guessState.degree} id={idPrefix + '-degree'} guessKey='degree' />
+        <GuessElement guess={guessState.country} id={idPrefix + '-country'} guessKey='country' />
+        <GuessElement guess={guessState.floor} id={idPrefix + '-floor'} guessKey='floor' />
     </div>
   );
 }
