@@ -10,6 +10,9 @@
     color: #FFF;
     border-right: 0.4rem solid #151111;
     text-align: center;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    word-break: break-word;
 }
 
 .correct {
@@ -40,7 +43,7 @@
 @media (max-width: 800px) {
 
     .ele {
-        font-size: 100%;
+        font-size: 1em;
     }
 
     .country {
