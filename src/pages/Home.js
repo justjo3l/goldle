@@ -35,6 +35,19 @@ export default function Home() {
   const [recommendation, setRecommendation] = useState('');
   const [maxGuesses, setMaxGuesses] = useState(6);
   const [gameEnded, setGameEnded] = useState(false);
+  
+  const handleGameEndStyles = (gameState) => {
+    const title = document.getElementById('title');
+    if (gameState === 'won' || gameState === 'lost') {
+      title.classList.add('on-' + gameState);
+    } else {
+      if (title.classList.contains('on-won')) {
+        title.classList.remove('on-won');
+      } else if (title.classList.contains('on-lost')) {
+        title.classList.remove('on-lost');
+      }
+    }
+  }
 
   // Runs when a valid guess is made.
   const updateGuessState = (newGuessState) => {
@@ -43,8 +56,9 @@ export default function Home() {
     if (newGuessState.gameState) {
       setState(newGuessState.gameState);
       if (newGuessState.gameState === 'won' || newGuessState.gameState === 'lost') {
+        handleGameEndStyles(newGuessState.gameState);
         setTimeout(() => {
-          setGameEnded(true)
+          setGameEnded(true);
         }, 2000);
       }
     }
@@ -86,6 +100,7 @@ export default function Home() {
       i += 1;
       rowNode = document.getElementById('r-' + i.toString());
     }
+    handleGameEndStyles();
   };
 
   // Runs when the start button is clicked.
