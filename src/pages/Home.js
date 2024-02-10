@@ -34,6 +34,7 @@ export default function Home() {
   const [activeRow, setActiveRow] = useState(null);
   const [recommendation, setRecommendation] = useState('');
   const [maxGuesses, setMaxGuesses] = useState(6);
+  const [gameEnded, setGameEnded] = useState(false);
 
   // Runs when a valid guess is made.
   const updateGuessState = (newGuessState) => {
@@ -41,6 +42,11 @@ export default function Home() {
     setGuessStates([...guessStates, newGuessState.guessState]);
     if (newGuessState.gameState) {
       setState(newGuessState.gameState);
+      if (newGuessState.gameState === 'won' || newGuessState.gameState === 'lost') {
+        setTimeout(() => {
+          setGameEnded(true)
+        }, 2000);
+      }
     }
   };
 
@@ -70,6 +76,7 @@ export default function Home() {
   const resetGame = () => {
     globalGoldle = goldle;
     setGuessStates([]);
+    setGameEnded(false);
     let i = 1;
     let rowNode = document.getElementById('r-' + i.toString());
     while (rowNode && rowNode.hasChildNodes()) {
@@ -149,8 +156,8 @@ export default function Home() {
           <span onClick={recommendationClick} id='recommendation-name'>{recommendation}</span>
           ?
         </div>}
-        {state === 'won' && <WinPopup state={state === 'won'} goldle={goldle}/>}
-        {state === 'lost' && <LosePopup state={state === 'lost'} goldle={goldle}/>}
+        {state === 'won' && <WinPopup state={gameEnded} goldle={goldle}/>}
+        {state === 'lost' && <LosePopup state={gameEnded} goldle={goldle}/>}
         {state !== 'inactive' &&
                 <div id='guess-grid'>
                   <div className='header row' id="r-0">
@@ -164,7 +171,7 @@ export default function Home() {
                   })}
                 </div>
         }
-        {(state === 'won' || state === 'lost') && <PlayButton text='play again' onClick={handleStartClick} id='play-again-button' />}
+        {gameEnded && <PlayButton text='play again' onClick={handleStartClick} id='play-again-button' />}
       </main>
     </div>
   );
