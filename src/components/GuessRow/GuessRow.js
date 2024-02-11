@@ -24,10 +24,10 @@ export default function GuessRow(props) {
 
   return (
     <div className='row' id={'row-' + numGuesses.toString()}>
-        <GuessElement guess={guessState.name} id={idPrefix + '-name'} guessKey='name' />
-        <GuessElement guess={guessState.degree} id={idPrefix + '-degree'} guessKey='degree' />
-        <GuessElement guess={guessState.country} id={idPrefix + '-country'} guessKey='country' />
-        <GuessElement guess={guessState.floor} id={idPrefix + '-floor'} guessKey='floor' />
+      <GuessElement guess={guessState.name} id={idPrefix + '-name'} guessKey='name' />
+      <GuessElement guess={guessState.degree} id={idPrefix + '-degree'} guessKey='degree' />
+      <GuessElement guess={guessState.country} id={idPrefix + '-country'} guessKey='country' />
+      <GuessElement guess={guessState.floor} id={idPrefix + '-floor'} guessKey='floor' />
     </div>
   );
 }
