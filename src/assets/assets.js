@@ -35,7 +35,7 @@ export const goldleGators = [{'name': 'AJ', 'degree': 'International Studies / J
   {'name': 'Rosanne Lee', 'degree': 'Design / Media', 'room': '205', 'country': 'Hong Kong'},
   {'name': 'Inika Weber', 'degree': 'Renewable Energy Engineering', 'room': '209', 'country': 'Australia'},
   {'name': 'Adam Csontos', 'degree': 'Electrical Engineering', 'room': '210', 'country': 'Australia'},
-  {'name': 'ElizA Carniel', 'degree': 'Medicine', 'room': '212', 'country': 'Australia'},
+  {'name': 'Elize Carniel', 'degree': 'Medicine', 'room': '212', 'country': 'Australia'},
   {'name': 'Jackson Hoey', 'degree': 'Commerce', 'room': '214', 'country': 'Australia'},
   {'name': 'James Kipps', 'degree': 'Criminology & Criminal Justice', 'room': '215', 'country': 'Australia'},
   {'name': 'Remy Luculano', 'degree': 'Media / Arts', 'room': '216', 'country': 'Australia'},
