@@ -52,20 +52,25 @@ export default function GuessElement(props) {
 
   const getValue = (guessVal) => {
     if (key.includes('country')) {
-      return getCountryEmoji(guessVal.value);
+      return getCountryEmoji(guessVal.value) ?? 'N/A';
     } else {
       return guessVal.value;
     }
   };
 
+  const getDelay = () => {
+    return ['name', 'degree', 'country', 'floor'].indexOf(key) * 0.2;
+  };
+
   return (
     <div className={`ele ${getStyles(guess)} ${getKeyStyles()}`} id={id} onClick={flip}>
+      <div className='hide-box on-reveal' id={id + '-hide'} style={{'animationDelay' : getDelay() + "s"}}></div>
       {
-            flipState ?
-            (<div className='hint'>
-              {guess.hint}
-            </div>) :
-            getValue(guess)
+        flipState ?
+        (<div className='hint'>
+          {guess.hint}
+        </div>) :
+        getValue(guess)
       }
     </div>
   );

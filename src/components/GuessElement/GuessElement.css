@@ -1,5 +1,7 @@
 .ele {
     display: flex;
+    position: relative;
+    z-index: 1;
     justify-content: center;
     align-items: center;
     font-family: 'Inter';
@@ -56,5 +58,32 @@
 
     .hint {
         font-size: 0.5rem;
+    }
+}
+
+.hide-box {
+    display: none;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    z-index: 2;
+    background-color: #151111;
+    bottom: 0;
+}
+
+.on-reveal {
+    display: block;
+    animation: reveal 1s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes reveal {
+    0% {
+        display: block;
+        height: 100%;
+    }
+    100% {
+        display: none;
+        height: 0;
     }
 }
