@@ -23,6 +23,14 @@ export default function GuessBar(props) {
   const onError = props.onError;
   const id = props.id || '';
 
+  const handleError = () => {
+    const guessBar = document.getElementById('guess-bar');
+    guessBar.classList.add('on-error');
+    setTimeout(() => {
+      guessBar.classList.remove('on-error');
+    }, 550);
+  }
+
   const [value, setValue] = useState(props.value || '');
 
   const handleSubmit = (e) => {
@@ -33,6 +41,7 @@ export default function GuessBar(props) {
         onGuess(newGuessState);
       } else {
         onError(newGuessState);
+        handleError();
       }
     }
   };
