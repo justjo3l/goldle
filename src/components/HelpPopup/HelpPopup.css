@@ -1,5 +1,7 @@
 #help-modal {
     padding: 0 1rem;
+    color: #FFFFFF;
+    text-align: center;
 }
 
 #modal-header {
@@ -11,14 +13,14 @@
     padding: 1rem 0;
 }
 
-#modal-content {
+#help-modal-content {
     padding: 0 0 1rem 0;
+    margin: 0;
 }
 
 .modal-content-title {
     font-size: 3rem;
     margin: 0rem;
-    color: #FFFFFF;
 }
 
 .modal-content-main-text {
@@ -27,7 +29,7 @@
     font-weight: normal;
 }
 
-#modal-content p {
+#help-modal-content p {
     font-size: 1.2rem;
     margin: 0.8rem;
 }
@@ -50,7 +52,7 @@
         font-weight: normal;
     }
 
-    #modal-content p {
+    #help-modal-content p {
         font-size: 0.8rem;
         margin: 0.5rem;
     }

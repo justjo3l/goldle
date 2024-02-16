@@ -188,7 +188,7 @@ export default function Home() {
                 </div>
         }
         {gameEnded && <PlayButton text='play again' onClick={handleStartClick} id='play-again-button' />}
-        <HelpButton />
+        {!gameEnded && <section id='help-section'><HelpButton /></section>}
       </main>
     </div>
   );

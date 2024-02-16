@@ -18,7 +18,7 @@ export default function HelpButton() {
 
   return (
     <div>
-      <img src={helpIcon} alt="Help" id="help-button" onClick={() => setHelpClicked(!helpClicked)}/>
+      <img src={helpIcon} alt="Help" className="help-button" onClick={() => setHelpClicked(!helpClicked)}/>
       {helpClicked &&
       <HelpContext.Provider value={setHelpClicked}>
         <HelpPopup />

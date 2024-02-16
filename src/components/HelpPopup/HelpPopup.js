@@ -48,7 +48,7 @@ export default function HelpPopup() {
                 &times;
               </button>
             </div>
-            <div id='modal-content'>
+            <div id='help-modal-content'>
               <h6 className='modal-content-main-text'>The objective of the game is to guess the <b>mystery gator</b> by guessing gators across Goldie!</h6>
               <p>If you guess a degree in the same faculty as the mystery gator, it will be yellow.</p>
               <img src={degreeExample} alt='Same Faculty Degree Example' className='modal-content-example-image' />
