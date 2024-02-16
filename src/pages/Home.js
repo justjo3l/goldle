@@ -12,6 +12,7 @@ import LosePopup from '../components/LosePopup/LosePopup.js';
 import GuessBar from '../components/GuessBar/GuessBar.js';
 import GuessRow from '../components/GuessRow/GuessRow.js';
 import PlayButton from '../components/PlayButton/PlayButton.js';
+import HelpButton from 'components/HelpButton/HelpButton';
 
 let globalGoldle;
 
@@ -187,6 +188,7 @@ export default function Home() {
                 </div>
         }
         {gameEnded && <PlayButton text='play again' onClick={handleStartClick} id='play-again-button' />}
+        {!gameEnded && <section id='help-section'><HelpButton /></section>}
       </main>
     </div>
   );

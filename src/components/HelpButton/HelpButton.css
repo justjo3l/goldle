@@ -1,0 +1,13 @@
+.help-button {
+    width: 80px;
+}
+
+.help-button:hover {
+    cursor: pointer;
+}
+
+@media (max-width: 800px) {
+    .help-button {
+        width: 60px;
+    }
+}
