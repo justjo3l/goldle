@@ -199,6 +199,14 @@ describe('testing checkDegree() in GoldleRunCrew', () => {
             hint: 'The gator is not from the Faculty of Arts, Design and Architecture'
         });
     });
+
+    test('checkDegree() should return incorrect if both double degrees are incorrect and not N/A', () => {
+        expect(runCrew.checkDegree("Media / Commerce")).toStrictEqual({
+            state: 'incorrect',
+            value: 'Media / Commerce',
+            hint: 'The gator is not from the Faculty of Arts, Design and Architecture or the UNSW Business School'
+        });
+    });
 });
 
 describe('testing checkFloor() in Goldle', () => {
