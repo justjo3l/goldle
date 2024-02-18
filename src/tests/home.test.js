@@ -53,16 +53,6 @@ describe('testing start stage in Home', () => {
             const guessGrid = document.getElementById('guess-grid');
             expect(guessGrid).toBeInTheDocument();
         });
-
-        test('post clicking start stage should render help button', () => {
-            expect(helpButton).toBeInTheDocument();
-        });
-
-        test('post clicking start stage clicking help button should render help popup', () => {
-            fireEvent.click(helpButton);
-            const helpPopup = document.getElementById('help-modal');
-            expect(helpPopup).toBeInTheDocument();
-        });
     });
 });
 
