@@ -75,6 +75,10 @@ describe('testing getFaculties() in GoldleRunCrew', () => {
         expect(runCrew.getFaculties('John Doe').length).toStrictEqual(0);
         expect(runCrew.getFaculties('FakeMedia / FakeComputer Engineering').length).toStrictEqual(0);
     });
+
+    test('getFaculties() should return unique list if degrees are in the same faculty', () => {
+        expect(runCrew.getFaculties('Quantum Engineering / Computer Science')).toStrictEqual(["Faculty of Engineering"]);
+    });
 });
 
 describe('testing getRecommendations() in GoldleRunCrew', () => {
