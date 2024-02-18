@@ -4,8 +4,8 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import Home, { getGoldle } from 'pages/Home.js';
 
 import '@testing-library/jest-dom';
-import { describe, test, expect, beforeEach } from '@jest/globals';
-import { wait } from '@testing-library/user-event/dist/utils';
+import { describe, test, expect, beforeEach, jest } from '@jest/globals';
+import { act } from 'react-dom/test-utils';
 
 describe('testing start stage in Home', () => {
 
@@ -106,23 +106,28 @@ describe('testing guess-grid game flow in Home', () => {
 
     test('guess grid should render result row but not the next guess bar on correct guess', () => {
         let guessBar = document.getElementById('guess-bar');
+        jest.useFakeTimers();
         fireEvent.change(guessBar, {target: {value: 'Joel Jose'}});
         fireEvent.keyDown(guessBar, {key: 'Enter', code: 'Enter'});
         const resultRow = document.getElementById('row-1');
         expect(resultRow).toBeInTheDocument();
         guessBar = document.getElementById('bar-2');
         expect(guessBar).not.toBeInTheDocument();
-        wait(3000).then(() => {
-            const resultPopup = document.getElementById('win-modal');
-            expect(resultPopup).toHaveTextContent('Nice Work!');
-            expect(resultPopup).toHaveTextContent(runCrew.getGuessGator().name);
-            const playAgainButton = screen.getByText(/play again/i);
-            expect(playAgainButton).toBeInTheDocument();
-        });
+        act(() => {
+            jest.runAllTimers();
+        
+        })
+        const resultPopup = document.getElementById('win-modal');
+        expect(resultPopup).toHaveTextContent('Nice Work!');
+        expect(resultPopup).toHaveTextContent(runCrew.getGuessGator().name);
+        const playAgainButton = screen.getByText(/play again/i);
+        expect(playAgainButton).toBeInTheDocument();
+        jest.useRealTimers();
     });
 
     test('guess grid should render result row for each failed guess but not the guess bar after final guess is made', () => {
         let guessBar;
+        jest.useFakeTimers();
         for (let i = 0; i < 6; i++) {
             const guessText = startButton = screen.getByText(`${i + 1}/6`);
             expect(guessText).toBeInTheDocument();
@@ -134,13 +139,15 @@ describe('testing guess-grid game flow in Home', () => {
         }
         guessBar = document.getElementById('guess-bar');
         expect(guessBar).not.toBeInTheDocument();
-        wait(3000).then(() => {
-            const resultPopup = document.getElementById('lose-modal');
-            expect(resultPopup).toHaveTextContent('Better luck next time!');
-            expect(resultPopup).toHaveTextContent(runCrew.getGuessGator().name);
-            const playAgainButton = screen.getByText(/play again/i);
-            expect(playAgainButton).toBeInTheDocument();
+        act(() => {
+            jest.runAllTimers();
         });
+        const resultPopup = document.getElementById('lose-modal');
+        expect(resultPopup).toHaveTextContent('Better luck next time!');
+        expect(resultPopup).toHaveTextContent(runCrew.getGuessGator().name);
+        const playAgainButton = screen.getByText(/play again/i);
+        expect(playAgainButton).toBeInTheDocument();
+        jest.useRealTimers();
     });
 
     test('guess grid result row contents should be accurate if a guess is made', () => {
@@ -163,33 +170,39 @@ describe('testing guess-grid game flow in Home', () => {
 
     test('guess grid should start game again if won and play again button is clicked', () => {
         let guessBar = document.getElementById('guess-bar');
+        jest.useFakeTimers();
         fireEvent.change(guessBar, {target: {value: 'Joel Jose'}});
         fireEvent.keyDown(guessBar, {key: 'Enter', code: 'Enter'});
-        wait(3000).then(() => {
-            const playAgainButton = screen.getByText(/play again/i);
-            fireEvent.click(playAgainButton);
-            guessBar = document.getElementById('guess-bar');
-            expect(guessBar).toBeInTheDocument();
+        act(() => {
+            jest.runAllTimers();
         });
+        const playAgainButton = screen.getByText(/play again/i);
+        fireEvent.click(playAgainButton);
+        guessBar = document.getElementById('guess-bar');
+        expect(guessBar).toBeInTheDocument();
+        jest.useRealTimers();
     });
 
     test('guess grid should start game again if lost and play again button is clicked', () => {
         let guessBar;
+        jest.useFakeTimers();
         for (let i = 0; i < 6; i++) {
             guessBar = document.getElementById('guess-bar');
             fireEvent.change(guessBar, {target: {value: 'Amber Chan'}});
             fireEvent.keyDown(guessBar, {key: 'Enter', code: 'Enter'});
         }
-        wait(3000).then(() => {
-            const playAgainButton = screen.getByText(/play again/i);
-            fireEvent.click(playAgainButton);
-            guessBar = document.getElementById('guess-bar');
-            expect(guessBar).toBeInTheDocument();
-            for (let i = 2; i <= 6; i++) {
-                let row = document.getElementById('r-' + i.toString());
-                expect(row).toHaveTextContent('');
-            }
+        act(() => {
+            jest.runAllTimers();
         });
+        const playAgainButton = screen.getByText(/play again/i);
+        fireEvent.click(playAgainButton);
+        guessBar = document.getElementById('guess-bar');
+        expect(guessBar).toBeInTheDocument();
+        for (let i = 2; i <= 6; i++) {
+            let row = document.getElementById('r-' + i.toString());
+            expect(row).toHaveTextContent('');
+        }
+        jest.useRealTimers();
     });
 });
 
