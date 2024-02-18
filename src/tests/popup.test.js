@@ -2,7 +2,7 @@ import React from 'react';
 
 import WinPopup from "components/WinPopup/WinPopup.js";
 import LosePopup from "components/LosePopup/LosePopup.js";
-import HelpPopup from '../components/HelpPopup/HelpPopup';
+import HelpPopup from '../components/HelpPopup/HelpPopup.js';
 
 import '@testing-library/jest-dom'
 import { describe, test, expect } from '@jest/globals';
