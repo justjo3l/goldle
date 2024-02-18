@@ -10,15 +10,27 @@ import { wait } from '@testing-library/user-event/dist/utils';
 describe('testing start stage in Home', () => {
 
     let startButton;
+    let helpButton;
 
     beforeEach(() => {
         render(<Home />);
         startButton = screen.getByText(/start/i);
+        helpButton = screen.getByAltText(/help/i);
     });
 
     describe('testing pre-game start screen', () => {
         test('start stage should render start button', () => {
             expect(startButton).toBeInTheDocument();
+        });
+
+        test('start stage should render help button', () => {
+            expect(helpButton).toBeInTheDocument();
+        });
+
+        test('clicking help button should render help popup', () => {
+            fireEvent.click(helpButton);
+            const helpPopup = document.getElementById('help-modal');
+            expect(helpPopup).toBeInTheDocument();
         });
     });
 
@@ -40,6 +52,16 @@ describe('testing start stage in Home', () => {
         test('start stage should render main guess grid', () => {
             const guessGrid = document.getElementById('guess-grid');
             expect(guessGrid).toBeInTheDocument();
+        });
+
+        test('post clicking start stage should render help button', () => {
+            expect(helpButton).toBeInTheDocument();
+        });
+
+        test('post clicking start stage clicking help button should render help popup', () => {
+            fireEvent.click(helpButton);
+            const helpPopup = document.getElementById('help-modal');
+            expect(helpPopup).toBeInTheDocument();
         });
     });
 });
