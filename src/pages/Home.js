@@ -55,13 +55,11 @@ export default function Home() {
     setRecommendation('');
     setGuessStates([...guessStates, newGuessState.guessState]);
     if (newGuessState.gameState) {
-      setState(newGuessState.gameState);
-      if (newGuessState.gameState === 'won' || newGuessState.gameState === 'lost') {
-        handleGameEndStyles(newGuessState.gameState);
-        setTimeout(() => {
-          setGameEnded(true);
-        }, 2000);
-      }
+    setState(newGuessState.gameState);
+    handleGameEndStyles(newGuessState.gameState);
+    setTimeout(() => {
+      setGameEnded(true);
+    }, 2000);
     }
   };
 

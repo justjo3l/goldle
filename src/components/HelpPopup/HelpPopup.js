@@ -21,10 +21,6 @@ export default function HelpPopup() {
 
   const setHelpClicked = useContext(HelpContext);
 
-  const updateHelpClicked = () => {
-    setHelpClicked(false);
-  };
-
   return (
     <Popup open={true}
       contentStyle={{
@@ -35,7 +31,7 @@ export default function HelpPopup() {
         width: '90%',
         margin: 'auto'
       }}
-      modal nested onClose={updateHelpClicked}>
+      modal nested onClose={() => setHelpClicked(false)}>
       {
         (close) => (
           <div className='modal' id='help-modal'>

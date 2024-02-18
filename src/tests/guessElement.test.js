@@ -16,8 +16,12 @@ describe('testing GuessElement', () => {
         goldle.startGame();
         goldle.rigGame('Joel Jose');
         const guessState = goldle.guessName('Rosanne Lee').guessState.floor;
-        render(<GuessElement guess={guessState} guessKey='floor' id='test-ele'/>);
-        const guessElement = document.getElementById('test-ele');
+        render(
+            <div id='test-ele'>
+                <GuessElement guess={guessState} guessKey='floor'/>
+            </div>
+        );
+        const guessElement = document.getElementById('test-ele').children[0];
         expect(guessElement).toHaveTextContent('2');
         fireEvent.click(guessElement);
         expect(guessElement).toHaveTextContent('The gator is on a neighbouring floor');
