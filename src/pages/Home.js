@@ -155,7 +155,10 @@ export default function Home() {
       <main>
         <div className='title-bar'>
           <div></div>
-          <h1 id='title'>GOLDLE</h1>
+          <div id='main-title'>
+            <h1 id='title'>GOLDLE</h1>
+            {state === 'inactive' && <p className='version-title'>v1.2.2</p>}
+          </div>
           {state === 'started' && <h3 id='guesses'>{guessStates.length + 1}/{maxGuesses}</h3>}
           {(state === 'won' || state === 'lost') &&
           <h3 id='guesses'>{guessStates.length}/{maxGuesses}</h3>}
@@ -186,7 +189,10 @@ export default function Home() {
                 </div>
         }
         {gameEnded && <PlayButton text='play again' onClick={handleStartClick} id='play-again-button' />}
-        {!gameEnded && <section id='help-section'><HelpButton /></section>}
+        {!gameEnded && <section id='help-section'>
+          <HelpButton />
+          </section>}
+        {state !== 'inactive' && <p id='footer' className='version-title'>Goldle v1.2.2</p>}
       </main>
     </div>
   );
