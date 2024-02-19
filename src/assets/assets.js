@@ -139,5 +139,7 @@ export const goldleFacultyMap = {
   ],
 };
 
+export const goldleVersion = '1.2.2';
+
 
 export default goldleText;

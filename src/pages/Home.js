@@ -14,6 +14,8 @@ import GuessRow from '../components/GuessRow/GuessRow.js';
 import PlayButton from '../components/PlayButton/PlayButton.js';
 import HelpButton from 'components/HelpButton/HelpButton';
 
+import { goldleVersion } from 'assets/assets';
+
 let globalGoldle;
 
 /**
@@ -157,7 +159,7 @@ export default function Home() {
           <div></div>
           <div id='main-title'>
             <h1 id='title'>GOLDLE</h1>
-            {state === 'inactive' && <p className='version-title'>v1.2.2</p>}
+            {state === 'inactive' && <p className='version-title'>v{goldleVersion}</p>}
           </div>
           {state === 'started' && <h3 id='guesses'>{guessStates.length + 1}/{maxGuesses}</h3>}
           {(state === 'won' || state === 'lost') &&
@@ -192,7 +194,7 @@ export default function Home() {
         {!gameEnded && <section id='help-section'>
           <HelpButton />
           </section>}
-        {state !== 'inactive' && <p id='footer' className='version-title'>Goldle v1.2.2</p>}
+        {state !== 'inactive' && <p id='footer' className='version-title'>Goldle v{goldleVersion}</p>}
       </main>
     </div>
   );
