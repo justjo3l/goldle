@@ -42,7 +42,7 @@
 }
 
 #home > main {
-    flex: 1;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -134,10 +134,7 @@
 }
 
 #help-section {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    margin: 0 0 1rem 1rem;
+    margin: 1rem 1rem;
 }
 
 @media (max-width: 800px) {
@@ -176,10 +173,5 @@
         font-size: 120%;
         max-width: 40%;
         max-height: 3rem;
-    }
-
-    #help-section {
-        left: auto;
-        position: fixed;
     }
 }
