@@ -106,7 +106,6 @@ export default function Home() {
   const handleStartClick = () => {
     resetGame();
     goldle.startGame();
-    goldle.rigGame("Blair Dowling");
     setMaxGuesses(goldle.numGuesses);
     setState(goldle.getState());
   };
