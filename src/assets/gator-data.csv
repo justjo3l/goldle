@@ -32,20 +32,20 @@ Index,Name,Degree,Room,Country
 31,Emily Loong,Biotechnology,218,Malaysia
 32,Caitlin Blandford,Arts / Law,219,Australia
 33,James Higginson,Civil Engineering,222,New Zealand
-34,Romduol Bice,N/A,223,Cambodia
+34,Romduol Bice,Arts / Politics,223,Cambodia
 35,Henry Darke,Actuarial Studies / Commerce,225,Australia
 36,Ema Uno,Arts,226,Japan
 37,Charlie Makeham,Computer Science / Engineering,227,Australia
 38,Dinara Jayarathna,Information Systems,228,Australia
 39,Ishaan Nandurkar,Computer Science / Quantum Engineering,230,Australia
 40,Keven Maharaj,Mechanical Engineering,231,Canada
-41,Blair Dowling,N/A,302,Australia
+41,Blair Dowling,Advanced Science / Chemistry,302,Australia
 42,Natalie Ong,Medicine,303,Australia
 43,Priyash Shah,Data Science,307,Indonesia
-44,Maya Mathur,Arts / Law,308,Thailand
+44,Maya Mathur,Arts / Law,308,Hong Kong
 45,Bronte Winship,Arts,309,Australia
 46,Chris Harsdorf,Mechatronics Engineering,310,Australia
-47,Esha Tripathi,Computer Engineering,311,N/A
+47,Esha Tripathi,Computer Engineering,311,India
 48,Tash Lai,Law / Media,313,Australia
 49,Leah Grace Gath,Finance,314,United Kingdom
 50,Sattvik Narayan,Software Engineering,315,India
@@ -60,10 +60,10 @@ Index,Name,Degree,Room,Country
 59,Joel Jose,Computer Engineering,326,United Arab Emirates
 60,Nishan Mahesh,Economics / Science,328,India
 61,Emily Huo,International Public Health,329,New Zealand
-62,Risha Cheerala,Commerce,402,N/A
+62,Risha Cheerala,Commerce,402,New Zealand
 63,Ella Robinson,Arts / Law,403,Australia
 64,Louisa Reid,Media,404,United Kingdom
-65,Christopher Henderson,N/A,405,Australia
+65,Christopher Henderson,Environmental Engineering,405,Australia
 66,Justin Soh,Law / Psychological Science,406,Singapore
 67,Eliza O'Connell,Animation,407,Australia
 68,Ryan Khoo,Data Science,408,Malaysia
@@ -95,7 +95,7 @@ Index,Name,Degree,Room,Country
 94,James Rajic-Knight,Finance,506,Singapore
 95,Ashleigh Ang,Psychological Science,507,Singapore
 96,Gurbani Rajpal,Physics / Software Engineering,510,Australia
-97,Ellen Watkin,N/A,511,Australia
+97,Ellen Watkin,Medical Science,511,Australia
 98,Justin Cheung,Law / Science,512,Hong Kong
 99,Kyle Wilson,Finance,513,Australia
 100,Marta Zumaquero,Commerce / Engineering,514,Spain
