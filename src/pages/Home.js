@@ -38,6 +38,15 @@ export default function Home() {
   const [recommendation, setRecommendation] = useState('');
   const [maxGuesses, setMaxGuesses] = useState(6);
   const [gameEnded, setGameEnded] = useState(false);
+  const [activeWidth, setActiveWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleResize = () => setActiveWidth(window.innerWidth);
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  });
   
   const handleGameEndStyles = (gameState) => {
     const title = document.getElementById('title');
@@ -180,10 +189,10 @@ export default function Home() {
         {state !== 'inactive' &&
                 <div id='guess-grid'>
                   <div className='header row' id="r-0">
-                    <div className='ele'>GATOR</div>
-                    <div className='ele'>DEGREE</div>
-                    <div className='ele'>COUNTRY</div>
-                    <div className='ele'>FLOOR</div>
+                    <div className='header-ele'>GATOR</div>
+                    <div className='header-ele'>DEGREE</div>
+                    <div className='header-ele emoji-header'>{activeWidth > 1000 ? "COUNTRY" : "🌏"}</div>
+                    <div className='header-ele emoji-header'>{activeWidth > 1000 ? "FLOOR" : "🚪"}</div>
                   </div>
                   {Array.from(Array(maxGuesses).keys()).map((num) => {
                     return <div className='row-container' id={`r-${num + 1}`} key={num}></div>;

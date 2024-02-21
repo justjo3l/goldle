@@ -71,6 +71,16 @@ describe('testing guess-grid game flow in Home', () => {
         runCrew = goldle.runCrew;
     });
 
+    test('guess grid header is responsive', () => {
+        const guessHeader = document.getElementById('r-0');
+        expect(guessHeader).toHaveTextContent('COUNTRY');
+        expect(guessHeader).toHaveTextContent('FLOOR');
+        window.innerWidth = 700;
+        fireEvent(window, new Event('resize'));
+        expect(guessHeader).toHaveTextContent('🌏');
+        expect(guessHeader).toHaveTextContent('🚪');
+    });
+
     test('guess grid has first guess bar rendered', () => {
         const guessBar = document.getElementById('bar-1');
         expect(guessBar).toBeInTheDocument();
