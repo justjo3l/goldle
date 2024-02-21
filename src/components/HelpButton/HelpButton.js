@@ -1,12 +1,12 @@
 import './HelpButton.css';
 
-import React, { useState, createContext } from 'react';
+import React, { useState } from 'react';
 
 import helpIcon from '../../assets/icons/help-icon.svg';
 
 import HelpPopup from '../HelpPopup/HelpPopup';
 
-export const HelpContext = createContext();
+import HelpContext from '../../utils/context';
 
 /**
  * @return {JSX.Element}

@@ -2,7 +2,6 @@ import React from 'react';
 
 import WinPopup from "components/WinPopup/WinPopup.js";
 import LosePopup from "components/LosePopup/LosePopup.js";
-import HelpPopup from '../components/HelpPopup/HelpPopup.js';
 
 import '@testing-library/jest-dom'
 import { describe, test, expect } from '@jest/globals';
@@ -10,6 +9,8 @@ import { describe, test, expect } from '@jest/globals';
 import { render, fireEvent } from '@testing-library/react';
 
 import Goldle from "backend/goldle.js";
+
+import Home from 'pages/Home.js';
 
 describe('testing Popup', () => {
 
@@ -36,10 +37,15 @@ describe('testing Popup', () => {
     test('HelpPopup should close when close button is clicked', () => {
         const goldle = new Goldle();
         goldle.startGame();
-        render(<HelpPopup />);
+        render(<Home />);
+        const helpButton = document.getElementsByClassName('help-button')[0];
+        fireEvent.click(helpButton);
+        const helpModal = document.getElementById('help-modal');
         const closeButton = document.getElementById('close-button');
+        expect(helpModal).toBeInTheDocument();
         expect(closeButton).toBeInTheDocument();
         fireEvent.click(closeButton);
+        expect(helpModal).not.toBeInTheDocument();
         expect(closeButton).not.toBeInTheDocument();
     });
 });
