@@ -112,14 +112,14 @@ class GoldleRunCrew {
   /**
    * @param {string} degree
    * @return {Array} The faculties.
-   * @description Gets the faculties of a degree.
+   * @description Gets the unique faculties of a degree.
    */
   getFaculties = function(degree) {
     const faculties = [];
 
     for (let i = 0; i < degree.split('/').length; i++) {
       const faculty = getFaculty(degree.split('/')[i].trim(), this.facultyMap);
-      if (faculty !== null) {
+      if (faculty !== null && !faculties.includes(faculty)) {
         faculties.push(faculty);
       }
     }

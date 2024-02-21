@@ -14,6 +14,8 @@ import GuessRow from '../components/GuessRow/GuessRow.js';
 import PlayButton from '../components/PlayButton/PlayButton.js';
 import HelpButton from 'components/HelpButton/HelpButton';
 
+import { goldleVersion } from 'assets/assets';
+
 let globalGoldle;
 
 /**
@@ -36,6 +38,15 @@ export default function Home() {
   const [recommendation, setRecommendation] = useState('');
   const [maxGuesses, setMaxGuesses] = useState(6);
   const [gameEnded, setGameEnded] = useState(false);
+  const [activeWidth, setActiveWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleResize = () => setActiveWidth(window.innerWidth);
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  });
   
   const handleGameEndStyles = (gameState) => {
     const title = document.getElementById('title');
@@ -55,13 +66,11 @@ export default function Home() {
     setRecommendation('');
     setGuessStates([...guessStates, newGuessState.guessState]);
     if (newGuessState.gameState) {
-      setState(newGuessState.gameState);
-      if (newGuessState.gameState === 'won' || newGuessState.gameState === 'lost') {
-        handleGameEndStyles(newGuessState.gameState);
-        setTimeout(() => {
-          setGameEnded(true);
-        }, 2000);
-      }
+    setState(newGuessState.gameState);
+    handleGameEndStyles(newGuessState.gameState);
+    setTimeout(() => {
+      setGameEnded(true);
+    }, 2000);
     }
   };
 
@@ -157,7 +166,10 @@ export default function Home() {
       <main>
         <div className='title-bar'>
           <div></div>
-          <h1 id='title'>GOLDLE</h1>
+          <div id='main-title'>
+            <h1 id='title'>GOLDLE</h1>
+            {state === 'inactive' && <p className='version-title'>v{goldleVersion}</p>}
+          </div>
           {state === 'started' && <h3 id='guesses'>{guessStates.length + 1}/{maxGuesses}</h3>}
           {(state === 'won' || state === 'lost') &&
           <h3 id='guesses'>{guessStates.length}/{maxGuesses}</h3>}
@@ -177,10 +189,10 @@ export default function Home() {
         {state !== 'inactive' &&
                 <div id='guess-grid'>
                   <div className='header row' id="r-0">
-                    <div className='ele'>GATOR</div>
-                    <div className='ele'>DEGREE</div>
-                    <div className='ele'>COUNTRY</div>
-                    <div className='ele'>FLOOR</div>
+                    <div className='header-ele'>GATOR</div>
+                    <div className='header-ele'>DEGREE</div>
+                    <div className='header-ele emoji-header'>{activeWidth > 1000 ? "COUNTRY" : "🌏"}</div>
+                    <div className='header-ele emoji-header'>{activeWidth > 1000 ? "FLOOR" : "🚪"}</div>
                   </div>
                   {Array.from(Array(maxGuesses).keys()).map((num) => {
                     return <div className='row-container' id={`r-${num + 1}`} key={num}></div>;
@@ -188,7 +200,10 @@ export default function Home() {
                 </div>
         }
         {gameEnded && <PlayButton text='play again' onClick={handleStartClick} id='play-again-button' />}
-        {!gameEnded && <section id='help-section'><HelpButton /></section>}
+        {!gameEnded && <section id='help-section'>
+          <HelpButton />
+          </section>}
+        {state !== 'inactive' && <p id='footer' className='version-title'>Goldle v{goldleVersion}</p>}
       </main>
     </div>
   );

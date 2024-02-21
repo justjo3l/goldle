@@ -51,8 +51,8 @@ export default function GuessElement(props) {
   };
 
   const getValue = (guessVal) => {
-    if (key.includes('country')) {
-      return getCountryEmoji(guessVal.value) ?? 'N/A';
+    if (key.includes('country') && getCountryEmoji(guessVal.value)) {
+      return getCountryEmoji(guessVal.value);
     } else {
       return guessVal.value;
     }

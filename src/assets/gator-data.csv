@@ -9,7 +9,7 @@ Index,Name,Degree,Room,Country
 8,Kyra Bhatia,Psychological Science,113,Singapore
 9,Abigail Worswick,Software Engineering,114,Australia
 10,Keon Ackerman,Medical Science,116,Australia
-11,Cian Sterling,Science / Arts,119,Australia
+11,Cian Sterling,Arts / Science,119,Australia
 12,James Nassif,Commerce / Science,120,Australia
 13,Ethan Andreazza,Software Engineering,121,Australia
 14,Johnnie Parris,Mechatronics Engineering,122,New Zealand
@@ -17,35 +17,35 @@ Index,Name,Degree,Room,Country
 16,Chameen Dayajeewa,Commerce / Information Systems,126,Australia
 17,Jess Hunter,Civil Engineering,127,New Zealand
 18,Sophie Friend,Medicine,128,Australia
-19,Jess Fleming,Media / Arts,129,Australia
+19,Jess Fleming,Arts / Media,129,Australia
 20,Spencer Wong,Engineering,130,New Zealand
 21,Isabella Gooch,Psychological Science,131,Australia
 22,Sharavan Kumar,Software Engineering,203,United Arab Emirates
-23,Aidan Hargraves,Mechatronics Engineering / Computer Science,204,Australia
+23,Aidan Hargraves,Computer Science / Mechatronics Engineering,204,Australia
 24,Rosanne Lee,Design / Media,205,Hong Kong
 25,Inika Weber,Renewable Energy Engineering,209,Australia
 26,Adam Csontos,Electrical Engineering,210,Australia
 27,Eliza Carniel,Medicine,212,Australia
 28,Jackson Hoey,Commerce,214,Australia
 29,James Kipps,Criminology & Criminal Justice,215,Australia
-30,Remy Luculano,Media / Arts,216,Australia
+30,Remy Luculano,Arts / Media,216,Australia
 31,Emily Loong,Biotechnology,218,Malaysia
-32,Caitlin Blandford,Law / Arts,219,Australia
+32,Caitlin Blandford,Arts / Law,219,Australia
 33,James Higginson,Civil Engineering,222,New Zealand
-34,Romduol Bice,N/A,223,Cambodia
+34,Romduol Bice,Arts / Politics,223,Cambodia
 35,Henry Darke,Actuarial Studies / Commerce,225,Australia
 36,Ema Uno,Arts,226,Japan
-37,Charlie Makeham,Engineering / Computer Science,227,Australia
+37,Charlie Makeham,Computer Science / Engineering,227,Australia
 38,Dinara Jayarathna,Information Systems,228,Australia
-39,Ishaan Nandurkar,Quantum Engineering / Computer Science,230,Australia
+39,Ishaan Nandurkar,Computer Science / Quantum Engineering,230,Australia
 40,Keven Maharaj,Mechanical Engineering,231,Canada
-41,Blair Dowling,N/A,302,Australia
+41,Blair Dowling,Advanced Science / Chemistry,302,Australia
 42,Natalie Ong,Medicine,303,Australia
 43,Priyash Shah,Data Science,307,Indonesia
-44,Maya Mathur,Law / Arts,308,Thailand
+44,Maya Mathur,Arts / Law,308,Hong Kong
 45,Bronte Winship,Arts,309,Australia
 46,Chris Harsdorf,Mechatronics Engineering,310,Australia
-47,Esha Tripathi,Computer Engineering,311,N/A
+47,Esha Tripathi,Computer Engineering,311,India
 48,Tash Lai,Law / Media,313,Australia
 49,Leah Grace Gath,Finance,314,United Kingdom
 50,Sattvik Narayan,Software Engineering,315,India
@@ -60,17 +60,17 @@ Index,Name,Degree,Room,Country
 59,Joel Jose,Computer Engineering,326,United Arab Emirates
 60,Nishan Mahesh,Economics / Science,328,India
 61,Emily Huo,International Public Health,329,New Zealand
-62,Risha Cheerala,Commerce,402,N/A
-63,Ella Robinson,Law / Arts,403,Australia
+62,Risha Cheerala,Commerce,402,New Zealand
+63,Ella Robinson,Arts / Law,403,Australia
 64,Louisa Reid,Media,404,United Kingdom
-65,Christopher Henderson,N/A,405,Australia
+65,Christopher Henderson,Environmental Engineering,405,Australia
 66,Justin Soh,Law / Psychological Science,406,Singapore
 67,Eliza O'Connell,Animation,407,Australia
 68,Ryan Khoo,Data Science,408,Malaysia
 69,Alyssa Hua,International Public Health,409,Australia
 70,Andrew Listiohadi,Civil Engineering,410,Indonesia
-71,Laura Elaine,Law / Arts,411,Australia
-72,Annie Ming Kowalik,Mechatronics Engineering / Biomedical Engineering,412,Australia
+71,Laura Elaine,Arts / Law,411,Australia
+72,Annie Ming Kowalik,Biomedical Engineering / Mechatronics Engineering,412,Australia
 73,Chenuka Wijayaratne,Construction Management,413,Oman
 74,Leila Hickman,Exercise Physiology,415,Australia
 75,Kong Teepirach,Computer Science,416,Thailand
@@ -91,15 +91,15 @@ Index,Name,Degree,Room,Country
 90,Victoria Smyth-King,Social Sciences,502,Australia
 91,Taehun Kim,Computer Science,503,South Korea
 92,Nicholas Gray,Aerospace Engineering,504,Australia
-93,Jeremy Southwell,Quantum Engineering / Computer Science,505,Australia
+93,Jeremy Southwell,Computer Science / Quantum Engineering,505,Australia
 94,James Rajic-Knight,Finance,506,Singapore
 95,Ashleigh Ang,Psychological Science,507,Singapore
-96,Gurbani Rajpal,Software Engineering / Physics,510,Australia
-97,Ellen Watkin,N/A,511,Australia
+96,Gurbani Rajpal,Physics / Software Engineering,510,Australia
+97,Ellen Watkin,Medical Science,511,Australia
 98,Justin Cheung,Law / Science,512,Hong Kong
 99,Kyle Wilson,Finance,513,Australia
-100,Marta Zumaquero,Engineering / Commerce,514,Spain
-101,Tarun Sathish,Engineering / Computer Science,515,New Zealand
+100,Marta Zumaquero,Commerce / Engineering,514,Spain
+101,Tarun Sathish,Computer Science / Engineering,515,New Zealand
 102,Nick Guo,Actuarial Studies / Computer Science,516,Australia
 103,Mitchell Ellis,Arts,518,Australia
 104,Timothy Davies,Media,519,Australia

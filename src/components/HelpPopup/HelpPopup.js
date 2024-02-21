@@ -6,7 +6,7 @@ import 'reactjs-popup/dist/index.css';
 import 'styles/Popup.css';
 import './HelpPopup.css';
 
-import { HelpContext } from 'components/HelpButton/HelpButton';
+import HelpContext from '../../utils/context';
 
 import degreeExample from 'assets/help-assets/goldle-h-1.png';
 import countryExample from 'assets/help-assets/goldle-h-2.png';
@@ -21,9 +21,9 @@ export default function HelpPopup() {
 
   const setHelpClicked = useContext(HelpContext);
 
-  const updateHelpClicked = () => {
+  const closeModal = () => {
     setHelpClicked(false);
-  };
+  }
 
   return (
     <Popup open={true}
@@ -35,16 +35,16 @@ export default function HelpPopup() {
         width: '90%',
         margin: 'auto'
       }}
-      modal nested onClose={updateHelpClicked}>
+      modal nested onClose={closeModal}>
       {
-        (close) => (
+        () => (
           <div className='modal' id='help-modal'>
             <div id='modal-header'>
               <div></div>
               <div>
                 <h4 className='modal-content-title'>How to Play</h4>
               </div>
-              <button onClick={() => close()} id='close-button'>
+              <button onClick={closeModal} id='close-button'>
                 &times;
               </button>
             </div>

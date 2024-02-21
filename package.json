@@ -19,7 +19,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "jest",
+    "test-coverage": "jest --coverage",
     "eject": "react-scripts eject",
     "lint": "eslint src/**/*.js",
     "lint-fix": "eslint src/**/*.js --fix"
@@ -42,8 +43,29 @@
       "last 1 safari version"
     ]
   },
+  "jest": {
+    "testEnvironment": "jsdom",
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$":
+      "<rootDir>/__mocks__/fileMock.js",
+      "\\.(css|less)$": "<rootDir>/__mocks__/styleMock.js",
+      "src/(.*)": "<rootDir>/src/$1",
+      "assets/(.*)": "<rootDir>/src/assets/$1",
+      "backend/(.*)": "<rootDir>/src/backend/$1",
+      "components/(.*)": "<rootDir>/src/components/$1",
+      "pages/(.*)": "<rootDir>/src/pages/$1",
+      "styles/(.*)": "<rootDir>/src/styles/$1",
+      "tests/(.*)": "<rootDir>/src/tests/$1",
+      "utils/(.*)": "<rootDir>/src/utils/$1"
+    }
+  },
   "devDependencies": {
+    "@babel/preset-env": "^7.23.9",
+    "@babel/preset-react": "^7.23.3",
+    "babel-jest": "^29.7.0",
     "eslint": "^8.56.0",
-    "eslint-plugin-react": "^7.33.2"
+    "eslint-plugin-react": "^7.33.2",
+    "jest": "^27.5.1",
+    "react-test-renderer": "^18.2.0"
   }
 }

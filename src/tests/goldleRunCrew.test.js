@@ -75,6 +75,10 @@ describe('testing getFaculties() in GoldleRunCrew', () => {
         expect(runCrew.getFaculties('John Doe').length).toStrictEqual(0);
         expect(runCrew.getFaculties('FakeMedia / FakeComputer Engineering').length).toStrictEqual(0);
     });
+
+    test('getFaculties() should return unique list if degrees are in the same faculty', () => {
+        expect(runCrew.getFaculties('Quantum Engineering / Computer Science')).toStrictEqual(["Faculty of Engineering"]);
+    });
 });
 
 describe('testing getRecommendations() in GoldleRunCrew', () => {
@@ -193,6 +197,14 @@ describe('testing checkDegree() in GoldleRunCrew', () => {
             state: 'incorrect',
             value: 'Media',
             hint: 'The gator is not from the Faculty of Arts, Design and Architecture'
+        });
+    });
+
+    test('checkDegree() should return incorrect if both double degrees are incorrect and not N/A', () => {
+        expect(runCrew.checkDegree("Media / Commerce")).toStrictEqual({
+            state: 'incorrect',
+            value: 'Media / Commerce',
+            hint: 'The gator is not from the Faculty of Arts, Design and Architecture or the UNSW Business School'
         });
     });
 });
