@@ -41,14 +41,12 @@ export default function Home() {
   const [activeWidth, setActiveWidth] = useState(window.innerWidth);
 
   useEffect(() => {
-    const handleResize = () => {
-      setActiveWidth(window.innerWidth);
-    };
+    const handleResize = () => setActiveWidth(window.innerWidth);
     window.addEventListener('resize', handleResize);
     return () => {
       window.removeEventListener('resize', handleResize);
     };
-  })
+  });
   
   const handleGameEndStyles = (gameState) => {
     const title = document.getElementById('title');
