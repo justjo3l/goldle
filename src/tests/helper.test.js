@@ -1,6 +1,6 @@
 import same, {getFaculty} from 'utils/helper.js';
 
-import { goldleFacultyMap } from 'assets/assets.js';
+import goldleFacultyMap from 'assets/faculty-data.json';
 
 import GoldleRunCrew from 'backend/goldleRunCrew.js';
 

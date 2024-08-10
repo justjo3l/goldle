@@ -1,0 +1,85 @@
+{
+    "dataType": "Map",
+    "value": [
+        [
+            "Faculty of Arts, Design and Architecture",
+            [
+                "international relations",
+                "journalism",
+                "media",
+                "arts",
+                "design",
+                "communications",
+                "animation",
+                "construction management",
+                "social sciences",
+                "politics"
+            ]
+        ],
+        [
+            "Faculty of Engineering",
+            [
+                "quantum engineering",
+                "software engineering",
+                "computer engineering",
+                "computer science",
+                "mechatronics engineering",
+                "civil engineering",
+                "engineering",
+                "renewable energy engineering",
+                "electrical engineering",
+                "mechanical engineering",
+                "biomedical engineering",
+                "mining engineering",
+                "aerospace engineering",
+                "environmental engineering"
+            ]
+        ],
+        [
+            "UNSW Business School",
+            [
+                "commerce",
+                "information systems",
+                "actuarial studies",
+                "finance",
+                "economics"
+            ]
+        ],
+        [
+            "Faculty of Science",
+            [
+                "medical science",
+                "science",
+                "biotechnology",
+                "data science",
+                "advanced mathematics",
+                "psychological science",
+                "physics",
+                "aviation",
+                "advanced science",
+                "chemistry"
+            ]
+        ],
+        [
+            "Faculty of Medicine and Health",
+            [
+                "medicine",
+                "international public health",
+                "exercise physiology"
+            ]
+        ],
+        [
+            "Faculty of Law and Justice",
+            [
+                "criminology & criminal justice",
+                "law"
+            ]
+        ],
+        [
+            "National Institude of Dramatic Art",
+            [
+                "drama"
+            ]
+        ]
+    ]
+}
