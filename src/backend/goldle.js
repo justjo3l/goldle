@@ -2,7 +2,9 @@ import same from 'utils/helper.js';
 
 import GoldleRunCrew from 'backend/goldleRunCrew.js';
 
-const GUESSES = 6;
+import goldleConfig from 'assets/goldle-config.json';
+
+const GUESSES = goldleConfig.numGuesses;
 
 /**
  * @description The Goldle class.
