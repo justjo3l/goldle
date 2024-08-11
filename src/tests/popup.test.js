@@ -12,10 +12,10 @@ import Goldle from "backend/goldle.js";
 
 import Home from 'pages/Home.js';
 
-describe('testing Popup', () => {
+describe('testing Poopup', () => {
 
     test('WinPopup should close when close button is clicked', () => {
-        const goldle = new Goldle();
+        const goldle = new Goldle(true);
         goldle.startGame();
         render(<WinPopup state={true} goldle={goldle} />);
         const closeButton = document.getElementById('close-button');
@@ -25,7 +25,7 @@ describe('testing Popup', () => {
     });
 
     test('LosePopup should close when close button is clicked', () => {
-        const goldle = new Goldle();
+        const goldle = new Goldle(true);
         goldle.startGame();
         render(<LosePopup state={true} goldle={goldle} />);
         const closeButton = document.getElementById('close-button');
@@ -35,7 +35,7 @@ describe('testing Popup', () => {
     });
 
     test('HelpPopup should close when close button is clicked', () => {
-        const goldle = new Goldle();
+        const goldle = new Goldle(true);
         goldle.startGame();
         render(<Home />);
         const helpButton = document.getElementsByClassName('help-button')[0];
