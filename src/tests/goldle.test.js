@@ -7,7 +7,7 @@ describe('testing getState() and startGame() in Goldle', () => {
     let goldle;
 
     beforeEach(() => {
-        goldle = new Goldle();
+        goldle = new Goldle(true);
     });
 
     test('getState() should not return inactive if game has not started', () => {
@@ -30,7 +30,7 @@ describe('testing rigGame() in Goldle', () => {
     let goldle;
 
     beforeEach(() => {
-        goldle = new Goldle();
+        goldle = new Goldle(true);
         goldle.startGame();
     });
 
@@ -47,7 +47,7 @@ describe('testing guessName() in Goldle', () => {
     let goldle;
 
     beforeEach(() => {
-        goldle = new Goldle();
+        goldle = new Goldle(true);
     });
 
     describe('errors', () => {

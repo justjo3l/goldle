@@ -1,6 +1,6 @@
 import {getCountryCode, getCountryData, continents} from 'countries-list';
-
-import {goldleGators, goldleFacultyMap} from 'assets/assets.js';
+import goldleGators from '../assets/gator-data.json';
+import goldleFacultyMap from '../assets/faculty-data.json';
 
 import same, {getFaculty} from 'utils/helper.js';
 
@@ -13,11 +13,12 @@ class GoldleRunCrew {
    * @description Creates a GoldleRunCrew object.
    * @constructor
    */
-  constructor() {
+  constructor(hintsActive) {
     this.gators = [];
     this.gatorNames = [];
     this.facultyMap = new Map();
     this.guessGator = null;
+    this.hintsActive = hintsActive;
   }
 
   // Setup functions
@@ -186,7 +187,7 @@ class GoldleRunCrew {
     return {
       state: state,
       value: guessedName,
-      hint: hint,
+      hint: this.hintsActive ? hint : '',
     };
   };
 
@@ -234,7 +235,7 @@ class GoldleRunCrew {
     return {
       state: state,
       value: guessedDegree,
-      hint: hint,
+      hint: this.hintsActive ? hint : '',
     };
   };
 
@@ -264,7 +265,7 @@ class GoldleRunCrew {
     return {
       state: state,
       value: guessedFloor,
-      hint: hint,
+      hint: this.hintsActive ? hint : '',
     };
   };
 
@@ -298,7 +299,7 @@ class GoldleRunCrew {
     return {
       state: state,
       value: guessedCountry,
-      hint: hint,
+      hint: this.hintsActive ? hint : '',
     };
   };
 }

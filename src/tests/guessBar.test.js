@@ -12,7 +12,7 @@ import Goldle from "backend/goldle.js";
 describe('testing GuessBar', () => {
 
     test('GuessBar should exist without id', () => {
-        const goldle = new Goldle();
+        const goldle = new Goldle(true);
         goldle.startGame();
         goldle.rigGame('Joel Jose');
         render(<GuessBar goldle={goldle} onGuess={() => {}} onError={() => {}} />);
@@ -21,7 +21,7 @@ describe('testing GuessBar', () => {
     });
 
     test('GuessBar should have on-error class and not do anything if error encountered', () => {
-        const goldle = new Goldle();
+        const goldle = new Goldle(true);
         goldle.startGame();
         goldle.rigGame('Joel Jose');
         render(<GuessBar goldle={goldle} onGuess={() => {}} onError={() => {}} />);

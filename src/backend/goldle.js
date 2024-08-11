@@ -2,7 +2,8 @@ import same from 'utils/helper.js';
 
 import GoldleRunCrew from 'backend/goldleRunCrew.js';
 
-const GUESSES = 6;
+import goldleConfig from 'assets/goldle-config.json';
+import testConfig from 'tests/test-config.json';
 
 /**
  * @description The Goldle class.
@@ -13,8 +14,9 @@ class Goldle {
    * @description Creates a Goldle object.
    * @constructor
    */
-  constructor() {
-    this.runCrew = new GoldleRunCrew();
+  constructor(test) {
+    this.config = test ? testConfig : goldleConfig;
+    this.runCrew = new GoldleRunCrew(this.config.hintsActive);
     this.guessStates = [];
     this.numGuesses = 0;
     this.status = 'inactive';
@@ -25,14 +27,13 @@ class Goldle {
    * @return {string} The status of the game.
    * @description Starts the game.
    */
-  startGame = function(numGuesses) {
+  startGame = function() {
     if (same(this.status, 'started')) {
       return this.status;
     }
-
     this.runCrew.setupGators('gator-data.csv', 'faculty-data.csv');
     this.runCrew.setupGuessGator();
-    this.numGuesses = numGuesses || GUESSES;
+    this.numGuesses = this.config.numGuesses;
     this.status = 'started';
     return this.status;
   };
