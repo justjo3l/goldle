@@ -60,10 +60,10 @@ class Goldle {
     }
     goldle.numGuesses -= 1;
     const newGuessState = {};
-    newGuessState.name = goldle.runCrew.checkName(guessedGator.name);
-    newGuessState.degree = goldle.runCrew.checkDegree(guessedGator.degree);
-    newGuessState.floor = goldle.runCrew.checkFloor(guessedGator.room[0]);
-    newGuessState.country = goldle.runCrew.checkCountry(guessedGator.country);
+    newGuessState.name = goldle.runCrew.checkName(guessedGator.name.trim());
+    newGuessState.degree = goldle.runCrew.checkDegree(guessedGator.degree.trim());
+    newGuessState.floor = goldle.runCrew.checkFloor(guessedGator.room[0].trim());
+    newGuessState.country = goldle.runCrew.checkCountry(guessedGator.country.trim());
     goldle.guessStates.push(newGuessState);
     if (newGuessState.name.state === 'correct') {
       goldle.status = 'won';

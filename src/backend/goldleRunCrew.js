@@ -43,7 +43,7 @@ class GoldleRunCrew {
     this.gatorNames = [];
     this.gators = gators;
     for (let i = 0; i < gators.length; i++) {
-      this.gatorNames.push(gators[i].name);
+      this.gatorNames.push(gators[i].name.trim());
     }
 
     return this.gatorNames;
@@ -77,6 +77,10 @@ class GoldleRunCrew {
       return null;
     }
     const randomGator = this.gators[Math.floor(Math.random() * this.gators.length)];
+    randomGator.name = randomGator.name.trim();
+    randomGator.degree = randomGator.degree.trim();
+    randomGator.room = randomGator.room.trim();
+    randomGator.country = randomGator.country.trim();
     this.guessGator = randomGator;
     return randomGator;
   };
