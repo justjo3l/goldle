@@ -7,7 +7,7 @@ describe('testing setupGuessGator() in GoldleRunCrew', () => {
     let runCrew;
 
     beforeEach(() => {
-        runCrew = new GoldleRunCrew();
+        runCrew = new GoldleRunCrew(true);
         runCrew.setupGators();
     });
 
@@ -28,7 +28,7 @@ describe('testing getGatorByName() in GoldleRunCrew', () => {
     let runCrew;
 
     beforeEach(() => {
-        runCrew = new GoldleRunCrew();
+        runCrew = new GoldleRunCrew(true);
         runCrew.setupGators();
     });
 
@@ -61,7 +61,7 @@ describe('testing getFaculties() in GoldleRunCrew', () => {
     let runCrew;
 
     beforeEach(() => {
-        runCrew = new GoldleRunCrew();
+        runCrew = new GoldleRunCrew(true);
         runCrew.setupGators();
     });
 
@@ -85,7 +85,7 @@ describe('testing getRecommendations() in GoldleRunCrew', () => {
     let runCrew;
 
     beforeEach(() => {
-        runCrew = new GoldleRunCrew();
+        runCrew = new GoldleRunCrew(true);
         runCrew.setupGators();
     });
 
@@ -102,7 +102,7 @@ describe('testing getGuessGator() in Goldle', () => {
     let runCrew;
 
     beforeEach(() => {
-        runCrew = new GoldleRunCrew();
+        runCrew = new GoldleRunCrew(true);
     });
 
     test('getGuessGator() should return gator details if gator has been set', () => {
@@ -120,7 +120,7 @@ describe('testing nameExists() in GoldleRunCrew', () => {
     let runCrew;
 
     beforeEach(() => {
-        runCrew = new GoldleRunCrew();
+        runCrew = new GoldleRunCrew(true);
         runCrew.setupGators();
     });
 
@@ -137,7 +137,7 @@ describe('testing checkName() in GoldleRunCrew', () => {
     let runCrew;
 
     beforeEach(() => {
-        runCrew = new GoldleRunCrew();
+        runCrew = new GoldleRunCrew(true);
         runCrew.setupGators();
         runCrew.setupGuessGator("Joel Jose");
     });
@@ -163,7 +163,7 @@ describe('testing checkDegree() in GoldleRunCrew', () => {
     let runCrew;
 
     beforeEach(() => {
-        runCrew = new GoldleRunCrew();
+        runCrew = new GoldleRunCrew(true);
         runCrew.setupGators();
         runCrew.setupGuessGator("Joel Jose");
     });
@@ -213,7 +213,7 @@ describe('testing checkFloor() in Goldle', () => {
     let runCrew;
 
     beforeEach(() => {
-        runCrew = new GoldleRunCrew();
+        runCrew = new GoldleRunCrew(true);
         runCrew.setupGators();
         runCrew.setupGuessGator("Joel Jose");
     });
@@ -265,7 +265,7 @@ describe('testing checkCountry() in Goldle', () => {
     let runCrew;
 
     beforeEach(() => {
-        runCrew = new GoldleRunCrew();
+        runCrew = new GoldleRunCrew(true);
         runCrew.setupGators();
         runCrew.setupGuessGator("Joel Jose");
     });

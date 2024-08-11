@@ -12,7 +12,7 @@ import Goldle from "backend/goldle.js";
 describe('testing GuessElement', () => {
 
     test('GuessElement should function without id', () => {
-        const goldle = new Goldle();
+        const goldle = new Goldle(true);
         goldle.startGame();
         goldle.rigGame('Joel Jose');
         const guessState = goldle.guessName('Rosanne Lee').guessState.floor;
@@ -28,7 +28,7 @@ describe('testing GuessElement', () => {
     });
 
     test('GuessElement should show hint when clicked', () => {
-        const goldle = new Goldle();
+        const goldle = new Goldle(true);
         goldle.startGame();
         goldle.rigGame('Joel Jose');
         const guessState = goldle.guessName('Rosanne Lee').guessState.floor;
@@ -40,7 +40,7 @@ describe('testing GuessElement', () => {
     });
 
     test('GuessElement should not show hint when correct guess is clicked', () => {
-        const goldle = new Goldle();
+        const goldle = new Goldle(true);
         goldle.startGame();
         goldle.rigGame('Joel Jose');
         const guessState = goldle.guessName('Amber Chan').guessState.floor;

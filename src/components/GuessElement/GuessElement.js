@@ -25,6 +25,9 @@ export default function GuessElement(props) {
   const [flipState, setFlipState] = useState(false);
 
   const flip = () => {
+    if (guess.hint === '') {
+      return;
+    }
     if (guess.state !== 'correct') {
       setFlipState(!flipState);
     }
