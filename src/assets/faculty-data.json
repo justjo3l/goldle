@@ -15,7 +15,8 @@
                 "social sciences",
                 "politics",
                 "education",
-                "fine arts"
+                "fine arts",
+                "communications & journalism"
             ]
         ],
         [
@@ -34,7 +35,8 @@
                 "biomedical engineering",
                 "mining engineering",
                 "aerospace engineering",
-                "environmental engineering"
+                "environmental engineering",
+                "chemical engineering"
             ]
         ],
         [
@@ -59,7 +61,8 @@
                 "physics",
                 "aviation",
                 "advanced science",
-                "chemistry"
+                "chemistry",
+                "psychology"
             ]
         ],
         [
@@ -81,7 +84,8 @@
         [
             "National Institude of Dramatic Art",
             [
-                "drama"
+                "drama",
+                "props and effects"
             ]
         ]
     ]

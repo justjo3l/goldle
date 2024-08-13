@@ -7,13 +7,13 @@
     },
     {
         "name": "Alannah Scalzo",
-        "degree": "Design/Media",
+        "degree": "Media/Design",
         "room": "210",
         "country": "Australia"
     },
     {
         "name": "Sam Morphett",
-        "degree": "Science/Advanced Mathematics",
+        "degree": "Advanced Mathematics",
         "room": "415",
         "country": "Australia"
     },
@@ -39,7 +39,7 @@
         "name": "Ben Williams",
         "degree": "Economics/Commerce",
         "room": "523",
-        "country": "USA"
+        "country": "United States"
     },
     {
         "name": "Taehun Kim",
@@ -61,7 +61,7 @@
     },
     {
         "name": "Holly Smith",
-        "degree": "Science ",
+        "degree": "Science",
         "room": "424",
         "country": "Australia"
     },
@@ -79,9 +79,9 @@
     },
     {
         "name": "Hollie Corbett Demartini",
-        "degree": "Medical Science ",
+        "degree": "Medical Science",
         "room": "422",
-        "country": "Australia "
+        "country": "Australia"
     },
     {
         "name": "Joseph Jeffcote",
@@ -99,7 +99,7 @@
         "name": "Freesia Gaul",
         "degree": "Quantum Engineering",
         "room": "115",
-        "country": "Canada "
+        "country": "Canada"
     },
     {
         "name": "Sarah Zhang",
@@ -111,7 +111,7 @@
         "name": "Will Coleman",
         "degree": "Medicine",
         "room": "309",
-        "country": "Australia "
+        "country": "Australia"
     },
     {
         "name": "Tessa Sitjes",
@@ -126,7 +126,7 @@
         "country": "Australia"
     },
     {
-        "name": "Justin Cheung ",
+        "name": "Justin Cheung",
         "degree": "Law/Science",
         "room": "323",
         "country": "Hong Kong"
@@ -157,7 +157,7 @@
     },
     {
         "name": "Albin Binu George",
-        "degree": "Computer Science ",
+        "degree": "Computer Science",
         "room": "220",
         "country": "India"
     },
@@ -174,10 +174,10 @@
         "country": "India"
     },
     {
-        "name": "Ellie Crawford ",
+        "name": "Ellie Crawford",
         "degree": "Data Science",
         "room": "118",
-        "country": "Australia "
+        "country": "Australia"
     },
     {
         "name": "Divakar Dessai",
@@ -186,8 +186,8 @@
         "country": "India"
     },
     {
-        "name": "Ryan Khoo Yeow Shiong ",
-        "degree": "Data Science and Decisions ",
+        "name": "Ryan Khoo Yeow Shiong",
+        "degree": "Data Science",
         "room": "508",
         "country": "Malaysia"
     },
@@ -225,11 +225,11 @@
         "name": "Caitlin McGlew",
         "degree": "Mechanical Engineering/Advanced Science ",
         "room": "426",
-        "country": "Australia "
+        "country": "Australia"
     },
     {
         "name": "Eliza Rose Dampney",
-        "degree": "Data Science and Decisions",
+        "degree": "Data Science",
         "room": "318",
         "country": "Australia"
     },
@@ -247,13 +247,13 @@
     },
     {
         "name": "Yash Arora",
-        "degree": "Commerce ",
+        "degree": "Commerce",
         "room": "122",
         "country": "India"
     },
     {
         "name": "Ishaan Nandurkar",
-        "degree": "Quantum Engineering/Computer Science ",
+        "degree": "Quantum Engineering/Computer Science",
         "room": "302",
         "country": "Australia"
     },
@@ -264,9 +264,171 @@
         "country": "Australia"
     },
     {
-        "name": "Rohan A",
+        "name": "Rohan Agarwal",
         "degree": "Software Engineering",
         "room": "224",
         "country": "Australia"
+    },
+    {
+        "name": "Timothy Lewis Davies",
+        "degree": "Media",
+        "room": "515",
+        "country": "Australia"
+    },
+    {
+        "name": "Christopher Hosea",
+        "degree": "Props and Effects",
+        "room": "103",
+        "country": "United States"
+    },
+    {
+        "name": "Nishan Mahesh",
+        "degree": "Economics/Science",
+        "room": "307",
+        "country": "India"
+    },
+    {
+        "name": "Jack Cameron Buchanan",
+        "degree": "Software Engineering",
+        "room": "510",
+        "country": "Australia"
+    },
+    {
+        "name": "Ethan Andreazza",
+        "degree": "Software Engineering",
+        "room": "308",
+        "country": "Australia"
+    },
+    {
+        "name": "Moontaha Zahedee",
+        "degree": "Chemical Engineering",
+        "room": "216",
+        "country": "Bangladesh"
+    },
+    {
+        "name": "Jai Pakizaa Waghela",
+        "degree": "Science/Arts",
+        "room": "202",
+        "country": "Fiji"
+    },
+    {
+        "name": "Abhiram Yanamandra",
+        "degree": "Computer Engineering",
+        "room": "429",
+        "country": "Singapore"
+    },
+    {
+        "name": "Laura Lowe",
+        "degree": "Arts/Law",
+        "room": "223",
+        "country": "Australia"
+    },
+    {
+        "name": "Sebastian Spencer",
+        "degree": "Renewable Energy Engineering",
+        "room": "420",
+        "country": "Australia"
+    },
+    {
+        "name": "Jeremy Southwell",
+        "degree": "Quantum Engineering/Computer Science",
+        "room": "506",
+        "country": "Australia"
+    },
+    {
+        "name": "Isha Singh",
+        "degree": "Mechatronics Engineering",
+        "room": "329",
+        "country": "New Zealand"
+    },
+    {
+        "name": "Amber Chan",
+        "degree": "Communications & Journalism",
+        "room": "313",
+        "country": "Singapore"
+    },
+    {
+        "name": "Callum Muir",
+        "degree": "Commerce/Science",
+        "room": "124",
+        "country": "Australia"
+    },
+    {
+        "name": "Kaylea Zhong",
+        "degree": "Commerce/Design",
+        "room": "206",
+        "country": "New Zealand"
+    },
+    {
+        "name": "Ellen Watkin",
+        "degree": "Medical Science",
+        "room": "114",
+        "country": "Australia"
+    },
+    {
+        "name": "Jamie Hilliam",
+        "degree": "Software Engineering",
+        "room": "320",
+        "country": "New Zealand"
+    },
+    {
+        "name": "Isabella Marles",
+        "degree": "Medicine",
+        "room": "418",
+        "country": "Australia"
+    },
+    {
+        "name": "Harry Deacon",
+        "degree": "Aerospace Engineering",
+        "room": "419",
+        "country": "Australia"
+    },
+    {
+        "name": "Chameen Dayajeewa",
+        "degree": "Information Systems/Commerce",
+        "room": "319",
+        "country": "Sri Lanka"
+    },
+    {
+        "name": "Devam Jain",
+        "degree": "Computer Science",
+        "room": "527",
+        "country": "Singapore"
+    },
+    {
+        "name": "Amelie Robinson",
+        "degree": "Advanced Mathematics/Computer Science",
+        "room": "411",
+        "country": "Australia"
+    },
+    {
+        "name": "Spencer Wong",
+        "degree": "Engineering",
+        "room": "305",
+        "country": "New Zealand"
+    },
+    {
+        "name": "Sean Coulon Clark",
+        "degree": "Mechatronics Engineering",
+        "room": "217",
+        "country": "Australia"
+    },
+    {
+        "name": "Cian Stirling",
+        "degree": "Science/Arts",
+        "room": "212",
+        "country": "Australia"
+    },
+    {
+        "name": "Justin Soh",
+        "degree": "Law/Psychology",
+        "room": "101",
+        "country": "Singapore"
+    },
+    {
+        "name": "Nina Bj\u00f8rge",
+        "degree": "Commerce",
+        "room": "317",
+        "country": "Norway"
     }
 ]
