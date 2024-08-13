@@ -88,7 +88,7 @@ describe('testing guess-grid game flow in Home', () => {
 
     test('guess grid does not show recommendation if valid input', () => {
         const guessBar = document.getElementById('guess-bar');
-        fireEvent.change(guessBar, {target: {value: 'Amber Chan'}});
+        fireEvent.change(guessBar, {target: {value: 'Holly Smith'}});
         fireEvent.keyDown(guessBar, {key: 'Enter', code: 'Enter'});
         const recommendationText = document.getElementById('recommendation');
         expect(recommendationText).not.toBeInTheDocument();
@@ -96,7 +96,7 @@ describe('testing guess-grid game flow in Home', () => {
 
     test('guess grid renders result row and next guess bar on incorrect guess', () => {
         let guessBar = document.getElementById('guess-bar');
-        fireEvent.change(guessBar, {target: {value: 'Amber Chan'}});
+        fireEvent.change(guessBar, {target: {value: 'Holly Smith'}});
         fireEvent.keyDown(guessBar, {key: 'Enter', code: 'Enter'});
         const resultRow = document.getElementById('row-1');
         expect(resultRow).toBeInTheDocument();
@@ -132,7 +132,7 @@ describe('testing guess-grid game flow in Home', () => {
             const guessText = startButton = screen.getByText(`${i + 1}/6`);
             expect(guessText).toBeInTheDocument();
             guessBar = document.getElementById('guess-bar');
-            fireEvent.change(guessBar, {target: {value: 'Amber Chan'}});
+            fireEvent.change(guessBar, {target: {value: 'Holly Smith'}});
             fireEvent.keyDown(guessBar, {key: 'Enter', code: 'Enter'});
             const resultRow = document.getElementById('row-' + (i + 1).toString());
             expect(resultRow).toBeInTheDocument();
@@ -152,19 +152,19 @@ describe('testing guess-grid game flow in Home', () => {
 
     test('guess grid result row contents should be accurate if a guess is made', () => {
         let guessBar = document.getElementById('guess-bar');
-        fireEvent.change(guessBar, {target: {value: 'Amber Chan'}});
+        fireEvent.change(guessBar, {target: {value: 'Holly Smith'}});
         fireEvent.keyDown(guessBar, {key: 'Enter', code: 'Enter'});
         const resultName = document.getElementById('row-1-name');
-        expect(resultName).toHaveTextContent('Amber Chan');
+        expect(resultName).toHaveTextContent('Holly Smith');
         expect(resultName.classList.contains('incorrect')).toBe(true);
         const resultDegree = document.getElementById('row-1-degree');
-        expect(resultDegree).toHaveTextContent('Communications / Journalism');
+        expect(resultDegree).toHaveTextContent('Science');
         expect(resultDegree.classList.contains('incorrect')).toBe(true);
         const resultCountry = document.getElementById('row-1-country');
-        expect(resultCountry).toHaveTextContent('🇸🇬');
-        expect(resultCountry.classList.contains('near')).toBe(true);
+        expect(resultCountry).toHaveTextContent('🇦🇺');
+        expect(resultCountry.classList.contains('incorrect')).toBe(true);
         const resultFloor = document.getElementById('row-1-floor');
-        expect(resultFloor).toHaveTextContent('3');
+        expect(resultFloor).toHaveTextContent('4');
         expect(resultFloor.classList.contains('correct')).toBe(true);
     });
 
@@ -188,7 +188,7 @@ describe('testing guess-grid game flow in Home', () => {
         jest.useFakeTimers();
         for (let i = 0; i < 6; i++) {
             guessBar = document.getElementById('guess-bar');
-            fireEvent.change(guessBar, {target: {value: 'Amber Chan'}});
+            fireEvent.change(guessBar, {target: {value: 'Holly Smith'}});
             fireEvent.keyDown(guessBar, {key: 'Enter', code: 'Enter'});
         }
         act(() => {
@@ -220,7 +220,7 @@ describe('testing guess-grid error cases in Home', () => {
 
     test('guess grid does not change if another key is down instead of enter on guess bar', () => {
         let guessBar = document.getElementById('guess-bar');
-        fireEvent.change(guessBar, {target: {value: 'ambe'}});
+        fireEvent.change(guessBar, {target: {value: 'holl'}});
         fireEvent.keyDown(guessBar, {key: 'a', code: 'a'});
         guessBar = document.getElementById('bar-1');
         expect(guessBar).toBeInTheDocument();
@@ -232,7 +232,7 @@ describe('testing guess-grid error cases in Home', () => {
 
     test('guess grid does not render result row or next guess bar and shows recommendations (if available) if invalid input', () => {
         let guessBar = document.getElementById('guess-bar');
-        fireEvent.change(guessBar, {target: {value: 'ambe'}});
+        fireEvent.change(guessBar, {target: {value: 'holl'}});
         fireEvent.keyDown(guessBar, {key: 'Enter', code: 'Enter'});
         guessBar = document.getElementById('bar-1');
         expect(guessBar).toBeInTheDocument();
@@ -246,7 +246,7 @@ describe('testing guess-grid error cases in Home', () => {
 
     test('guess grid click recommendation inserts it into guessBar', () => {
         let guessBar = document.getElementById('guess-bar');
-        fireEvent.change(guessBar, {target: {value: 'ambe'}});
+        fireEvent.change(guessBar, {target: {value: 'holl'}});
         fireEvent.keyDown(guessBar, {key: 'Enter', code: 'Enter'});
         guessBar = document.getElementById('bar-1');
         const recommendationName = document.getElementById('recommendation-name');
