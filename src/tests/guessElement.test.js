@@ -15,14 +15,14 @@ describe('testing GuessElement', () => {
         const goldle = new Goldle(true);
         goldle.startGame();
         goldle.rigGame('Joel Jose');
-        const guessState = goldle.guessName('Rosanne Lee').guessState.floor;
+        const guessState = goldle.guessName('Justin Cheung').guessState.floor;
         render(
             <div id='test-ele'>
                 <GuessElement guess={guessState} guessKey='floor'/>
             </div>
         );
         const guessElement = document.getElementById('test-ele').children[0];
-        expect(guessElement).toHaveTextContent('2');
+        expect(guessElement).toHaveTextContent('3');
         fireEvent.click(guessElement);
         expect(guessElement).toHaveTextContent('The gator is on a neighbouring floor');
     });
@@ -31,10 +31,10 @@ describe('testing GuessElement', () => {
         const goldle = new Goldle(true);
         goldle.startGame();
         goldle.rigGame('Joel Jose');
-        const guessState = goldle.guessName('Rosanne Lee').guessState.floor;
+        const guessState = goldle.guessName('Justin Cheung').guessState.floor;
         render(<GuessElement guess={guessState} guessKey='floor' id='test-ele'/>);
         const guessElement = document.getElementById('test-ele');
-        expect(guessElement).toHaveTextContent('2');
+        expect(guessElement).toHaveTextContent('3');
         fireEvent.click(guessElement);
         expect(guessElement).toHaveTextContent('The gator is on a neighbouring floor');
     });
@@ -43,11 +43,11 @@ describe('testing GuessElement', () => {
         const goldle = new Goldle(true);
         goldle.startGame();
         goldle.rigGame('Joel Jose');
-        const guessState = goldle.guessName('Amber Chan').guessState.floor;
+        const guessState = goldle.guessName('Holly Smith').guessState.floor;
         render(<GuessElement guess={guessState} guessKey='floor' id='test-ele'/>);
         const guessElement = document.getElementById('test-ele');
-        expect(guessElement).toHaveTextContent('3');
+        expect(guessElement).toHaveTextContent('4');
         fireEvent.click(guessElement);
-        expect(guessElement).toHaveTextContent('3');
+        expect(guessElement).toHaveTextContent('4');
     });
 });

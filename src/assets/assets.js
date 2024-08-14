@@ -9,7 +9,7 @@ const goldleText =
 '  ████████▀   ▀██████▀  █████▄▄██ ████████▀  █████▄▄██   ██████████ \n' +
 '                        ▀                    ▀                      \n';
 
-export const goldleVersion = '1.2.3';
+export const goldleVersion = '1.2.3x';
 
 
 export default goldleText;

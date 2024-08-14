@@ -13,7 +13,10 @@
                 "animation",
                 "construction management",
                 "social sciences",
-                "politics"
+                "politics",
+                "education",
+                "fine arts",
+                "communications & journalism"
             ]
         ],
         [
@@ -32,7 +35,8 @@
                 "biomedical engineering",
                 "mining engineering",
                 "aerospace engineering",
-                "environmental engineering"
+                "environmental engineering",
+                "chemical engineering"
             ]
         ],
         [
@@ -57,7 +61,8 @@
                 "physics",
                 "aviation",
                 "advanced science",
-                "chemistry"
+                "chemistry",
+                "psychology"
             ]
         ],
         [
@@ -65,7 +70,8 @@
             [
                 "medicine",
                 "international public health",
-                "exercise physiology"
+                "exercise physiology",
+                "physiotherapy"
             ]
         ],
         [
@@ -78,7 +84,8 @@
         [
             "National Institude of Dramatic Art",
             [
-                "drama"
+                "drama",
+                "props and effects"
             ]
         ]
     ]

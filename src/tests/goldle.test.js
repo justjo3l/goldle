@@ -75,13 +75,13 @@ describe('testing guessName() in Goldle', () => {
 
         test('guessName() should return a guessState and lost gameState if name is incorrect and no guesses remain', () => {
             goldle.numGuesses = 1;
-            const result = goldle.guessName("Amber Chan");
+            const result = goldle.guessName("Holly Smith");
             expect(result.guessState).not.toStrictEqual(undefined);
             expect(result.gameState).toStrictEqual("lost");
         });
 
         test('guessName() should return a guessState if guess is made', () => {
-            const result = goldle.guessName("Amber Chan");
+            const result = goldle.guessName("Holly Smith");
             expect(result.guessState).not.toStrictEqual(undefined);
             expect(result.gameState).toStrictEqual(undefined);
         });

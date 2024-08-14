@@ -45,11 +45,11 @@ describe('testing getGatorByName() in GoldleRunCrew', () => {
     });
 
     test('getGatorByName() [NOT EXACT] should return gator if multiple parts of name exists and only one option exists', () => {
-        expect(runCrew.getGatorByName('Grace Gath', false)).not.toStrictEqual(null);
+        expect(runCrew.getGatorByName('Smith', false)).not.toStrictEqual(null);
     });
 
     test('getGatorByName() [NOT EXACT] should return null if first name exists and more than one option exists', () => {
-        expect(runCrew.getGatorByName('James', false)).toStrictEqual(null);
+        expect(runCrew.getGatorByName('Will', false)).toStrictEqual(null);
     });
 
     test('getGatorByName() should return null if name does not exist', () => {
@@ -151,10 +151,10 @@ describe('testing checkName() in GoldleRunCrew', () => {
     });
 
     test('checkName() should return incorrect if name is incorrect', () => {
-        expect(runCrew.checkName("Amber Chan")).toStrictEqual({
+        expect(runCrew.checkName("Holly Smith")).toStrictEqual({
             state: 'incorrect',
-            value: 'Amber Chan',
-            hint: 'The gator is not Amber Chan'
+            value: 'Holly Smith',
+            hint: 'The gator is not Holly Smith'
         });
     });
 });
@@ -169,9 +169,9 @@ describe('testing checkDegree() in GoldleRunCrew', () => {
     });
 
     test('checkDegree() should return correct if degree is correct', () => {
-        expect(runCrew.checkDegree("Computer Engineering")).toStrictEqual({
+        expect(runCrew.checkDegree("Software Engineering")).toStrictEqual({
             state: 'correct',
-            value: 'Computer Engineering',
+            value: 'Software Engineering',
             hint: '👍'
         });
     });
@@ -219,22 +219,22 @@ describe('testing checkFloor() in Goldle', () => {
     });
 
     test('checkFloor() should return correct if floor is correct', () => {
-        expect(runCrew.checkFloor(3)).toStrictEqual({
+        expect(runCrew.checkFloor(4)).toStrictEqual({
             state: 'correct',
-            value: 3,
+            value: 4,
             hint: '👍'
         });
     });
 
     test('checkFloor() should return neighbour if floor is 1 away', () => {
-        expect(runCrew.checkFloor(2)).toStrictEqual({
+        expect(runCrew.checkFloor(3)).toStrictEqual({
             state: 'neighbour',
-            value: 2,
+            value: 3,
             hint: 'The gator is on a neighbouring floor'
         });
-        expect(runCrew.checkFloor(4)).toStrictEqual({
+        expect(runCrew.checkFloor(5)).toStrictEqual({
             state: 'neighbour',
-            value: 4,
+            value: 5,
             hint: 'The gator is on a neighbouring floor'
         });
     });
@@ -253,9 +253,9 @@ describe('testing checkFloor() in Goldle', () => {
             value: 1,
             hint: 'The gator is not on a neighbouring floor'
         });
-        expect(runCrew.checkFloor(5)).toStrictEqual({
+        expect(runCrew.checkFloor(2)).toStrictEqual({
             state: 'incorrect',
-            value: 5,
+            value: 2,
             hint: 'The gator is not on a neighbouring floor'
         });
     });
