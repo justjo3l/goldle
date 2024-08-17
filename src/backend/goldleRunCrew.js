@@ -86,6 +86,10 @@ class GoldleRunCrew {
     return randomGator;
   };
 
+  setupProgress = function() {
+    this.progress = [];
+  }
+
   // Get functions
 
   /**
@@ -315,6 +319,8 @@ class GoldleRunCrew {
       hint: this.hintsActive ? hint : '',
     };
   };
+
+  // Update functions
 
   /**
    * @param {object} guessState

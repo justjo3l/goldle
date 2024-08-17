@@ -33,9 +33,9 @@ class Goldle {
     }
     this.runCrew.setupGators('gator-data.csv', 'faculty-data.csv');
     this.runCrew.setupGuessGator();
+    this.runCrew.setupProgress();
     this.numGuesses = this.config.numGuesses;
     this.status = 'started';
-    this.progress = [];
     return this.status;
   };
 
