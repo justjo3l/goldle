@@ -70,6 +70,7 @@ export default function Home() {
     handleGameEndStyles(newGuessState.gameState);
     setTimeout(() => {
       setGameEnded(true);
+      console.log(goldle.getProgress());
     }, 2000);
     }
   };

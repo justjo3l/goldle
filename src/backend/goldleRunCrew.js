@@ -19,6 +19,7 @@ class GoldleRunCrew {
     this.facultyMap = new Map();
     this.guessGator = null;
     this.hintsActive = hintsActive;
+    this.progress = [];
   }
 
   // Setup functions
@@ -149,6 +150,14 @@ class GoldleRunCrew {
    */
   getGuessGator = function() {
     return this.guessGator;
+  };
+
+  /**
+   * @return {Array} The game progress.
+   * @description Gets the game progress.
+   */
+  getProgress = function() {
+    return this.progress;
   };
 
   // Check functions
@@ -305,6 +314,46 @@ class GoldleRunCrew {
       value: guessedCountry,
       hint: this.hintsActive ? hint : '',
     };
+  };
+
+  /**
+   * @param {object} guessState
+   * @return {object} The guess state.
+   * @description Updates progress based on the guess state.
+   */
+  updateProgress = function(guessState) {
+    let currGuess = "";
+    if (guessState.name.state === 'correct') {
+      currGuess += "🟩";
+    } else {
+      currGuess += "⬛";
+    }
+
+    if (guessState.degree.state === 'correct') {
+      currGuess += "🟩";
+    } else if (guessState.degree.state === 'same-faculty') {
+      currGuess += "🟨";
+    } else {
+      currGuess += "⬛";
+    }
+
+    if (guessState.country.state === 'correct') {
+      currGuess += "🟩";
+    } else if (guessState.country.state === 'same-continent') {
+      currGuess += "🟨";
+    } else {
+      currGuess += "⬛";
+    }
+
+    if (guessState.floor.state === 'correct') {
+      currGuess += "🟩";
+    } else if (guessState.floor.state === 'neighbour') {
+      currGuess += "🟨";
+    } else {
+      currGuess += "⬛";
+    }
+
+    this.progress.push(currGuess);
   };
 }
 
