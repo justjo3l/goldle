@@ -33,6 +33,7 @@ class Goldle {
     }
     this.runCrew.setupGators('gator-data.csv', 'faculty-data.csv');
     this.runCrew.setupGuessGator();
+    this.runCrew.setupProgress();
     this.numGuesses = this.config.numGuesses;
     this.status = 'started';
     return this.status;
@@ -65,6 +66,7 @@ class Goldle {
     newGuessState.floor = goldle.runCrew.checkFloor(guessedGator.room[0].trim());
     newGuessState.country = goldle.runCrew.checkCountry(guessedGator.country.trim());
     goldle.guessStates.push(newGuessState);
+    goldle.runCrew.updateProgress(newGuessState);
     if (newGuessState.name.state === 'correct') {
       goldle.status = 'won';
       return {
@@ -101,6 +103,14 @@ class Goldle {
    */
   getState = function() {
     return this.status;
+  };
+
+  /**
+   * @return {Array} The game progress.
+   * @description Gets the game progress array.
+   */
+  getProgress = function() {
+    return this.runCrew.getProgress();
   };
 }
 

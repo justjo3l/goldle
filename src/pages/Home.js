@@ -12,6 +12,7 @@ import LosePopup from '../components/LosePopup/LosePopup.js';
 import GuessBar from '../components/GuessBar/GuessBar.js';
 import GuessRow from '../components/GuessRow/GuessRow.js';
 import PlayButton from '../components/PlayButton/PlayButton.js';
+import CopyButton from 'components/CopyButton/CopyButton';
 import HelpButton from 'components/HelpButton/HelpButton';
 
 import { goldleVersion } from 'assets/assets';
@@ -47,7 +48,7 @@ export default function Home() {
       window.removeEventListener('resize', handleResize);
     };
   });
-  
+
   const handleGameEndStyles = (gameState) => {
     const title = document.getElementById('title');
     if (gameState === 'won' || gameState === 'lost') {
@@ -119,6 +120,33 @@ export default function Home() {
     goldle.startGame();
     setMaxGuesses(goldle.numGuesses);
     setState(goldle.getState());
+  };
+
+  // Runs when the start button is clicked.
+  const handleCopyClick = () => {
+    const progress = goldle.getProgress();
+    let summary = "";
+
+    summary += "Goldle "
+
+    if (state === "won") {
+      summary += progress.length
+    } else if (state === "lost") {
+      summary += "X"
+    }
+
+    summary += "/" + goldle.config.numGuesses + "\n"
+
+    summary += goldle.runCrew.getGuessGator().name + "\n\n";
+
+    for (let i = 0; i < progress.length; i++) {
+      summary += progress[i]
+      if (i != progress.length - 1) {
+        summary += "\n";
+      }
+    }
+
+    navigator.clipboard.writeText(summary);
   };
 
   // Runs whenever a change to the guessStates array is made.
@@ -199,7 +227,13 @@ export default function Home() {
                   })}
                 </div>
         }
-        {gameEnded && <PlayButton text='play again' onClick={handleStartClick} id='play-again-button' />}
+        {gameEnded &&
+        <div id='button-row'>
+          <div></div>
+          <PlayButton text='play again' onClick={handleStartClick} id='play-again-button' />
+          <CopyButton text='copy game stats' onClick={handleCopyClick} id='copy-button' />
+        </div>
+        }
         {!gameEnded && <section id='help-section'>
           <HelpButton />
           </section>}
