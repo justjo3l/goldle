@@ -2,12 +2,13 @@
     background: none;
     text-align: center;
     font-family: 'Inter';
-    font-size: 2.5rem;
+    font-size: 1.5rem;
     font-style: normal;
-    font-weight: 800;
+    font-weight: 200;
     color: #ffffff;
-    border: 0.4rem solid #151111;
+    border: 2px solid white;
     text-transform: uppercase;
+    margin: 3rem 1rem;
 }
 
 .copy-button:hover {

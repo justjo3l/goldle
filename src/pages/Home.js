@@ -228,7 +228,8 @@ export default function Home() {
                 </div>
         }
         {gameEnded &&
-        <div>
+        <div id='button-row'>
+          <div></div>
           <PlayButton text='play again' onClick={handleStartClick} id='play-again-button' />
           <CopyButton text='copy game stats' onClick={handleCopyClick} id='copy-button' />
         </div>
